@@ -1,0 +1,37 @@
+.field {
+  display: flex;
+  flex-direction: row;
+}
+
+.field__cell {
+  flex: 1;
+  margin-bottom: 0.75rem;
+}
+
+.field__label {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.field__label__hint {
+  color: #00000054;
+  font-size: 0.8rem;
+  padding-left: 0.25rem;
+}
+
+.field__input,
+.field__select {
+  font-size: 1rem;
+  padding: 0.15rem;
+  border: solid 1px #CCC;
+}
+
+.field__input {
+  width: calc(100% - 0.3rem);
+}
+
+.field__select {
+  width: 100%;
+}

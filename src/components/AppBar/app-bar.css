@@ -1,0 +1,11 @@
+.app-bar {
+	background-color: #1976d2;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.app-bar__body {
+	padding: 1rem 1.75rem;
+}
