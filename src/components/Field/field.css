@@ -1,37 +1,67 @@
 .field {
   display: flex;
   flex-direction: row;
-}
-
-.field__cell {
-  flex: 1;
+  align-items: center;
   margin-bottom: 0.75rem;
 }
 
 .field__label {
   font-size: 1rem;
-  display: flex;
-  align-items: center;
+  flex: 1;
   height: 100%;
+}
+
+.field__cell {
+  flex: 1;
+}
+
+.field__cell:first-child {
+  margin-right: 0.125rem;
+}
+
+.field__cell:last-child {
+  margin-left: 0.125rem;
 }
 
 .field__label__hint {
   color: #00000054;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   padding-left: 0.25rem;
+}
+
+.field__input__container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  max-width: 50%;
 }
 
 .field__input,
 .field__select {
+  box-sizing: border-box;
   font-size: 1rem;
-  padding: 0.15rem;
-  border: solid 1px #CCC;
+  height: 2rem;
+  border: solid 1px #ccc;
+  background-color: #fff;
+  width: 100%;
+}
+
+.field__input:focus,
+.field__select:focus {
+  outline: none;
+  border: solid 1px #1e88e5;
 }
 
 .field__input {
-  width: calc(100% - 0.3rem);
+  padding: 0.25rem 0.5rem;
 }
 
 .field__select {
-  width: 100%;
+  padding: 0.22rem 0.25rem;
+  border-radius: 0;
+}
+
+.field__input--cell_width_fix,
+.field__select--cell_width_fix {
+  width: calc(100% - 0.5rem);
 }

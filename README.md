@@ -4,7 +4,7 @@ A progressive web app for your phone that will be ready at a moment's notice to 
 
 ## Features
 ### Clickulator
-Helps you zero that pesky rifle.
+Helps you zero that pesky optic.
 
 ### Hold-over Table
 Yeah, I can never remember those either.
@@ -20,3 +20,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [Husky](https://github.com/typicode/husky)  
 [TypeScript](https://www.typescriptlang.org/)   
 [Sass](https://sass-lang.com/)  
+[Yup](https://github.com/jquense/yup)
+[Reach Router](https://reach.tech/router)

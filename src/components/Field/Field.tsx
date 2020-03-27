@@ -11,12 +11,10 @@ interface IProps {
 function Field(props: IProps) {
   return (
     <div className="field">
-      <div className="field__cell">
-        <label
-          className="field__label"
-          htmlFor={props.inputName}>{props.labelText}</label>
-      </div>
-      <div className="field__cell">
+      <label
+        className="field__label"
+        htmlFor={props.inputName}>{props.labelText}</label>
+      <div className="field__input__container">
         {props.children}
       </div>
     </div>

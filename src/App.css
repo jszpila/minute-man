@@ -46,11 +46,25 @@ body,
   padding: 1rem;
   font-size: 1rem;
   margin: 0;
+  border: 0;
+}
+
+.button:focus {
+  outline: none;
+  border: solid 1px #1e88e5;
 }
 
 .button--primary {
   background-color: #1976d2;
   color: #FFF;
+}
+
+.button--primary:hover {
+  background-color: #1e88e5
+}
+
+.button--primary:active {
+  background-color: #1565c0;
 }
 
 .button--yuge {

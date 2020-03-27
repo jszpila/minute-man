@@ -1,0 +1,31 @@
+.modal {
+  position: fixed;
+  z-index: 21;
+  background-color: #fff;
+  width: 90%;
+  top: 25%;
+  left: 5%;
+}
+
+.modal__content {
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.modal__button-bar {
+  padding-top: 1rem;
+  text-align: right;
+}
+
+.modal__cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+
+.scroll-lock {
+  overflow: hidden;
+}

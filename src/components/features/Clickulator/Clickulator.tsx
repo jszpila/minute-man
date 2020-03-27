@@ -1,90 +1,116 @@
-import React, { SyntheticEvent, useContext } from 'react';
+/**
+ *                    
+ * 8""""8 8     8  8""""8 8   8  8   8 8     8""""8 ""8"" 8"""88 8"""8  
+ * 8    " 8     8  8    " 8   8  8   8 8     8    8   8   8    8 8   8  
+ * 8e     8e    8e 8e     8eee8e 8e  8 8e    8eeee8   8e  8    8 8eee8e 
+ * 88     88    88 88     88   8 88  8 88    88   8   88  8    8 88   8 
+ * 88   e 88    88 88   e 88   8 88  8 88    88   8   88  8    8 88   8 
+ * 88eee8 88eee 88 88eee8 88   8 88ee8 88eee 88   8   88  8eeee8 88   8  
+ *                                                                 
+ * Calibrate your optic with a few clicks. On your phone, even!
+ *
+ */
+
+import React, { SyntheticEvent, useState } from 'react';
+
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
-import { OpticAdjustmentIncrements } from '../../../data/OpticAdjustmentIncrements';
-import Field from '../../Field/Field';
-import RestrictedNumericInput from '../../RestrictedNumericInput/RestrictedNumericInput';
-import { FeatureContext } from './context';
+import FieldSet from './components/FieldSet';
+import Results from './components/Results';
+import { FeatureContext, IFeatureContext } from './context';
+import { DefaultValues } from './data/Defaults';
+import Validator from './validation/Validator';
+import Calculator from './Calculator';
 
-import './clickulator.css';
+export default function Clickulator() {
+  // Local state
+  const [shouldShowResults, updateShouldShowResults] = useState<boolean>(DefaultValues.shouldShowResults);
 
-function Clickulator() {
-  function onClick(event: SyntheticEvent): void {
-    event.preventDefault();
-    console.log('YO WADDUP')
+  // FIXME: better way that avoids duplicate setting of values?
+  // App context state
+  const [horizontalOffsetDistance, updateHorizontalOffsetDistance] = useState<number | undefined>(DefaultValues.horizontalOffsetDistance);
+  const [horizontalOffsetDirection, updateHorizontalOffsetDirection] = useState<string>(DefaultValues.horizontalOffsetDirection);
+  const [verticalOffsetDistance, updateVerticalOffsetDistance] = useState<number | undefined>(DefaultValues.verticalOffsetDistance);
+  const [verticalOffsetDirection, updateVerticalOffsetDirection] = useState<string>(DefaultValues.verticalOffsetDirection);
+  const [zeroAtDistance, updateZeroAtDistance] = useState<number>(DefaultValues.zeroAtDistance);
+  const [opticAdjustmentIncrement, updateOpticAdjustmentIncrement] = useState<number>(DefaultValues.opticAdjustmentIncrement);
+  const [isValid, updateIsValid] = useState<boolean>(DefaultValues.isValid);
+  const [errors, updateErrors] = useState<Array<string>>(DefaultValues.errors);
+  const [corrections, updateCorrections] = useState<Array<string>>(DefaultValues.corrections);
+
+  // FIXME: better way to make this manageable?
+  const contextValue: IFeatureContext = {
+    horizontalOffsetDistance,
+    updateHorizontalOffsetDistance,
+    horizontalOffsetDirection,
+    updateHorizontalOffsetDirection,
+    verticalOffsetDistance,
+    updateVerticalOffsetDistance,
+    verticalOffsetDirection,
+    updateVerticalOffsetDirection,
+    zeroAtDistance,
+    updateZeroAtDistance,
+    opticAdjustmentIncrement,
+    updateOpticAdjustmentIncrement,
+    shouldShowResults,
+    updateShouldShowResults,
+    isValid: isValid,
+    updateIsValid: updateIsValid,
+    errors,
+    updateErrors,
+    corrections,
+    updateCorrections,
   }
 
-  const featureContext = useContext(FeatureContext);
-  const vertLabel = <>Vertical Offset <i className="field__label__hint">(inches)</i></>;
-  const horizLabel = <>Horizontal Offset <i className="field__label__hint">(inches)</i></>;
- 
-  const fieldSet =
-    // TODO: make components w/ update handlers
-    // - zero distance
-    // - optic adjustment increment
-    // - Modal
-    // - field set
-    <fieldset className="form__fieldset">
-      {/* <legend className="txt__heading-2">Clickulator</legend> */}
-      <Field
-        inputName="horizontalOffsetDistance"
-        labelText={horizLabel}>
-        <RestrictedNumericInput
-          name="horizontalOffsetDistance"
-          value={featureContext.horizontalOffsetDistance}/>
-      </Field>
-      <Field
-        inputName="verticalOffsetDistance"
-        labelText={vertLabel}>
-        <RestrictedNumericInput
-          name="verticalOffsetDistance"
-          value={featureContext.verticalOffsetDistance}/>
-      </Field>
-      <Field
-        inputName="zeroAtDistance"
-        labelText="Zero Distance">
-          <input
-            className="field__input"
-            name="zeroAtDistance"
-            type="number"
-            min="25"
-            max="500"
-            step="25"
-            value={featureContext.zeroAtDistance}/>
-      </Field>
-      <Field
-        inputName="opticAdjustmentIncrement"
-        labelText="Optic Increment">
-          <select
-            className="field__select"
-            defaultValue={featureContext.opticAdjustmentIncrement}
-            name="opticAdjustmentIncrement">
-            {
-              OpticAdjustmentIncrements.map((option, index) => {
-                return <option 
-                    key={index}
-                    value={option.value}>
-                    {option.label}
-                  </option>
-              })
-            }
-          </select>
-        </Field>
-    </fieldset>;
-
-  const button =
-    <button
+  const button = <button
       className="button button--primary button--yuge"
       onClick={onClick}
-      type="button">clickulate!</button>;
-  
+      type="button">send it</button>;
+
   return (
-    <form className="form clickulator">
+    <FeatureContext.Provider value={contextValue}>
+      { shouldShowResults &&
+        <Results/>
+      }
+
+      <form
+        className="form clickulator"
+        autoComplete="off">
         <FeatureWithBottomButtonLayout
-          content={fieldSet}
+          content={<FieldSet/>}
           button={button}
         />
-    </form>
+      </form>
+    </FeatureContext.Provider>
   );
-}
 
-export default Clickulator;
+  function onClick(event: SyntheticEvent): void {
+    event.preventDefault();
+
+    const validator = new Validator({
+      horizontalOffsetDistance,
+      verticalOffsetDistance,
+      zeroAtDistance
+    });
+
+    validator.validate();
+
+    if (validator.isValid) {
+      const calculator = new Calculator({
+        horizontalOffsetDistance,
+        horizontalOffsetDirection,
+        verticalOffsetDistance,
+        verticalOffsetDirection,
+        opticAdjustmentIncrement,
+        zeroAtDistance,
+      })
+
+      calculator.generateCorrectionsList();
+
+      updateCorrections(calculator.corrections);
+    }
+    
+    updateErrors(validator.errors);
+    updateIsValid(validator.isValid);
+    updateShouldShowResults(!shouldShowResults);
+  }
+}

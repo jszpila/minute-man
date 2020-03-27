@@ -6,6 +6,10 @@
 	align-items: center;
 }
 
+.app-bar__logo {
+	padding: 1rem 0.25rem 1rem 1rem;
+}
+
 .app-bar__body {
-	padding: 1rem 1.75rem;
+	padding: 1rem 1rem 1rem 0.25rem;
 }
