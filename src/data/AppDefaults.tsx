@@ -4,4 +4,5 @@
 
 export const AppDefaultValues = {
   shouldShowInfoModal: false,
+  shouldShowInstallButton: false,
 }

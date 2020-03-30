@@ -11,10 +11,10 @@ function InfoButton() {
 
   return (
     <button
-      className="button button--inverted button--round"
+      className="app-bar__button"
       type="button"
       onClick={onClick}>
-        ?
+        <i className="material-icons">info</i>
       </button>
   );
 }

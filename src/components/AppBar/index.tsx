@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import Logo from '../Logo';
 import InfoButton from './InfoButton';
+import A2HSButton from '../A2HSButton';
 
 import './app-bar.css';
-import { AppContext } from '../../context/AppContext';
 
 function AppBar() {
-  const context = useContext(AppContext);
-
   return (
     <nav className="app-bar">
       <div className="app-bar__logo">
@@ -20,8 +18,8 @@ function AppBar() {
         <h1 className="txt__heading-1">MinuteMan</h1>
       </div>
       <div className="app-bar__buttons">
+        <A2HSButton />
         <InfoButton />
-        <b>{context.shouldShowInfoModal}</b>
       </div>
     </nav>
   );
