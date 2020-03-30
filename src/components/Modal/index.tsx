@@ -2,18 +2,19 @@
  * Modal
  */
 
-import React, { useContext, useEffect, SyntheticEvent } from 'react';
+import React, { useEffect, SyntheticEvent, Dispatch, SetStateAction } from 'react';
 import ReactDOM from 'react-dom';
-import { FeatureContext } from '../features/Clickulator/context';
 
 import './modal.css';
 
 interface IProps {
   children: React.ReactNode;
+  closeButtonText: string,
+  onClose: (Dispatch<SetStateAction<boolean>>),
+  shouldShow: boolean,
 }
 
 export default function Modal(props: IProps) {
-  const context = useContext(FeatureContext);
   const htmlEl: HTMLElement | null = document.querySelector<HTMLElement>('html');
 
   function toggleScrollLock(lock: boolean): void {
@@ -23,28 +24,28 @@ export default function Modal(props: IProps) {
   function onCloseModal(event: SyntheticEvent): void {
     event.preventDefault();
     toggleScrollLock(false);
-    context.updateShouldShowResults(false);
+    props.onClose(false);
   }
 
   useEffect(() => {
-    toggleScrollLock(true);
+    toggleScrollLock(props.shouldShow);
   });
 
   return ReactDOM.createPortal(
     <>
-      { context.shouldShowResults &&
+      { props.shouldShow &&
         <div
           className="modal__cover"
           onClick={onCloseModal}>
           <div className="modal">
-            <div className="modal__content">
+            <div className="modal__body">
               { props.children}
-              <div className="modal__button-bar">
+              <div className="modal__footer">
                 <button 
                   type="button"
                   className="button button--primary"
                   onClick={onCloseModal}>
-                    OK Boomer
+                    { props.closeButtonText }
                   </button>
               </div>
             </div>

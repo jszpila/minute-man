@@ -15,15 +15,16 @@ import React, { SyntheticEvent, useState } from 'react';
 
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
 import FieldSet from './components/FieldSet';
-import Results from './components/Results';
+import ResultsModal from './components/Results';
 import { FeatureContext, IFeatureContext } from './context';
 import { DefaultValues } from './data/Defaults';
 import Validator from './validation/Validator';
 import Calculator from './Calculator';
+import InfoPanel from '../../InfoModal';
 
 export default function Clickulator() {
   // Local state
-  const [shouldShowResults, updateShouldShowResults] = useState<boolean>(DefaultValues.shouldShowResults);
+  const [shouldShowResultsModal, updateShouldShowResultsModal] = useState<boolean>(DefaultValues.shouldShowResultsModal);
 
   // FIXME: better way that avoids duplicate setting of values?
   // App context state
@@ -51,8 +52,8 @@ export default function Clickulator() {
     updateZeroAtDistance,
     opticAdjustmentIncrement,
     updateOpticAdjustmentIncrement,
-    shouldShowResults,
-    updateShouldShowResults,
+    shouldShowResultsModal,
+    updateShouldShowResultsModal,
     isValid: isValid,
     updateIsValid: updateIsValid,
     errors,
@@ -68,9 +69,8 @@ export default function Clickulator() {
 
   return (
     <FeatureContext.Provider value={contextValue}>
-      { shouldShowResults &&
-        <Results/>
-      }
+      <ResultsModal />
+      <InfoPanel />
 
       <form
         className="form clickulator"
@@ -111,6 +111,6 @@ export default function Clickulator() {
     
     updateErrors(validator.errors);
     updateIsValid(validator.isValid);
-    updateShouldShowResults(!shouldShowResults);
+    updateShouldShowResultsModal(!shouldShowResultsModal);
   }
 }

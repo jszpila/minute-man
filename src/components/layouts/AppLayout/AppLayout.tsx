@@ -3,8 +3,8 @@ import React from 'react';
 import './app-layout.css';
 
 interface IProps {
-    header: React.ReactNode,
-    body: React.ReactNode,
+  header: React.ReactNode,
+  body: React.ReactNode,
 };
 
 function AppLayout(props: IProps) {

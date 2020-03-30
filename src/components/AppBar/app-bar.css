@@ -7,9 +7,18 @@
 }
 
 .app-bar__logo {
+	flex: 0.5;
 	padding: 1rem 0.25rem 1rem 1rem;
 }
 
 .app-bar__body {
+	flex: 2.25;
+	padding: 1rem 0.25rem;
+}
+
+.app-bar__buttons {
+	flex: 1.25;
+	text-align: right;
 	padding: 1rem 1rem 1rem 0.25rem;
 }
+ 

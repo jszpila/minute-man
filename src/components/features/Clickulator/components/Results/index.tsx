@@ -12,15 +12,16 @@ import Modal from '../../../../Modal';
 
 import './results.css';
 
-export default function Results() {
+export default function ResultsModal() {
   const context = useContext(FeatureContext);
+  const shouldShow = context.shouldShowResultsModal;
 
   return (
-    <Modal>
-      { context.isValid
-        ? <Corrections />
-        : <Errors />
-      }
+    <Modal
+      closeButtonText={'OK Boomer'}
+      onClose={context.updateShouldShowResultsModal}
+      shouldShow={shouldShow}>
+      { context.isValid ? <Corrections /> : <Errors /> }
     </Modal>
   );
 }

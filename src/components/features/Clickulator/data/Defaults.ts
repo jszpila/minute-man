@@ -12,7 +12,7 @@ export const DefaultValues = {
   verticalOffsetDirection: Direction.Up,
   zeroAtDistance: 100,
   opticAdjustmentIncrement: 0.25,
-  shouldShowResults: false,
+  shouldShowResultsModal: false,
   isValid: false,
   errors: [],
   corrections: [],

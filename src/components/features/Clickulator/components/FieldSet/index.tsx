@@ -12,9 +12,9 @@ import PointOfImpactInput from '../PointOfImpactInput';
 import { HorizontalDirectionOptions, VerticalDirectionOptions } from '../../data/DirectionListOptions';
 
 export default function FieldSet() {
-  const vertLabel = <>Vert. Offset <i className="field__label__hint">(inches)</i></>;
-  const horizLabel = <>Horiz. Offset <i className="field__label__hint">(inches)</i></>;
-  const zeroLabel = <>Zero Distance <i className="field__label__hint">(yards)</i></>;
+  const vertLabel = <>Vert. Offset <i className="field__label__hint txt--smaller txt--muted">(inches)</i></>;
+  const horizLabel = <>Horiz. Offset <i className="field__label__hint txt--smaller txt--muted">(inches)</i></>;
+  const zeroLabel = <>Zero Distance <i className="field__label__hint txt--smaller txt--muted">(yards)</i></>;
 
   return (
     <FeatureContext.Consumer>

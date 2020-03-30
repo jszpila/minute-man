@@ -19,8 +19,8 @@ export interface IFeatureContext {
   updateZeroAtDistance: (Dispatch<SetStateAction<number>>),
   opticAdjustmentIncrement: number,
   updateOpticAdjustmentIncrement: (Dispatch<SetStateAction<number>>),
-  shouldShowResults: boolean;
-  updateShouldShowResults: (Dispatch<SetStateAction<boolean>>),
+  shouldShowResultsModal: boolean;
+  updateShouldShowResultsModal: (Dispatch<SetStateAction<boolean>>),
   isValid: boolean,
   updateIsValid: (Dispatch<SetStateAction<boolean>>),
   errors: Array<string>,
@@ -42,8 +42,8 @@ export const initialContext: IFeatureContext = {
   updateZeroAtDistance: (): void => {},
   opticAdjustmentIncrement: DefaultValues.opticAdjustmentIncrement,
   updateOpticAdjustmentIncrement: (): void => {},
-  shouldShowResults: DefaultValues.shouldShowResults,
-  updateShouldShowResults: (): void => {},
+  shouldShowResultsModal: DefaultValues.shouldShowResultsModal,
+  updateShouldShowResultsModal: (): void => {},
   isValid: DefaultValues.isValid,
   updateIsValid: (): void => {},
   errors: DefaultValues.errors,

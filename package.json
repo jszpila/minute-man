@@ -1,6 +1,10 @@
 {
   "name": "minute-man",
   "version": "0.1.0",
+  "description": "A handy mobile-first web app for zeroing your optic and other things",
+  "author": {
+    "name": "Jan Szpila"
+  },
   "private": true,
   "homepage": ".",
   "dependencies": {

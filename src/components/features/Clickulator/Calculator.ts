@@ -53,7 +53,6 @@ export default class Calculator {
     }
 
     if (this.verticalOffsetDistance !== undefined) {
-      console.log('vert', this.verticalOffsetDistance, this.verticalOffsetDirection)
       this.corrections.push(this.calculateCorrection(this.verticalOffsetDistance, this.verticalOffsetDirection));
     }
   }

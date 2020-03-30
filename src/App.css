@@ -29,6 +29,14 @@ body,
   margin-bottom: 1rem;
 }
 
+.txt--muted {
+  color: #00000054;
+}
+
+.txt--smaller {
+  font-size: 0.75rem;
+}
+
 /** FORMS **/
 .form {
   display: inline;
@@ -71,6 +79,27 @@ body,
   width: 100%;
   height: 100%;
   font-size: 1.25rem;
+}
+
+.button--inverted {
+  background-color: #FFF;
+  color: #1976d2;
+}
+
+.button--inverted:hover {
+  background-color: #BDBDBD;
+}
+
+.button--inverted:active {
+  background-color: #757575;
+}
+
+.button--round {
+  border-radius: 100%;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 /** THEME **/
