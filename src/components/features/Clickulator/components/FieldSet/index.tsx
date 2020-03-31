@@ -10,11 +10,20 @@ import { FeatureContext } from '../../context';
 import ZeroAtDistanceInput from '../ZeroAtDistanceInput';
 import PointOfImpactInput from '../PointOfImpactInput';
 import { HorizontalDirectionOptions, VerticalDirectionOptions } from '../../data/DirectionListOptions';
+import RandomizeInputName from '../../../../../util/RandomizeInputName';
 
 export default function FieldSet() {
   const vertLabel = <>Vert. Offset <i className="field__label__hint txt--smaller txt--muted">(inches)</i></>;
   const horizLabel = <>Horiz. Offset <i className="field__label__hint txt--smaller txt--muted">(inches)</i></>;
   const zeroLabel = <>Zero Distance <i className="field__label__hint txt--smaller txt--muted">(yards)</i></>;
+
+  // NOTE: use randomized input names to prevent auto-fill behavior
+  const inputNames = {
+    hOffsetDist: RandomizeInputName('horizontalOffsetDistance'),
+    vOffsetDist: RandomizeInputName('verticalOffsetDistance'),
+    zeroDist: RandomizeInputName('zeroAtDistance'),
+    opticInc: RandomizeInputName('opticAdjustmentIncrement'),
+  }
 
   return (
     <FeatureContext.Consumer>
@@ -23,7 +32,7 @@ export default function FieldSet() {
           {/* Uncomment title when there are > 1 feature */}
           {/* <legend className="txt__heading-2">Clickulator</legend> */}
           <Field
-            inputName="horizontalOffsetDistance"
+            inputName={inputNames.hOffsetDist}
             labelText={horizLabel}>
             <PointOfImpactInput
               directions={HorizontalDirectionOptions}
@@ -31,10 +40,10 @@ export default function FieldSet() {
               directionUpdaterFn={value.updateHorizontalOffsetDirection}
               distanceValue={value.horizontalOffsetDistance}
               distanceUpdaterFn={value.updateHorizontalOffsetDistance}
-              name="horizontalOffsetDistance"/>
+              name={inputNames.hOffsetDist}/>
           </Field>
           <Field
-            inputName="verticalOffsetDistance"
+            inputName={inputNames.vOffsetDist}
             labelText={vertLabel}>
             <PointOfImpactInput
               directions={VerticalDirectionOptions}
@@ -42,19 +51,21 @@ export default function FieldSet() {
               directionUpdaterFn={value.updateVerticalOffsetDirection}
               distanceValue={value.verticalOffsetDistance}
               distanceUpdaterFn={value.updateVerticalOffsetDistance}
-              name="verticalOffsetDistance"/>
+              name={inputNames.vOffsetDist}/>
           </Field>
           <Field
-            inputName="zeroAtDistance"
+            inputName={inputNames.zeroDist}
             labelText={zeroLabel}>
             <ZeroAtDistanceInput
+              name={inputNames.zeroDist}
               updaterFn={value.updateZeroAtDistance}
               value={value.zeroAtDistance}/>
           </Field>
           <Field
-            inputName="opticAdjustmentIncrement"
+            inputName={inputNames.opticInc}
             labelText="Optic Increment">
               <OpticAdjustmentSelect
+                name={inputNames.opticInc}
                 updaterFn={value.updateOpticAdjustmentIncrement}
                 value={value.opticAdjustmentIncrement}/>
             </Field>

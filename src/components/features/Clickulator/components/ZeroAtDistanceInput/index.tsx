@@ -8,6 +8,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { ZeroAtDistanceConfig } from '../../data/InputConfig';
 
 interface IProps {
+  name: string,
   updaterFn: (Dispatch<SetStateAction<number>>),
   value: number,
 };
@@ -24,7 +25,7 @@ export default function ZeroAtDistanceInput(props: IProps) {
       className="field__input"
       min={ZeroAtDistanceConfig.min}
       max={ZeroAtDistanceConfig.max}
-      name="zeroAtDistance"
+      name={props.name}
       onChange={onChange}
       step={ZeroAtDistanceConfig.step}
       type="number"
