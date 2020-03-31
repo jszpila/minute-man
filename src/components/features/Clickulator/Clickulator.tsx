@@ -86,25 +86,25 @@ export default function Clickulator() {
   function onClick(event: SyntheticEvent): void {
     event.preventDefault();
 
-    const validator = new Validator({
+    const validator = Validator.getInstance();
+
+    validator.validate({
       horizontalOffsetDistance,
       verticalOffsetDistance,
       zeroAtDistance
     });
 
-    validator.validate();
-
     if (validator.isValid) {
-      const calculator = new Calculator({
+      const calculator = Calculator.getInstance();
+      
+      calculator.generateCorrectionsList({
         horizontalOffsetDistance,
         horizontalOffsetDirection,
         verticalOffsetDistance,
         verticalOffsetDirection,
         opticAdjustmentIncrement,
         zeroAtDistance,
-      })
-
-      calculator.generateCorrectionsList();
+      });
 
       updateCorrections(calculator.corrections);
     }

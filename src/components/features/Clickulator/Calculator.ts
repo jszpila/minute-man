@@ -14,46 +14,67 @@ interface ICalculatorData {
   zeroAtDistance: number,
 }
 
-// TODO: singleton
+interface ICorrectionData {
+  distance: number,
+  direction: string,
+}
+
 export default class Calculator {
-  private horizontalOffsetDistance: number | undefined;
-  private horizontalOffsetDirection: string;
-  private verticalOffsetDistance: number | undefined;
-  private verticalOffsetDirection: string;
-  private opticAdjustmentIncrement: number;
-  private zeroAtDistance: number;
+  private static instance: Calculator;
+
+  private opticAdjustmentIncrement: number = 0;
+  private zeroAtDistance: number = 0;
   private correctionsList: Array<string> = [];
+
+  private constructor() {}
+
+  static getInstance(): Calculator {
+    if (!Calculator.instance) {
+      Calculator.instance = new Calculator();
+    }
+
+    return Calculator.instance;
+  }
 
   public get corrections(): Array<string> {
     return this.correctionsList;
   }
 
-  public constructor(data: ICalculatorData) {
-    this.horizontalOffsetDistance = data.horizontalOffsetDistance;
-    this.horizontalOffsetDirection = data.horizontalOffsetDirection;
-    this.verticalOffsetDistance = data.verticalOffsetDistance;
-    this.verticalOffsetDirection = data.verticalOffsetDirection;
-    this.opticAdjustmentIncrement = data.opticAdjustmentIncrement;
-    this.zeroAtDistance = data.zeroAtDistance;
-  }
-
   // NOTE: adapted from https://www.nssf.org/shooting/minute-angle-moa
-  private calculateCorrection(offsetDistance: number, direction: string): string {
-    const adjustmentDirection = InvertedDirection.get(direction);
+  private calculateCorrection(data: ICorrectionData): string {
+    const adjustmentDirection = InvertedDirection.get(data.direction);
     const moaAtDistance = this.zeroAtDistance / 100;
-    const moaAdjustment = offsetDistance / moaAtDistance;
-    const numClicks = Math.floor(moaAdjustment / this.opticAdjustmentIncrement);
+    const moaAdjustment = data.distance / moaAtDistance;
+    const numClicks = Math.floor(moaAdjustment / this.opticAdjustmentIncrement); // NOTE: No "half-clicks", force a whole number
 
-    return `${numClicks} clicks ${adjustmentDirection}`;
-  }
+    let correction = '';
 
-  public generateCorrectionsList(): void {
-    if (this.horizontalOffsetDistance !== undefined) {
-      this.corrections.push(this.calculateCorrection(this.horizontalOffsetDistance, this.horizontalOffsetDirection));
+    if (numClicks > 0) {
+      correction = `${numClicks} clicks ${adjustmentDirection}`;
+    } else {
+      correction = `${data.distance}" is within 1moa @ ${this.zeroAtDistance} yards`;
     }
 
-    if (this.verticalOffsetDistance !== undefined) {
-      this.corrections.push(this.calculateCorrection(this.verticalOffsetDistance, this.verticalOffsetDirection));
+    return correction;
+  }
+
+  public generateCorrectionsList(data: ICalculatorData): void {
+    this.zeroAtDistance = data.zeroAtDistance;
+    this.opticAdjustmentIncrement = data.opticAdjustmentIncrement;
+    this.correctionsList = [];
+
+    if (data.horizontalOffsetDistance !== undefined) {
+      this.corrections.push(this.calculateCorrection({
+        distance: data.horizontalOffsetDistance,
+        direction: data.horizontalOffsetDirection,
+      }));
+    }
+
+    if (data.verticalOffsetDistance !== undefined) {
+      this.corrections.push(this.calculateCorrection({
+        distance: data.verticalOffsetDistance,
+        direction: data.verticalOffsetDirection,
+      }));
     }
   }
 }

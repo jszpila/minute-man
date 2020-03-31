@@ -12,11 +12,8 @@ interface IValidatorData {
   zeroAtDistance: number,
 }
 
-// TODO: singleton
 export default class Validator {
-  private horizontalOffsetDistance: number | undefined;
-  private verticalOffsetDistance: number | undefined;
-  private zeroAtDistance: number;
+  private static instance: Validator;
 
   public errors: Array<string> = [];
 
@@ -24,22 +21,26 @@ export default class Validator {
     return this.errors.length === 0;
   }
 
-  public constructor(data: IValidatorData) {
-    this.horizontalOffsetDistance = data.horizontalOffsetDistance;
-    this.verticalOffsetDistance = data.verticalOffsetDistance;
-    this.zeroAtDistance = data.zeroAtDistance;
+  static getInstance(): Validator {
+    if (!Validator.instance) {
+      Validator.instance = new Validator();
+    }
+
+    return Validator.instance;
   }
 
-  public validate(): void {
-    this.validatePresenceOfOffsets();
-    this.validateOffsetValue(this.horizontalOffsetDistance, 'Horizontal');
-    this.validateOffsetValue(this.verticalOffsetDistance, 'Vertical');
-    this.validateZeroAtDistance();
+  private constructor() {}
+
+  public validate(data: IValidatorData): void {
+    this.validatePresenceOfOffsets(data);
+    this.validateOffsetValue(data.horizontalOffsetDistance, 'Horizontal');
+    this.validateOffsetValue(data.verticalOffsetDistance, 'Vertical');
+    this.validateZeroAtDistance(data.zeroAtDistance);
   }
 
-  private validatePresenceOfOffsets(): void {
-    if (this.horizontalOffsetDistance === undefined
-        && this.verticalOffsetDistance === undefined) {
+  private validatePresenceOfOffsets(data: IValidatorData): void {
+    if (data.horizontalOffsetDistance === undefined
+        && data.verticalOffsetDistance === undefined) {
           this.errors.push(ValidationMessages.atLeastOneOf.required);
     }
   }
@@ -57,12 +58,12 @@ export default class Validator {
     }
   }
 
-  private validateZeroAtDistance(): void {
-    if (this.zeroAtDistance < ZeroAtDistanceConfig.min) {
+  private validateZeroAtDistance(value: number): void {
+    if (value < ZeroAtDistanceConfig.min) {
       this.errors.push(ValidationMessages.zeroAtDistance.min)
     }
 
-    if (this.zeroAtDistance > ZeroAtDistanceConfig.max) {
+    if (value > ZeroAtDistanceConfig.max) {
       this.errors.push(ValidationMessages.zeroAtDistance.max)
     }
   }
