@@ -26,6 +26,15 @@
   z-index: 20;
 }
 
+.modal__heading {
+  display: flex;
+  align-items: center;
+}
+
+.modal__heading__icon {
+  margin-right: 0.25rem;
+}
+
 .scroll-lock {
   overflow: hidden;
 }

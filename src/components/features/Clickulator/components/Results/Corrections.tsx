@@ -11,7 +11,9 @@ export default function Corrections() {
 
   return (
     <>
-      <h3>Click It</h3>
+      <h3 className="modal__heading">
+        <i className="material-icons modal__heading__icon">check_circle</i>
+        Click It</h3>
       <ul className="feedback">
         { 
           context.corrections.map((correction: string, index: number) => {

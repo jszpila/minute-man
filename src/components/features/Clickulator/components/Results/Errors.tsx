@@ -11,7 +11,9 @@ export default function Errors() {
 
   return (
     <>
-      <h3>Does Not Compute</h3>
+      <h3 className="modal__heading">
+        <i className="material-icons modal__heading__icon">error</i>
+        Does Not Compute</h3>
       <ul className="feedback">
         { 
           context.errors.map((error: string, index: number) => {
