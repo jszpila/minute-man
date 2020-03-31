@@ -11,8 +11,8 @@ function AppBar() {
     <nav className="app-bar">
       <div className="app-bar__logo">
         <Logo 
-          height={'3rem'}
-          width={'3rem'} />
+          height={'2.5rem'}
+          width={'2.5rem'} />
       </div>
       <div className="app-bar__body">
         <h1 className="txt__heading-1">MinuteMan</h1>
