@@ -3,7 +3,11 @@
   display: inline;
 }
 
-html, 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+html,
 body,
 .app {
   font-size: 100%;
