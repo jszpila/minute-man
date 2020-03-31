@@ -32,9 +32,10 @@ export default class Validator {
   private constructor() {}
 
   public validate(data: IValidatorData): void {
-    this.validatePresenceOfOffsets(data);
+    this.errors = [];
     this.validateOffsetValue(data.horizontalOffsetDistance, 'Horizontal');
     this.validateOffsetValue(data.verticalOffsetDistance, 'Vertical');
+    this.validatePresenceOfOffsets(data);
     this.validateZeroAtDistance(data.zeroAtDistance);
   }
 
@@ -47,13 +48,12 @@ export default class Validator {
 
   private validateOffsetValue(value: number | undefined, fieldLabel: string): void {   
     if (value !== undefined) {
-      // TODO: find a better way to inject values into validation message
       if (value < OffsetConfig.min) {
-        this.errors.push(fieldLabel + ValidationMessages.offsetDistance.min);
+        this.errors.push(`${fieldLabel} ${ValidationMessages.offsetDistance.min}`);
       }
 
       if (value > OffsetConfig.max) {
-        this.errors.push(fieldLabel + ValidationMessages.offsetDistance.max)
+        this.errors.push(`${fieldLabel} ${ValidationMessages.offsetDistance.max}`)
       }
     }
   }

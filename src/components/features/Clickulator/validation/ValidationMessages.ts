@@ -6,8 +6,8 @@ import { OffsetConfig, ZeroAtDistanceConfig } from "../data/InputConfig";
 
 const ValidationMessages = {
   offsetDistance: {
-    min: ` Offset must be at least ${OffsetConfig.min}`,
-    max: ` Offset must not be greater than ${OffsetConfig.max}`,
+    min: `Offset must be at least ${OffsetConfig.min}`,
+    max: `Offset must not be greater than ${OffsetConfig.max}`,
   },
   zeroAtDistance: {
     min: `Zero Distance must be at least ${ZeroAtDistanceConfig.min}`,
@@ -15,7 +15,7 @@ const ValidationMessages = {
     required: `Zero Distance is required`,
   },
   atLeastOneOf: {
-    required: 'At least one offset is required',
+    required: 'At least one valid offset is required',
   }
 }
 
