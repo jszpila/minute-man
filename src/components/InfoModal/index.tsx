@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Modal from '../Modal';
 import { AppContext } from '../../context/AppContext';
-import { checkIfIsInstalled } from '../A2HSButton/a2hs';
+import { checkIfIsInstalled } from '../AppBar/a2hsHelpers';
 
 export default function InfoModal() {
   const env = process.env;

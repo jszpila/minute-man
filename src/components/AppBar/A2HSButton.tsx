@@ -7,7 +7,7 @@
 
 import React, { useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { useAddToHomescreenPrompt, checkIfIsInstalled } from './a2hs';
+import { useAddToHomescreenPrompt, checkIfIsInstalled } from './a2hsHelpers';
 
 export default function A2HSButton() {
   const context = useContext(AppContext);
