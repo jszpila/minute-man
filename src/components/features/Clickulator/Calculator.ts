@@ -37,12 +37,12 @@ export default class Calculator {
     this.zeroAtDistance = data.zeroAtDistance;
   }
 
+  // NOTE: adapted from https://www.nssf.org/shooting/minute-angle-moa
   private calculateCorrection(offsetDistance: number, direction: string): string {
     const adjustmentDirection = InvertedDirection.get(direction);
-
-    let numClicks = offsetDistance / this.opticAdjustmentIncrement;
-
-    // TODO: calculate numClicks modifier using zeroAtDistance
+    const moaAtDistance = this.zeroAtDistance / 100;
+    const moaAdjustment = offsetDistance / moaAtDistance;
+    const numClicks = Math.floor(moaAdjustment / this.opticAdjustmentIncrement);
 
     return `${numClicks} clicks ${adjustmentDirection}`;
   }
