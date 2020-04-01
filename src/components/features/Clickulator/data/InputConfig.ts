@@ -18,6 +18,7 @@ export const ZeroAtDistanceConfig = {
 export const RestrictedNumericInputConfig = {
   maxLength: 5,
   maxValue: 99.99,
+  placeholder: '00.00',
 }
 
 export const requireAtLeastOneOfFields = [

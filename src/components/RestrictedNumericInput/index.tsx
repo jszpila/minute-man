@@ -17,6 +17,7 @@ interface IProps {
   value: number | undefined,
   maxValue?: number,
   maxLength?: number,
+  placeholder?: string | undefined,
 };
 
 export default function RestrictedNumericInput(props: IProps) {
@@ -30,20 +31,23 @@ export default function RestrictedNumericInput(props: IProps) {
     }
   }
 
+
   return (
     <input
-      autoComplete="none" // https://stackoverflow.com/questions/15738259/disabling-chrome-autofill
-      defaultValue={props.value}
+      autoComplete="none"
       className="field__input field__input--cell_width_fix"
+      defaultValue={props.value}
+      inputMode="numeric"
       maxLength={props.maxLength}
       name={props.name}
       onChange={onChange}
       pattern="^\d+(\.\d{1,2})?$"
-      inputMode="numeric"/>
+      placeholder={props.placeholder}/>
   );
 }
 
 RestrictedNumericInput.defaultProps = {
   maxLength: RestrictedNumericInputConfig.maxLength,
-  maxValue: RestrictedNumericInputConfig.maxValue
+  maxValue: RestrictedNumericInputConfig.maxValue,
+  placeholder: RestrictedNumericInputConfig.placeholder,
 }
