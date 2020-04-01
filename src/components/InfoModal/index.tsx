@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Modal from '../Modal';
 import { AppContext } from '../../context/AppContext';
 import { checkIfIsInstalled } from '../AppBar/a2hsHelpers';
+import GitInfo from '../../static/GitInfo';
 
 export default function InfoModal() {
   const env = process.env;
@@ -23,7 +24,9 @@ export default function InfoModal() {
             <p>Click the download button to add it to the home screen of your phone, like an app!</p>
           }
 
-          <p className="txt--muted">{`${env.REACT_APP_NAME} v${env.REACT_APP_VERSION} by ${env.REACT_APP_AUTHOR}`}</p>
+          <p className="txt--muted">
+            {`${env.REACT_APP_NAME} v${env.REACT_APP_VERSION} by ${env.REACT_APP_AUTHOR}`}<br/>
+            {`${GitInfo.sha} / ${GitInfo.date}`}</p>
         </>
     </Modal>
   );

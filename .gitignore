@@ -29,3 +29,6 @@ server.csr
 server.csr.cnf
 server.key
 v3.ext
+
+# generated, even though it's in src
+src/static/GitInfo.js 

@@ -22,9 +22,10 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
+    "git-info": "git log -1 --pretty='const GitInfo = {sha: \"%h\",  date: \"%ci\"}%nexport default GitInfo;' > src/static/GitInfo.js",
     "start": "react-scripts start",
     "start:ssl": "HTTPS=true SSL_CRT_FILE=server.crt SSL_KEY_FILE=server.key npm start",
-    "build": "react-scripts build",
+    "build": "npm run git-info && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
