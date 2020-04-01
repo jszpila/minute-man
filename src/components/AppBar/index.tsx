@@ -15,7 +15,7 @@ function AppBar() {
           width={'2.5rem'} />
       </div>
       <div className="app-bar__body">
-        <h1 className="txt__heading-1">MinuteMan</h1>
+        <h1 className="txt__heading-1">{`${process.env.REACT_APP_NAME_STYLIZED}`}</h1>
       </div>
       <div className="app-bar__buttons">
         <A2HSButton />

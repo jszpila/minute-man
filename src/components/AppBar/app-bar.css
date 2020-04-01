@@ -3,23 +3,27 @@
 	height: 100%;
 	width: 100%;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
+	box-sizing: border-box;
+	padding: 0 1rem;
 }
 
 .app-bar__logo {
-	flex: 0.5;
-	padding: 1rem 0.25rem 1rem 1rem;
+	width: 2.5rem;
+	padding-right: 0.25rem;
 }
 
 .app-bar__body {
 	flex: 2;
-	padding: 1rem 0.25rem;
+	padding: 0 0.25rem;
 }
 
 .app-bar__buttons {
-	flex: 1.5;
-	text-align: right;
-	padding: 1rem 1rem 1rem 0.25rem;
+	flex: 1;
+	padding-left: 0.25rem;
+	display: inline-flex;
+	justify-content: flex-end;
 }
 
 .app-bar__button {
@@ -28,6 +32,8 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
+	display: inline-flex;
+	align-items: center;
 }
 
 .app-bar__button:focus {
