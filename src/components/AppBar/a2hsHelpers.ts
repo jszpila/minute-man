@@ -47,7 +47,7 @@ export function useAddToHomescreenPrompt(): [
   return [prompt, promptToInstall];
 }
 
-export function checkIfIsInstalled(): boolean {
+export function isAppInstalled(): boolean {
   let isInstalled = false;
 
   if (window.matchMedia
@@ -56,4 +56,9 @@ export function checkIfIsInstalled(): boolean {
   }
 
   return isInstalled;
+}
+
+// iOS doesn't support A2HS functionality
+export function isiOs(): boolean {
+  return /iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase() );
 }

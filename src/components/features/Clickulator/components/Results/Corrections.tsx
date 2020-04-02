@@ -12,7 +12,7 @@ export default function Corrections() {
   return (
     <>
       <h3 className="modal__heading">
-        <i className="material-icons modal__heading__icon">check_circle</i>
+        <i className="material-icons modal__heading__icon">build</i>
         Click It</h3>
       <ul className="feedback">
         { 

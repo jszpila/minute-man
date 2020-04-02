@@ -7,14 +7,14 @@
 
 import React, { useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { useAddToHomescreenPrompt, checkIfIsInstalled } from './a2hsHelpers';
+import { useAddToHomescreenPrompt, isAppInstalled } from './a2hsHelpers';
 
 export default function A2HSButton() {
   const context = useContext(AppContext);
   const [prompt, promptToInstall] = useAddToHomescreenPrompt();
 
   useEffect(() => {
-    const isInstalled = checkIfIsInstalled();
+    const isInstalled = isAppInstalled();
     context.updateShouldShowInstallButton(!isInstalled && prompt !== null);
   }, [context, prompt]);
 
@@ -24,7 +24,7 @@ export default function A2HSButton() {
         <button type="button"
           className="app-bar__button"
           onClick={promptToInstall}>
-            <i className="material-icons">cloud_download</i>
+            <i className="material-icons">get_app</i>
         </button>
       }
     </>

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Modal from '../Modal';
 import { AppContext } from '../../context/AppContext';
-import { checkIfIsInstalled } from '../AppBar/a2hsHelpers';
+import { isAppInstalled, isiOs } from '../AppBar/a2hsHelpers';
 import GitInfo from '../../static/GitInfo';
 
 export default function InfoModal() {
@@ -20,8 +20,20 @@ export default function InfoModal() {
           
           <p>{`${env.REACT_APP_DESCRIPTION}`}</p>
 
-          { !checkIfIsInstalled() &&
-            <p>Click the download button to add it to the home screen of your phone, like an app!</p>
+          { context.shouldShowInstallButton &&
+            <p>Click the install button to add it to the home screen of your phone, like an app!</p>
+          }
+
+          {/* iOS does not support A2HS functioanlity; provide manual instructions */}
+          { isiOs() && !isAppInstalled() &&
+            <p>
+              <b>Add MinuteMan to your homescreen so you can use it like an app!</b>
+              <ul>
+                <li>Click the "share" button</li>
+                <li>Click "Add to Home Screen"</li>
+                <li>Click "Add" at the top</li>
+              </ul>
+            </p>
           }
 
           <p className="txt--muted">
