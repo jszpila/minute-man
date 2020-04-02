@@ -85,4 +85,26 @@ body,
   font-size: 1.25rem;
 }
 
+.info {
+  margin-top: 0;
+}
+
+.info-label {
+  font-style: italic;
+}
+
+.info-label:after {
+  content: ": ";
+}
+
+.info-value {
+  margin: 0;
+}
+
+.info-list {
+  margin: 0 0 0 0.25rem;
+  padding: 0 0 0 1rem;
+  list-style: square;
+}
+
 /** THEME **/
