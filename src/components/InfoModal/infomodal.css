@@ -7,10 +7,16 @@
 }
 
 .toggle-diag-info-button {
+  border: 0;
+  background-color: transparent;
   color: #00000054;
   display: inline-flex;
   align-items: center;
   font-size: 1rem;
   margin: 0;
   padding: 0;
+}
+
+.toggle-diag-info-button:focus {
+  outline: none;
 }
