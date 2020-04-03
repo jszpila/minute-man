@@ -20,7 +20,7 @@ export default function InfoModal() {
   return (
     <Modal
       closeButtonText={'Got it'}
-      onClose={context.updateShouldShowInfoModal}
+      onClose={() => { updateShouldShowDiagnotics(false); context.updateShouldShowInfoModal(false) }}
       shouldShow={context.shouldShowInfoModal}>
         <>
           <h3 className="modal__heading">
