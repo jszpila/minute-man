@@ -51,7 +51,7 @@ export default function InfoModal() {
             <button type="button"
               className="toggle-diag-info-button"
               onClick={onToggleDiagnostics}>
-              Diangostics
+              Diagnostics
               <i className="material-icons">{`${shouldShowDiagnotics ? "expand_less" : "expand_more"}`}</i>
             </button>
             <div className={`diag-info__body ${shouldShowDiagnotics ? "diag-info__body--active" : ""}`}>
