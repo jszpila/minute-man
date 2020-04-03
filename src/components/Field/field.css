@@ -39,7 +39,8 @@
   box-sizing: border-box;
   font-size: 1rem;
   height: 2rem;
-  border: solid 1px #ccc;
+  border: none;
+  border-bottom: solid 1px #ccc;
   background-color: #fff;
   width: 100%;
 }
@@ -47,16 +48,20 @@
 .field__input:focus,
 .field__select:focus {
   outline: none;
-  border: solid 1px #1e88e5;
+  border-bottom: solid 1px #1e88e5;
 }
 
 .field__input {
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0;
 }
 
 .field__select {
-  padding: 0.22rem 0.25rem;
+  padding: 0.22rem 0;
   border-radius: 0;
+}
+
+.field__select:after {
+  content: "<i class='material-icons'>expand_more</i>"
 }
 
 .field__input--cell_width_fix,

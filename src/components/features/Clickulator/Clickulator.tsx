@@ -62,10 +62,28 @@ export default function Clickulator() {
     updateCorrections,
   }
 
-  const button = <button
-      className="button button--primary button--yuge"
-      onClick={onClick}
-      type="button">send it</button>;
+  // TODO: probably also a better way to do this
+  function resetForm(): void {
+    updateHorizontalOffsetDistance(DefaultValues.horizontalOffsetDistance);
+    updateHorizontalOffsetDirection(DefaultValues.horizontalOffsetDirection);
+    updateVerticalOffsetDistance(DefaultValues.horizontalOffsetDistance);
+    updateVerticalOffsetDirection(DefaultValues.horizontalOffsetDirection);
+    updateZeroAtDistance(DefaultValues.zeroAtDistance);
+    updateOpticAdjustmentIncrement(DefaultValues.opticAdjustmentIncrement);
+  }
+
+  // TODO: component
+  const buttons = 
+    <div className="button-container">
+      <button
+        className="button button--danger button--yuge button--flex-1 button--push-r"
+        onClick={resetForm}
+        type="reset">reset</button>
+      <button
+        className="button button--primary button--yuge button--flex-3 button--push-l"
+        onClick={onClick}
+        type="button">send it</button>
+    </div>
 
   return (
     <FeatureContext.Provider value={contextValue}>
@@ -77,7 +95,7 @@ export default function Clickulator() {
         autoComplete="off">
         <FeatureWithBottomButtonLayout
           content={<FieldSet/>}
-          button={button}
+          button={buttons}
         />
       </form>
     </FeatureContext.Provider>
