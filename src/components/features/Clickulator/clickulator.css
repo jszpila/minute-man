@@ -2,6 +2,6 @@
  * Clickulator-specific CSS
  */
  
-.clickulator .tabs__content-container {
+.clickulator .feature-with-bottom-button-layout__content {
   padding: 1.5rem;
 }

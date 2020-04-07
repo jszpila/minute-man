@@ -92,9 +92,11 @@ export default function Clickulator() {
       <ResultsModal />
       <InfoPanel />
 
-      <FeatureWithBottomButtonLayout
-        content={<FieldSet/>}
-        button={buttons} />
+      <form className="form clickulator">
+        <FeatureWithBottomButtonLayout
+          content={<FieldSet/>}
+          button={buttons} />
+      </form>
     </FeatureContext.Provider>
   );
 
