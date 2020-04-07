@@ -60,6 +60,8 @@ body,
   margin: 0;
   border: 0;
   box-sizing: border-box;
+  border-radius: 4px;
+  user-select: none;
 }
 
 .button--primary {
@@ -124,6 +126,7 @@ body,
 }
 
 .button-container {
+  height: 100%;
   display: flex;
 }
 
@@ -140,10 +143,10 @@ body,
 }
 
 .button--push-r {
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
 }
 
 .button--push-l {
-  margin-left: 0.5rem;
+  margin-left: 0.75rem;
 }
 /** THEME **/

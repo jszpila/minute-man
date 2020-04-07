@@ -22,6 +22,8 @@ import Validator from './validation/Validator';
 import Calculator from './Calculator';
 import InfoPanel from '../../InfoModal';
 
+import './clickulator.css';
+
 export default function Clickulator() {
   // Local state
   const [shouldShowResultsModal, updateShouldShowResultsModal] = useState<boolean>(DefaultValues.shouldShowResultsModal);
@@ -90,14 +92,9 @@ export default function Clickulator() {
       <ResultsModal />
       <InfoPanel />
 
-      <form
-        className="form clickulator"
-        autoComplete="off">
-        <FeatureWithBottomButtonLayout
-          content={<FieldSet/>}
-          button={buttons}
-        />
-      </form>
+      <FeatureWithBottomButtonLayout
+        content={<FieldSet/>}
+        button={buttons} />
     </FeatureContext.Provider>
   );
 

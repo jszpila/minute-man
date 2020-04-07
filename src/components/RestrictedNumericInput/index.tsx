@@ -15,6 +15,7 @@ interface IProps {
   name: string,
   updaterFn: (Dispatch<SetStateAction<number | undefined>>),
   value: number | undefined,
+  adtlClassNames?: string,
   maxValue?: number,
   maxLength?: number,
   placeholder?: string | undefined,
@@ -31,11 +32,10 @@ export default function RestrictedNumericInput(props: IProps) {
     }
   }
 
-
   return (
     <input
       autoComplete="none"
-      className="field__input field__input--cell_width_fix"
+      className={`field__input ${props.adtlClassNames}`}
       defaultValue={props.value}
       inputMode="numeric"
       maxLength={props.maxLength}
@@ -47,6 +47,7 @@ export default function RestrictedNumericInput(props: IProps) {
 }
 
 RestrictedNumericInput.defaultProps = {
+  adtlClassNames: '',
   maxLength: RestrictedNumericInputConfig.maxLength,
   maxValue: RestrictedNumericInputConfig.maxValue,
   placeholder: RestrictedNumericInputConfig.placeholder,

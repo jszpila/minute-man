@@ -15,5 +15,5 @@
 
 .app-layout__main {
 	grid-area: main;
-	padding: 1.5rem;
+	padding-bottom: 1.5rem;
 }

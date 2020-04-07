@@ -1,0 +1,7 @@
+/* 
+ * Clickulator-specific CSS
+ */
+ 
+.clickulator .tabs__content-container {
+  padding: 1.5rem;
+}
