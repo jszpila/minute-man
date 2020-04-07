@@ -26,7 +26,6 @@
 
 .field__label__hint {
   padding-left: 0.25rem;
-  user-select: none;
 }
 
 .field__input__container {
@@ -45,6 +44,8 @@
   border-bottom: solid 1px #9e9e9e;
   background-color: #fff;
   width: 100%;
+  border-radius: 0;
+  appearance: none;
 }
 
 .field__input:focus,

@@ -1,10 +1,31 @@
 /* TODO: convert to scss, break into separate files */
-#root {
-  display: inline;
+@import url('static/fonts/material-design-icons/material-icons.css');
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Robot'),
+    url('/static/fonts/Roboto/Roboto-Medium.ttf'),
+    format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'),
+    url('/static/fonts/Roboto/Roboto-Bold.ttf'),
+    format('truetype');
+  font-weight: bold;
+}
+
+html {
+  overscroll-behavior-y: contain
 }
 
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+#root {
+  display: inline;
 }
 
 html,
