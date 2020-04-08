@@ -2,9 +2,9 @@ import React from 'react';
 
 import Logo from './Logo';
 import A2HSButton from './A2HSButton';
+import MenuButton from './MenuButton';
 
 import './app-bar.css';
-import MenuButton from './MenuButton';
 
 export default function AppBar() {
   return (
