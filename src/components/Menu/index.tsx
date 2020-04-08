@@ -4,6 +4,26 @@ import ReactDOM from 'react-dom';
 
 import './menu.css';
 
+interface IMenuItemProps {
+  iconName: string,
+  onClick: (event: SyntheticEvent) => void,
+  text: string,
+}
+
+function MenuItem(props: IMenuItemProps) {
+  return(
+    <li className="app-menu__list__item">
+      <button
+        className="app-menu__list__item__button"
+        onClick={props.onClick}
+        type="button">
+        <i className="material-icons">{props.iconName}</i>
+        <span className="app-menu__list__item__label">{props.text}</span>
+        </button>
+    </li>
+  );
+}
+
 export default function Menu() {
   const context = useContext(AppContext);
 
@@ -15,34 +35,25 @@ export default function Menu() {
     context.updateShouldShowInfoModal(!context.shouldShowInfoModal);
   }
 
+  function onClickPlaceholder(event: SyntheticEvent): void {
+    console.log('clicked');
+  }
+
   return ReactDOM.createPortal(
     <nav className={ getStatefulClassNames() }>
       <ul className="app-menu__list">
-        <li className="app-menu__list__item">
-          <button
-            className="app-menu__list__item__button"
-            type="button">
-            <i className="material-icons">adjust</i>
-            <span className="app-menu__list__item__label">Clickulator</span>
-            </button>
-        </li>
-        <li className="app-menu__list__item">
-          <button
-            className="app-menu__list__item__button"
-            type="button">
-            <i className="material-icons">timer</i>
-            <span className="app-menu__list__item__label">Shot Timer</span>
-          </button>
-        </li>
-        <li className="app-menu__list__item">
-          <button 
-            className="app-menu__list__item__button"
-            type="button"
-            onClick={onInfoClick}>
-            <i className="material-icons">info</i>
-            <span className="app-menu__list__item__label">Info</span>
-          </button>
-        </li>
+        <MenuItem
+          iconName="adjust"
+          onClick={ onClickPlaceholder }
+          text="Clickulator" />
+        <MenuItem
+          iconName="timer"
+          onClick={ onClickPlaceholder }
+          text="Shot Timer" />
+        <MenuItem
+          iconName="info"
+          onClick={ onInfoClick }
+          text="Info" />
       </ul>
     </nav>,
     document.body,

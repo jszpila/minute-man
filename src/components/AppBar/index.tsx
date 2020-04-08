@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Logo from './Logo';
-import InfoButton from './InfoButton';
 import A2HSButton from './A2HSButton';
 
 import './app-bar.css';
