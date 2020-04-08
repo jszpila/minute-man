@@ -1,12 +1,12 @@
 import React, { useContext, SyntheticEvent } from 'react';
 import { AppContext } from '../../context/AppContext';
 
-export default function InfoButton() {
+export default function MenuButton() {
   const context = useContext(AppContext);
 
   function onClick(event: SyntheticEvent): void {
     event.preventDefault();
-    context.updateShouldShowInfoModal(!context.shouldShowInfoModal);
+    context.updateShouldShowMenu(!context.shouldShowMenu);
   }
 
   return (
@@ -14,7 +14,7 @@ export default function InfoButton() {
       className="app-bar__button"
       type="button"
       onClick={onClick}>
-        <i className="material-icons">info</i>
+        <i className="material-icons">menu</i>
       </button>
   );
 }

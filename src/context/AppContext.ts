@@ -11,6 +11,8 @@ export interface IAppContext {
   updateShouldShowInfoModal: (Dispatch<SetStateAction<boolean>>),
   shouldShowInstallButton: boolean,
   updateShouldShowInstallButton: (Dispatch<SetStateAction<boolean>>),
+  shouldShowMenu: boolean,
+  updateShouldShowMenu: (Dispatch<SetStateAction<boolean>>),
 }
 
 const initialContext: IAppContext = {
@@ -18,6 +20,8 @@ const initialContext: IAppContext = {
   updateShouldShowInfoModal: (): void => {},
   shouldShowInstallButton: AppDefaultValues.shouldShowInstallButton,
   updateShouldShowInstallButton: (): void => {},
+  shouldShowMenu: AppDefaultValues.shouldShowMenu,
+  updateShouldShowMenu: (): void => {},
 }
 
 export const AppContext = React.createContext(initialContext);

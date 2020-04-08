@@ -20,7 +20,6 @@ import { FeatureContext, IFeatureContext } from './context';
 import { DefaultValues } from './data/Defaults';
 import Validator from './validation/Validator';
 import Calculator from './Calculator';
-import InfoPanel from '../../InfoModal';
 
 import './clickulator.css';
 
@@ -90,7 +89,6 @@ export default function Clickulator() {
   return (
     <FeatureContext.Provider value={contextValue}>
       <ResultsModal />
-      <InfoPanel />
 
       <form className="form clickulator">
         <FeatureWithBottomButtonLayout

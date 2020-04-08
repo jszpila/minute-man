@@ -5,6 +5,7 @@ import InfoButton from './InfoButton';
 import A2HSButton from './A2HSButton';
 
 import './app-bar.css';
+import MenuButton from './MenuButton';
 
 function AppBar() {
   return (
@@ -19,7 +20,7 @@ function AppBar() {
       </div>
       <div className="app-bar__buttons">
         <A2HSButton />
-        <InfoButton />
+        <MenuButton />
       </div>
     </nav>
   );
