@@ -6,7 +6,7 @@ import A2HSButton from './A2HSButton';
 import './app-bar.css';
 import MenuButton from './MenuButton';
 
-function AppBar() {
+export default function AppBar() {
   return (
     <nav className="app-bar">
       <div className="app-bar__logo">
@@ -24,5 +24,3 @@ function AppBar() {
     </nav>
   );
 }
-
-export default AppBar;
