@@ -100,7 +100,7 @@ export default function Menu() {
         className={ `app-menu ${ BuildConditionalClasses(context.shouldShowMenu, 'app-menu--active') }` }>
         <ul className="app-menu__list">
           <MenuItem
-            iconName="adjust"
+            iconName="gps_fixed"
             onClick={ closeMenu }
             route={ ClickulatorRoute }
             text="Zero Tool" />
