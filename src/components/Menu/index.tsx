@@ -1,6 +1,7 @@
-import React, { useContext, SyntheticEvent } from 'react';
-import { AppContext } from '../../context/AppContext';
+import React, { SyntheticEvent, useContext, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
+
+import { AppContext } from '../../context/AppContext';
 
 import './menu.css';
 
@@ -15,10 +16,10 @@ function MenuItem(props: IMenuItemProps) {
     <li className="app-menu__list__item">
       <button
         className="app-menu__list__item__button"
-        onClick={props.onClick}
+        onClick={ props.onClick }
         type="button">
-        <i className="material-icons">{props.iconName}</i>
-        <span className="app-menu__list__item__label">{props.text}</span>
+        <i className="material-icons"> { props.iconName }</i>
+        <span className="app-menu__list__item__label">{ props.text }</span>
         </button>
     </li>
   );
@@ -26,9 +27,14 @@ function MenuItem(props: IMenuItemProps) {
 
 export default function Menu() {
   const context = useContext(AppContext);
+  const ref = useRef<HTMLElement>(null);
 
-  function getStatefulClassNames(): string {
-    return context.shouldShowMenu ? 'app-menu app-menu--active' : 'app-menu';
+  function onMenuCoverClick(event: SyntheticEvent): void {
+    context.updateShouldShowMenu(false);
+  }
+
+  function appendConditionalClasses(condition: boolean, adtlClassNames: string): string {
+    return condition ? adtlClassNames : '';
   }
 
   function onInfoClick(event: SyntheticEvent): void {
@@ -40,22 +46,30 @@ export default function Menu() {
   }
 
   return ReactDOM.createPortal(
-    <nav className={ getStatefulClassNames() }>
-      <ul className="app-menu__list">
-        <MenuItem
-          iconName="adjust"
-          onClick={ onClickPlaceholder }
-          text="Clickulator" />
-        <MenuItem
-          iconName="timer"
-          onClick={ onClickPlaceholder }
-          text="Shot Timer" />
-        <MenuItem
-          iconName="info"
-          onClick={ onInfoClick }
-          text="Info" />
-      </ul>
-    </nav>,
+    <>
+      <div
+        className={ `app-menu__cover ${ appendConditionalClasses(context.shouldShowMenu, 'app-menu__cover--active') }` }
+        onClick={ onMenuCoverClick }>
+      </div>
+      <nav
+        className={ `app-menu ${ appendConditionalClasses(context.shouldShowMenu, 'app-menu--active') }` }
+        ref={ ref } >
+        <ul className="app-menu__list">
+          <MenuItem
+            iconName="adjust"
+            onClick={ onClickPlaceholder }
+            text="Zero Tool" />
+          <MenuItem
+            iconName="timer"
+            onClick={ onClickPlaceholder }
+            text="Shot Timer" />
+          <MenuItem
+            iconName="info"
+            onClick={ onInfoClick }
+            text="Info" />
+        </ul>
+      </nav>
+    </>,
     document.body,
   );
 }

@@ -130,14 +130,17 @@ body,
 
 .info-label {
   font-style: italic;
+  display: inline-block;
 }
 
 .info-label:after {
   content: ": ";
+  padding-right: 0.25rem;
 }
 
 .info-value {
   margin: 0;
+  display: inline-block;
 }
 
 .info-list {

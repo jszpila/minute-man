@@ -29,8 +29,7 @@ export default function FieldSet() {
     <FeatureContext.Consumer>
       {value =>
         <fieldset className="form__fieldset">
-          {/* Uncomment title when there are > 1 feature */}
-          {/* <legend className="txt__heading-2">Clickulator</legend> */}
+          <legend className="txt__heading-2">Zero Tool</legend>
           <Field
             inputName={inputNames.hOffsetDist}
             labelText={horizLabel}>

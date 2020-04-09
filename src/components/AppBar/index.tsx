@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Logo from './Logo';
 import A2HSButton from './A2HSButton';
+import Logo from './Logo';
 import MenuButton from './MenuButton';
 
 import './app-bar.css';
