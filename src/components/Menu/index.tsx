@@ -4,8 +4,8 @@ import { Link } from '@reach/router';
 import { AppContext } from '../../context/AppContext';
 
 import './menu.css';
-import { TimertronRoute } from '../features/Timertron/Timertron';
-import { ClickulatorRoute } from '../features/Clickulator/Clickulator';
+import { TimertronNavConfig } from '../features/Timertron/Timertron';
+import { ClickulatorNavConfig } from '../features/Clickulator/Clickulator';
 import BuildConditionalClasses from '../../util/BuildConditionalClasses';
 
 type TMenuItem = 'button' | 'link';
@@ -100,15 +100,15 @@ export default function Menu() {
         className={ `app-menu ${ BuildConditionalClasses(context.shouldShowMenu, 'app-menu--active') }` }>
         <ul className="app-menu__list">
           <MenuItem
-            iconName="gps_fixed"
+            iconName={ ClickulatorNavConfig.icon }
             onClick={ closeMenu }
-            route={ ClickulatorRoute }
-            text="Zero Tool" />
+            route={ ClickulatorNavConfig.route }
+            text={ ClickulatorNavConfig.displayName } />
           <MenuItem
-            iconName="timer"
+            iconName={ TimertronNavConfig.icon }
             onClick={ closeMenu }
-            route={ TimertronRoute }
-            text="Shot Timer" />
+            route={ TimertronNavConfig.route }
+            text={ TimertronNavConfig.displayName } />
           <MenuItem
             iconName="info"
             onClick={ onInfoClick }

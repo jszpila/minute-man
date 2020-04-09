@@ -23,7 +23,11 @@ import Calculator from './Calculator';
 
 import './clickulator.css';
 
-export const ClickulatorRoute = '/';
+export const ClickulatorNavConfig = {
+  route: '/',
+  icon: 'gps_fixed',
+  displayName: 'Zero Tool',
+};
 
 export default function Clickulator(props: RouteComponentProps) {
   // Local state

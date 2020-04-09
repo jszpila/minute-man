@@ -18,7 +18,11 @@ import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButton
 
 import './timertron.css';
 
-export const TimertronRoute = '/timer';
+export const TimertronNavConfig = {
+  route: '/timer',
+  icon: 'timer',
+  displayName: 'Shot Timer',
+};
 
 export default function Timertron(props: RouteComponentProps) {
   const content = <div>YOLO</div>;

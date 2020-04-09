@@ -15,12 +15,12 @@ import React, { useState } from 'react';
 import { Router } from '@reach/router';
 import AppLayout from './components/layouts/AppLayout/AppLayout';
 import AppBar from './components/AppBar';
-import Clickulator, { ClickulatorRoute } from './components/features/Clickulator/Clickulator';
+import Clickulator, { ClickulatorNavConfig } from './components/features/Clickulator/Clickulator';
 import { AppContext, IAppContext } from './context/AppContext';
 import { AppDefaultValues } from './data/AppDefaults';
 import InfoModal from './components/InfoModal';
 import Menu from './components/Menu';
-import Timertron, { TimertronRoute } from './components/features/Timertron/Timertron';
+import Timertron, { TimertronNavConfig } from './components/features/Timertron/Timertron';
 
 import './App.css';
 
@@ -47,8 +47,8 @@ export default function App() {
             header={<AppBar/>}
             body={
               <Router id="router">
-                <Clickulator path={ ClickulatorRoute } />
-                <Timertron path={ TimertronRoute} />
+                <Clickulator path={ ClickulatorNavConfig.route } />
+                <Timertron path={ TimertronNavConfig.route } />
               </Router>
             } />
           <InfoModal />
