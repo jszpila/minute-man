@@ -29,44 +29,43 @@ export default function FieldSet() {
     <FeatureContext.Consumer>
       {value =>
         <fieldset className="form__fieldset">
-          <legend className="txt__heading-2">Zero Tool</legend>
           <Field
-            inputName={inputNames.hOffsetDist}
-            labelText={horizLabel}>
+            inputName={ inputNames.hOffsetDist }
+            labelText={ horizLabel }>
             <PointOfImpactInput
-              directions={HorizontalDirectionOptions}
-              directionValue={value.horizontalOffsetDirection}
-              directionUpdaterFn={value.updateHorizontalOffsetDirection}
-              distanceValue={value.horizontalOffsetDistance}
-              distanceUpdaterFn={value.updateHorizontalOffsetDistance}
-              name={inputNames.hOffsetDist}/>
+              directions={ HorizontalDirectionOptions }
+              directionValue={ value.horizontalOffsetDirection }
+              directionUpdaterFn={ value.updateHorizontalOffsetDirection }
+              distanceValue={ value.horizontalOffsetDistance }
+              distanceUpdaterFn={ value.updateHorizontalOffsetDistance }
+              name={ inputNames.hOffsetDist } />
           </Field>
           <Field
-            inputName={inputNames.vOffsetDist}
-            labelText={vertLabel}>
+            inputName={ inputNames.vOffsetDist }
+            labelText={ vertLabel }>
             <PointOfImpactInput
-              directions={VerticalDirectionOptions}
-              directionValue={value.verticalOffsetDirection}
-              directionUpdaterFn={value.updateVerticalOffsetDirection}
-              distanceValue={value.verticalOffsetDistance}
-              distanceUpdaterFn={value.updateVerticalOffsetDistance}
-              name={inputNames.vOffsetDist}/>
+              directions={ VerticalDirectionOptions }
+              directionValue={ value.verticalOffsetDirection }
+              directionUpdaterFn={ value.updateVerticalOffsetDirection }
+              distanceValue={ value.verticalOffsetDistance }
+              distanceUpdaterFn={ value.updateVerticalOffsetDistance }
+              name={ inputNames.vOffsetDist } />
           </Field>
           <Field
-            inputName={inputNames.zeroDist}
-            labelText={zeroLabel}>
+            inputName={ inputNames.zeroDist }
+            labelText={ zeroLabel }>
             <ZeroAtDistanceInput
-              name={inputNames.zeroDist}
-              updaterFn={value.updateZeroAtDistance}
-              value={value.zeroAtDistance}/>
+              name={ inputNames.zeroDist }
+              updaterFn={ value.updateZeroAtDistance }
+              value={ value.zeroAtDistance } />
           </Field>
           <Field
-            inputName={inputNames.opticInc}
+            inputName={ inputNames.opticInc }
             labelText="Optic Increment">
               <OpticAdjustmentSelect
-                name={inputNames.opticInc}
-                updaterFn={value.updateOpticAdjustmentIncrement}
-                value={value.opticAdjustmentIncrement}/>
+                name={ inputNames.opticInc }
+                updaterFn={ value.updateOpticAdjustmentIncrement }
+                value={ value.opticAdjustmentIncrement } />
             </Field>
             {/* Advanced options:
               - barrel length

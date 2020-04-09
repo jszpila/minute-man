@@ -1,0 +1,7 @@
+/* 
+ * Timertron-specific CSS
+ */
+
+#Timertron .feature-with-bottom-button-layout__content {
+  padding: 1.5rem;
+}

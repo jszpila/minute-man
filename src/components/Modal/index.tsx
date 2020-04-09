@@ -34,9 +34,11 @@ export default function Modal(props: IProps) {
   return ReactDOM.createPortal(
     <>
       { props.shouldShow &&
-        <div
-          className="modal__cover"
-          onClick={onCloseModal}>
+        <>
+          <div
+            className="modal__cover"
+            onClick={onCloseModal}>
+          </div>
           <div className="modal">
             <div className="modal__body">
               { props.children}
@@ -50,7 +52,7 @@ export default function Modal(props: IProps) {
               </div>
             </div>
           </div>
-        </div>
+        </>
       }
     </>,
     document.body

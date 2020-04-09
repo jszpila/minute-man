@@ -39,6 +39,7 @@
   margin-bottom: 1rem;
 }
 
+.app-menu__list__item__link,
 .app-menu__list__item__button {
   display: flex;
   flex-direction: row;
@@ -55,6 +56,15 @@
   background-color: transparent;
 }
 
+.app-menu__list__item__link {
+  text-decoration: none;
+}
+
+.app-menu__list__item__link--active {
+  color: #1976d2;
+}
+
 .app-menu__list__item__label {
   padding-left: 0.5rem;
 }
+

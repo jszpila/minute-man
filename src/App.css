@@ -24,7 +24,8 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-#root {
+#root,
+#router {
   display: inline;
 }
 

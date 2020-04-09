@@ -4,6 +4,7 @@
  */
 
 import React, { SyntheticEvent, useState } from 'react';
+import BuildConditionalClasses from '../../util/BuildConditionalClasses';
 
 import './tabs.css';
 
@@ -20,8 +21,8 @@ export default function Tabs(props: IProps) {
     updateActiveTabIndex(index);
   }
 
-  function getStatefulClassName(index: number, className: string): string {
-    return index === activeTabIndex ? `${className} ${className}--active` : className;
+  function isActiveTab(index: number): boolean {
+    return index === activeTabIndex;
   }
 
   return (
@@ -29,8 +30,8 @@ export default function Tabs(props: IProps) {
       <nav className="tabs__nav">
         {
           props.tabNames.map((name: string, index: number) => {
-            return <button 
-              className={ getStatefulClassName(index, 'tabs__nav__button') }
+            return <button
+              className={ `tabs__nav__button ${ BuildConditionalClasses(isActiveTab(index), 'tabs__nav__button--active') }` }
               key={index}
               onClick={(event: SyntheticEvent) => { event.stopPropagation(); onTabClick(index) }}
               type="button">
@@ -43,7 +44,7 @@ export default function Tabs(props: IProps) {
         {
           props.tabContents.map((node: React.ReactNode, index: number) => {
             return <section
-              className={ getStatefulClassName(index, 'tabs__content-pane') }
+              className={ `tabs__content-pane ${ BuildConditionalClasses(isActiveTab(index), 'tabs__content-pane--active')}` }
               key={index}>
                 {node}
               </section>

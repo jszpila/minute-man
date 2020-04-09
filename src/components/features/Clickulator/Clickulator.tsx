@@ -12,7 +12,7 @@
  */
 
 import React, { SyntheticEvent, useState } from 'react';
-
+import { RouteComponentProps } from '@reach/router';
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
 import FieldSet from './components/FieldSet';
 import ResultsModal from './components/Results';
@@ -23,7 +23,9 @@ import Calculator from './Calculator';
 
 import './clickulator.css';
 
-export default function Clickulator() {
+export const ClickulatorRoute = '/';
+
+export default function Clickulator(props: RouteComponentProps) {
   // Local state
   const [shouldShowResultsModal, updateShouldShowResultsModal] = useState<boolean>(DefaultValues.shouldShowResultsModal);
 
@@ -90,7 +92,9 @@ export default function Clickulator() {
     <FeatureContext.Provider value={contextValue}>
       <ResultsModal />
 
-      <form className="form clickulator">
+      <form
+        id="Clickulator"
+        className="form">
         <FeatureWithBottomButtonLayout
           content={<FieldSet/>}
           button={buttons} />

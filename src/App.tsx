@@ -12,15 +12,17 @@
  */
 
 import React, { useState } from 'react';
+import { Router } from '@reach/router';
 import AppLayout from './components/layouts/AppLayout/AppLayout';
 import AppBar from './components/AppBar';
-import Clickulator from './components/features/Clickulator/Clickulator';
+import Clickulator, { ClickulatorRoute } from './components/features/Clickulator/Clickulator';
 import { AppContext, IAppContext } from './context/AppContext';
 import { AppDefaultValues } from './data/AppDefaults';
-
-import './App.css';
 import InfoModal from './components/InfoModal';
 import Menu from './components/Menu';
+import Timertron, { TimertronRoute } from './components/features/Timertron/Timertron';
+
+import './App.css';
 
 export default function App() {
   const [shouldShowInfoModal, updateShouldShowInfoModal] = useState<boolean>(AppDefaultValues.shouldShowInfoModal);
@@ -43,7 +45,12 @@ export default function App() {
         <>
           <AppLayout
             header={<AppBar/>}
-            body={<Clickulator/>} />
+            body={
+              <Router id="router">
+                <Clickulator path={ ClickulatorRoute } />
+                <Timertron path={ TimertronRoute} />
+              </Router>
+            } />
           <InfoModal />
           <Menu />
         </>
