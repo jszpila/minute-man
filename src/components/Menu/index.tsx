@@ -1,12 +1,12 @@
+import { Link } from '@reach/router';
 import React, { SyntheticEvent, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from '@reach/router';
+
 import { AppContext } from '../../context/AppContext';
+import BuildConditionalClasses from '../../util/BuildConditionalClasses';
+import INavigationItem from '../../interfaces/NavigationItem';
 
 import './menu.css';
-import { TimertronNavConfig } from '../features/Timertron/Timertron';
-import { ClickulatorNavConfig } from '../features/Clickulator/Clickulator';
-import BuildConditionalClasses from '../../util/BuildConditionalClasses';
 
 type TMenuItem = 'button' | 'link';
 
@@ -61,7 +61,7 @@ function MenuButton(props: IMenuItemProps) {
 }
 
 function MenuLink(props: IMenuItemProps) {
-  let adtlProps = { 
+  const adtlProps = { 
     onClick: props.onClick || undefined,
   };
 
@@ -75,7 +75,11 @@ function MenuLink(props: IMenuItemProps) {
   )
 }
 
-export default function Menu() {
+interface IMenuProps {
+  navItems: Array<INavigationItem>,
+}
+
+export default function Menu(props: IMenuProps) {
   const context = useContext(AppContext);
 
   function onMenuCoverClick(event: SyntheticEvent): void {
@@ -99,21 +103,24 @@ export default function Menu() {
       <nav
         className={ `app-menu ${ BuildConditionalClasses(context.shouldShowMenu, 'app-menu--active') }` }>
         <ul className="app-menu__list">
+          {
+            props.navItems.map((item, index) => {
+              return <MenuItem
+                key={index}
+                iconName={ item.icon }
+                onClick={ closeMenu }
+                route={ item.route }
+                text={ item.displayName } />
+            })
+          }
+        </ul>
+        <hr className="app-menu__list-divider" />
+        <ul className="app-menu__list">
           <MenuItem
-            iconName={ ClickulatorNavConfig.icon }
-            onClick={ closeMenu }
-            route={ ClickulatorNavConfig.route }
-            text={ ClickulatorNavConfig.displayName } />
-          <MenuItem
-            iconName={ TimertronNavConfig.icon }
-            onClick={ closeMenu }
-            route={ TimertronNavConfig.route }
-            text={ TimertronNavConfig.displayName } />
-          <MenuItem
-            iconName="info"
-            onClick={ onInfoClick }
-            text="Info"
-            type={ MenuItemType.Button } />
+              iconName="info"
+              onClick={ onInfoClick }
+              text="Info"
+              type={ MenuItemType.Button } />
         </ul>
       </nav>
     </>,

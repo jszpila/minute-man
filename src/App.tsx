@@ -39,7 +39,7 @@ export default function App() {
   }
 
   return (
-    <AppContext.Provider value={contextValue}>
+    <AppContext.Provider value={ contextValue }>
       <AppContext.Consumer>
       { value =>
         <>
@@ -52,7 +52,7 @@ export default function App() {
               </Router>
             } />
           <InfoModal />
-          <Menu />
+          <Menu navItems={ [ClickulatorNavConfig, TimertronNavConfig] } />
         </>
       }
       </AppContext.Consumer>

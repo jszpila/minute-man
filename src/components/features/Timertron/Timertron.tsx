@@ -1,3 +1,4 @@
+import { RouteComponentProps } from '@reach/router';
 /**
  *                    
  *  _________  ___  _____ ______   _______   ________  _________  ________  ________  ________      
@@ -13,12 +14,14 @@
  */
 
 import React from 'react';
-import { RouteComponentProps } from '@reach/router';
+
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
+import INavigationItem from '../../../interfaces/NavigationItem';
 
 import './timertron.css';
 
-export const TimertronNavConfig = {
+
+export const TimertronNavConfig: INavigationItem = {
   route: '/timer',
   icon: 'timer',
   displayName: 'Shot Timer',
@@ -36,5 +39,6 @@ export default function Timertron(props: RouteComponentProps) {
           content={content}
           button={button} />
       </form>
+      
   );
 }

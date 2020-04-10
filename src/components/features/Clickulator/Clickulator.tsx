@@ -1,3 +1,4 @@
+import { RouteComponentProps } from '@reach/router';
 /**
  *                    
  * 8""""8 8     8  8""""8 8   8  8   8 8     8""""8 ""8"" 8"""88 8"""8  
@@ -12,18 +13,19 @@
  */
 
 import React, { SyntheticEvent, useState } from 'react';
-import { RouteComponentProps } from '@reach/router';
+
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
+import Calculator from './Calculator';
 import FieldSet from './components/FieldSet';
 import ResultsModal from './components/Results';
 import { FeatureContext, IFeatureContext } from './context';
 import { DefaultValues } from './data/Defaults';
 import Validator from './validation/Validator';
-import Calculator from './Calculator';
+import INavigationItem from '../../../interfaces/NavigationItem';
 
 import './clickulator.css';
 
-export const ClickulatorNavConfig = {
+export const ClickulatorNavConfig: INavigationItem = {
   route: '/',
   icon: 'gps_fixed',
   displayName: 'Zero Tool',
@@ -79,7 +81,6 @@ export default function Clickulator(props: RouteComponentProps) {
     updateOpticAdjustmentIncrement(DefaultValues.opticAdjustmentIncrement);
   }
 
-  // TODO: component
   const buttons = 
     <div className="button-container">
       <button
@@ -93,15 +94,15 @@ export default function Clickulator(props: RouteComponentProps) {
     </div>
 
   return (
-    <FeatureContext.Provider value={contextValue}>
+    <FeatureContext.Provider value={ contextValue }>
       <ResultsModal />
 
       <form
         id="Clickulator"
         className="form">
         <FeatureWithBottomButtonLayout
-          content={<FieldSet/>}
-          button={buttons} />
+          content={ <FieldSet/> }
+          button={ buttons } />
       </form>
     </FeatureContext.Provider>
   );
