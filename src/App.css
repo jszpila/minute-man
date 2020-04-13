@@ -84,6 +84,7 @@ body,
   box-sizing: border-box;
   border-radius: 4px;
   user-select: none;
+  outline: none;
 }
 
 .button--primary {
