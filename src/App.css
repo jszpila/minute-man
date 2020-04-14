@@ -63,6 +63,10 @@ body,
   font-size: 0.75rem;
 }
 
+.txt--embiggen {
+  font-size: 4rem;
+}
+
 /** FORMS **/
 .form {
   display: inline;

@@ -29,16 +29,27 @@ export const TimertronNavConfig: INavigationItem = {
 
 export default function Timertron(props: RouteComponentProps) {
   const [isTimerActive, updateIsTimerActive] = useState<boolean>(false);
-  const [startTime, updateStartTime] = useState<number>(0);
   const [interval, updateInterval] = useState<number | undefined>(undefined);
   const [timeElapsed, updateTimeElapsed] = useState<number>(0);
   const [timeout, updateTimeout] = useState<number | undefined>(undefined);
 
   const audioElementRef = useRef<HTMLAudioElement>(null);
-  const content = <div><div>{` ${ formatElapseTime() }`}</div><audio ref={ audioElementRef } src={ `${process.env.PUBLIC_URL}/beep.mp3` } preload="auto" /></div>;
+  const content = <div>
+      <div>
+          <div>Time Elapsed</div>
+          <div className="txt--embiggen">{`${ formatElapseTime() }`}</div>
+      </div>
+      <audio ref={ audioElementRef } src={ `${process.env.PUBLIC_URL}/beep.mp3` } preload="auto" />
+    </div>;
   const buttons = <div className="button-container">
-      <button type="button" className={`button button--yuge button--flex-1 button--push-r`} onClick={ resetTimer }> Reset </button>
-      <button type="button" className={`button button--yuge button--flex-3 button--push-l ${ getButtonStyle() }`} onClick={ onClick }> { getButtonText() } </button>
+      <button 
+        type="button" 
+        className={`button button--yuge button--flex-1 button--push-r`} 
+        onClick={ resetTimer }> Reset </button>
+      <button
+        type="button"
+        className={`button button--yuge button--flex-3 button--push-l ${ getButtonStyle() }`} 
+        onClick={ onClick }> { getButtonText() } </button>
     </div>;
 
   function getButtonStyle(): string {
@@ -77,9 +88,10 @@ export default function Timertron(props: RouteComponentProps) {
 
   function startTimer(): void {
     const startedAt = Date.now();
-    const interval = window.setInterval(() => {updateTimeElapsed((Date.now() - startedAt))}, 1); // Thanks Mark!
+    const interval = window.setInterval(() => 
+      {updateTimeElapsed((Date.now() - startedAt))
+    }, 1); // Thanks Mark!
 
-    updateStartTime(startedAt);
     updateInterval(interval);
   }
 
@@ -94,7 +106,7 @@ export default function Timertron(props: RouteComponentProps) {
     updateTimeElapsed(0);
   }
 
-  function performDelayedBeep() {
+  function initiateStartDelay() {
     audioElementRef.current?.play();
     window.clearTimeout(timeout);
     updateTimeout(undefined);
@@ -104,7 +116,7 @@ export default function Timertron(props: RouteComponentProps) {
   function onClick(event: SyntheticEvent): void {
     if (!isTimerActive) {
       updateIsTimerActive(true);
-      updateTimeout(window.setTimeout(performDelayedBeep, TimerDefaults.beepDelay));
+      updateTimeout(window.setTimeout(initiateStartDelay, TimerDefaults.beepDelay));
     } else {
       stopTimer();
     }
