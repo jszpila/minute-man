@@ -17,9 +17,12 @@ import React, { SyntheticEvent, useEffect, useRef, useState } from 'react';
 
 import INavigationItem from '../../../interfaces/NavigationItem';
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
-import { TimerDefaults } from './data/TimerDefaults';
+import { TimertronDefaults } from './data/Defaults';
 
 import './timertron.css';
+
+const localStorage = window.localStorage;
+const defaults = TimertronDefaults;
 
 export const TimertronNavConfig: INavigationItem = {
   route: '/timer',
@@ -28,13 +31,14 @@ export const TimertronNavConfig: INavigationItem = {
 };
 
 export default function Timertron(props: RouteComponentProps) {
-  const [isTimerActive, updateIsTimerActive] = useState<boolean>(false);
-  const [interval, updateInterval] = useState<number | undefined>(undefined);
-  const [timeElapsed, updateTimeElapsed] = useState<number>(0);
-  const [timeout, updateTimeout] = useState<number | undefined>(undefined);
-  const [isMicAccessGranted, updateIsMicAccessGranted] = useState<boolean>(false);
-  const [mediaStream, updateMediaStream] = useState<MediaStream | undefined>(undefined);
-  const [audioProcessor, updateAudioProcessor] = useState<ScriptProcessorNode | undefined>(undefined);
+  const [isTimerActive, updateIsTimerActive] = useState<boolean>(defaults.isTimerActive);
+  const [interval, updateInterval] = useState<number | undefined>(defaults.interval);
+  const [timeElapsed, updateTimeElapsed] = useState<number>(defaults.timeElapsed);
+  const [timeout, updateTimeout] = useState<number | undefined>(defaults.timeout);
+  // NOTE: using with localStorage to prevent brief flash of false-y UI on reload/remount
+  const [isMicAccessGranted, updateIsMicAccessGranted] = useState<boolean>((localStorage.getItem('isMicAccessGranted') === 'true') || defaults.isMicAccessGranted);
+  const [mediaStream, updateMediaStream] = useState<MediaStream | undefined>(defaults.mediaStream);
+  const [audioProcessor, updateAudioProcessor] = useState<ScriptProcessorNode | undefined>(defaults.audioProcessor);
 
   const audioElementRef = useRef<HTMLAudioElement>(null);
   const micElementRef = useRef<HTMLAudioElement>(null);
@@ -46,14 +50,20 @@ export default function Timertron(props: RouteComponentProps) {
           <div className="txt--embiggen">{`${ formatElapseTime() }`}</div>
           <audio ref={ micElementRef } controls></audio>
         </div>
-        : <div>Please grant microphone access :( </div> // TODO: add button to prompt for access
+        : 
+        <div>
+          <p>The first time you use this feature, you'll need to grant it access to your phone's microphone.</p>
+          <button type="button" className="button" onClick={ onRequestMicAccessClick }>
+            Click to enable audio
+          </button>
+        </div> // TODO: add button to prompt for access
       }
       <audio ref={ audioElementRef } src={ `${process.env.PUBLIC_URL}/beep.mp3` } preload="auto" />
     </div>;
   const buttons = <div className="button-container">
       <button 
         type="button" 
-        className={`button button--yuge button--flex-1 button--push-r`} 
+        className={`button button--danger button--yuge button--flex-1 button--push-r`} 
         onClick={ resetTimer }> Reset </button>
       <button
         type="button"
@@ -96,9 +106,7 @@ export default function Timertron(props: RouteComponentProps) {
   }
 
   function startAudioStreamCapture(): void {
-    console.log('attemping to start audio capture...');
     if (mediaStream != null) {
-      console.log('media stream ok...');
       const audioContext = new AudioContext();
       const source = audioContext.createMediaStreamSource(mediaStream);
       const processor = audioContext.createScriptProcessor(1024, 1, 1);
@@ -110,10 +118,7 @@ export default function Timertron(props: RouteComponentProps) {
       source.connect(processor);
       processor.connect(audioContext.destination);
 
-      console.log(processor);
-
       processor.onaudioprocess = function(event) {
-        console.log('onaudioprocess');
         audioBuffer = event.inputBuffer.getChannelData(0);
 
         for (var i = 0; i < audioBuffer.length; i++) {
@@ -169,41 +174,52 @@ export default function Timertron(props: RouteComponentProps) {
   function onClick(event: SyntheticEvent): void {
     if (!isTimerActive) {
       updateIsTimerActive(true);
-      updateTimeout(window.setTimeout(initiateStartDelay, TimerDefaults.beepDelay));
+
+      if (!TimertronDefaults.instantBeep) {
+        updateTimeout(window.setTimeout(initiateStartDelay, TimertronDefaults.beepDelay));
+      }
     } else {
       stopTimer();
     }
   }
 
-  useEffect(() => {
-    navigator.permissions.query({name:'microphone'}).then(function(result: PermissionStatus) {
-      if (result.state !== 'granted') {
-        navigator.mediaDevices.getUserMedia({
-          audio: true,
-          video: false
-        }).then((stream: MediaStream) => {
-          console.log('got dat stream', stream)
+  function configureAudioInput(): void {
+    navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: false
+    }).then((stream: MediaStream) => {
+      updateIsMicAccessGranted(true);
+      localStorage.setItem('isMicAccessGranted', 'true');
 
-          if (micElementRef.current) {
-            micElementRef.current.srcObject = stream;
-            updateMediaStream(stream);
-
-            console.log('assigned dat stream');
-          }
-        })
-      } else {
-        updateIsMicAccessGranted(true);
+      if (micElementRef.current) {
+        micElementRef.current.srcObject = stream;
+        updateMediaStream(stream);
       }
+    }).catch((error) => {
+      // TODO: how to re-request permission?
+      // https://stackoverflow.com/questions/15993581/reprompt-for-permissions-with-getusermedia-after-initial-denial
+      console.error('permission denied');
+    })
+  }
 
-      result.onchange = function() {
-        updateIsMicAccessGranted(result.state === 'granted');
-      };
-    });
+  function onRequestMicAccessClick(event: SyntheticEvent): void {
+    configureAudioInput();
+  }
 
+  useEffect(() => {
+    navigator.permissions.query({name:'microphone'})
+      .then((result: PermissionStatus) => {
+        if (result.state === 'granted') {
+          configureAudioInput();
+        }
+      })
+
+    // "unmount" clean up
     return () => {
       if (audioProcessor) {
         audioProcessor.disconnect();
         audioProcessor.onaudioprocess = null;
+        updateAudioProcessor(undefined);
       }
 
       window.clearInterval(interval);
@@ -214,7 +230,7 @@ export default function Timertron(props: RouteComponentProps) {
 
       updateTimeElapsed(0);
       updateIsTimerActive(false);
-      // updateMediaStream(undefined)?
+      updateMediaStream(undefined);
     }
     // NOTE: disabling because no array or array of deps triggers on every render, breaking functionality
     // eslint-disable-next-line
