@@ -1,4 +1,3 @@
-import { RouteComponentProps } from '@reach/router';
 /**
  *                    
  * 8""""8 8     8  8""""8 8   8  8   8 8     8""""8 ""8"" 8"""88 8"""8  
@@ -12,6 +11,7 @@ import { RouteComponentProps } from '@reach/router';
  *
  */
 
+import { RouteComponentProps } from '@reach/router';
 import React, { SyntheticEvent, useState } from 'react';
 
 import INavigationItem from '../../../interfaces/NavigationItem';
@@ -72,7 +72,7 @@ export default function Clickulator(props: RouteComponentProps) {
   }
 
   // TODO: probably also a better way to do this
-  function resetForm(): void {
+  function onResetClick(): void {
     updateHorizontalOffsetDistance(DefaultValues.horizontalOffsetDistance);
     updateHorizontalOffsetDirection(DefaultValues.horizontalOffsetDirection);
     updateVerticalOffsetDistance(DefaultValues.horizontalOffsetDistance);
@@ -85,11 +85,11 @@ export default function Clickulator(props: RouteComponentProps) {
     <div className="button-container">
       <button
         className="button button--danger button--yuge button--flex-1 button--push-r"
-        onClick={ resetForm }
+        onClick={ onResetClick }
         type="reset">reset</button>
       <button
         className="button button--primary button--yuge button--flex-3 button--push-l"
-        onClick={ onClick }
+        onClick={ onCalculateClick }
         type="button">send it</button>
     </div>
 
@@ -101,15 +101,13 @@ export default function Clickulator(props: RouteComponentProps) {
         id="Clickulator"
         className="form">
         <FeatureWithBottomButtonLayout
-          content={ <FieldSet/> }
-          button={ buttons } />
+          mainAreaContent={ <FieldSet/> }
+          buttonAreaContent={ buttons } />
       </form>
     </FeatureContext.Provider>
   );
 
-  function onClick(event: SyntheticEvent): void {
-    event.preventDefault();
-
+  function onCalculateClick(event: SyntheticEvent): void {
     const validator = Validator.getInstance();
 
     validator.validate({

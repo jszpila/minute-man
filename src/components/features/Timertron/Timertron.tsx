@@ -199,7 +199,7 @@ export default function Timertron(props: RouteComponentProps) {
             id="Timertron"
             className="form">
             <FeatureWithBottomButtonLayout
-              content={
+              mainAreaContent={
                 <>
                   <TimerDisplay onRequestMicAccessClick={ configureAudioInput } />
                   <audio ref={ micElementRef }></audio>
@@ -209,7 +209,7 @@ export default function Timertron(props: RouteComponentProps) {
                     preload="auto" />
                 </>
               }
-              button={ 
+              buttonAreaContent={ 
                 <div className="button-container">
                   <ResetButton onClick={ onResetButtonClick } />
                   <ToggleButton onClick={ onToggleButtonClick } />
