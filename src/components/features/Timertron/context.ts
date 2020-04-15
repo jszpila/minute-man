@@ -19,7 +19,7 @@ export interface ITimertronContext {
   updateAudioProcessor: (Dispatch<SetStateAction<ScriptProcessorNode | undefined>>)
 }
 
-export const initialTimertronContext: ITimertronContext = {
+const initialTimertronContext: ITimertronContext = {
   isTimerActive: TimertronDefaults.isTimerActive,
   updateIsTimerActive: (): void => {},
   interval: TimertronDefaults.interval,
@@ -35,3 +35,5 @@ export const initialTimertronContext: ITimertronContext = {
   audioProcessor: TimertronDefaults.audioProcessor,
   updateAudioProcessor: (): void => {},
 }
+
+export const TimertronContext = React.createContext(initialTimertronContext);

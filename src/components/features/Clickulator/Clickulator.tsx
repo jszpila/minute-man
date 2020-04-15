@@ -14,6 +14,7 @@ import { RouteComponentProps } from '@reach/router';
 
 import React, { SyntheticEvent, useState } from 'react';
 
+import INavigationItem from '../../../interfaces/NavigationItem';
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
 import Calculator from './Calculator';
 import FieldSet from './components/FieldSet';
@@ -21,7 +22,6 @@ import ResultsModal from './components/Results';
 import { FeatureContext, IFeatureContext } from './context';
 import { DefaultValues } from './data/Defaults';
 import Validator from './validation/Validator';
-import INavigationItem from '../../../interfaces/NavigationItem';
 
 import './clickulator.css';
 
@@ -85,11 +85,11 @@ export default function Clickulator(props: RouteComponentProps) {
     <div className="button-container">
       <button
         className="button button--danger button--yuge button--flex-1 button--push-r"
-        onClick={resetForm}
+        onClick={ resetForm }
         type="reset">reset</button>
       <button
         className="button button--primary button--yuge button--flex-3 button--push-l"
-        onClick={onClick}
+        onClick={ onClick }
         type="button">send it</button>
     </div>
 

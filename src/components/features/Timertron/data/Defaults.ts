@@ -1,8 +1,7 @@
 import { TimerMode } from "../enum/TimerMode";
 
 export const TimertronDefaults = {
-  instantBeep: false,
-  beepDelay: 3000,
+  beepDelayinSeconds: 3,
   timerMode: TimerMode.Comstock,
   isTimerActive: false,
   interval: undefined,

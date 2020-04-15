@@ -1,4 +1,3 @@
-import { RouteComponentProps } from '@reach/router';
 /**
  *                    
  *  _________  ___  _____ ______   _______   ________  _________  ________  ________  ________      
@@ -13,16 +12,22 @@ import { RouteComponentProps } from '@reach/router';
  *
  */
 
+import { RouteComponentProps } from '@reach/router';
 import React, { SyntheticEvent, useEffect, useRef, useState } from 'react';
 
 import INavigationItem from '../../../interfaces/NavigationItem';
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
+import ResetButton from './components/ResetButton';
+import TimerDisplay from './components/TimerDisplay';
+import ToggleButton from './components/ToggleButton';
+import { ITimertronContext, TimertronContext } from './context';
 import { TimertronDefaults } from './data/Defaults';
 
 import './timertron.css';
 
 const localStorage = window.localStorage;
 const defaults = TimertronDefaults;
+const micAccessKey = 'isMicAccessGranted';
 
 export const TimertronNavConfig: INavigationItem = {
   route: '/timer',
@@ -36,74 +41,12 @@ export default function Timertron(props: RouteComponentProps) {
   const [timeElapsed, updateTimeElapsed] = useState<number>(defaults.timeElapsed);
   const [timeout, updateTimeout] = useState<number | undefined>(defaults.timeout);
   // NOTE: using with localStorage to prevent brief flash of false-y UI on reload/remount
-  const [isMicAccessGranted, updateIsMicAccessGranted] = useState<boolean>((localStorage.getItem('isMicAccessGranted') === 'true') || defaults.isMicAccessGranted);
+  const [isMicAccessGranted, updateIsMicAccessGranted] = useState<boolean>((localStorage.getItem(micAccessKey) === 'true') || defaults.isMicAccessGranted);
   const [mediaStream, updateMediaStream] = useState<MediaStream | undefined>(defaults.mediaStream);
   const [audioProcessor, updateAudioProcessor] = useState<ScriptProcessorNode | undefined>(defaults.audioProcessor);
 
   const audioElementRef = useRef<HTMLAudioElement>(null);
   const micElementRef = useRef<HTMLAudioElement>(null);
-
-  const content = <div>
-      { isMicAccessGranted ?
-        <div>
-          <div>Time Elapsed</div>
-          <div className="txt--embiggen">{`${ formatElapseTime() }`}</div>
-          <audio ref={ micElementRef } controls></audio>
-        </div>
-        : 
-        <div>
-          <p>The first time you use this feature, you'll need to grant it access to your phone's microphone.</p>
-          <button type="button" className="button" onClick={ onRequestMicAccessClick }>
-            Click to enable audio
-          </button>
-        </div> // TODO: add button to prompt for access
-      }
-      <audio ref={ audioElementRef } src={ `${process.env.PUBLIC_URL}/beep.mp3` } preload="auto" />
-    </div>;
-  const buttons = <div className="button-container">
-      <button 
-        type="button" 
-        className={`button button--danger button--yuge button--flex-1 button--push-r`} 
-        onClick={ resetTimer }> Reset </button>
-      <button
-        type="button"
-        className={`button button--yuge button--flex-3 button--push-l ${ getButtonStyle() }`} 
-        onClick={ onClick }> { getButtonText() } </button>
-    </div>;
-
-  function getButtonStyle(): string {
-    let style = '';
-
-    if (!isTimerActive) {
-      style = 'button--primary';
-    } else if (isTimerActive
-      && timeElapsed === 0) {
-        style = '';
-    } else {
-      style = 'button--danger';
-    }
-
-    return style;
-  }
-
-  function getButtonText(): string | React.ReactNode {
-    let text;
-
-    if (!isTimerActive) {
-      text = 'Start';
-    } else if (isTimerActive
-      && timeElapsed === 0) {
-        text = <>Waiting <span className="txt--muted">(Press to Cancel)</span></>;
-    } else {
-      text = 'Stop';
-    }
-
-    return text;
-  }
-
-  function formatElapseTime(): string {
-    return (timeElapsed / 1000).toFixed(3);
-  }
 
   function startAudioStreamCapture(): void {
     if (mediaStream != null) {
@@ -123,7 +66,7 @@ export default function Timertron(props: RouteComponentProps) {
 
         for (var i = 0; i < audioBuffer.length; i++) {
           absValue = Math.abs(audioBuffer[i]);
-          console.log(absValue >= 1.0 ? `clipped @ ${Date.now()}` : audioBuffer[i]);
+          // console.log(absValue >= 1.0 ? `clipped @ ${Date.now()}` : audioBuffer[i]);
           if (absValue >= 1.0) {
             break;
           }
@@ -155,7 +98,7 @@ export default function Timertron(props: RouteComponentProps) {
     updateIsTimerActive(false);
   }
 
-  function resetTimer(): void {
+  function onResetButtonClick(): void {
     if (isTimerActive) {
       stopTimer();
     }
@@ -171,13 +114,11 @@ export default function Timertron(props: RouteComponentProps) {
     startTimer();
   }
 
-  function onClick(event: SyntheticEvent): void {
+  function onToggleButtonClick(event: SyntheticEvent): void {
     if (!isTimerActive) {
       updateIsTimerActive(true);
-
-      if (!TimertronDefaults.instantBeep) {
-        updateTimeout(window.setTimeout(initiateStartDelay, TimertronDefaults.beepDelay));
-      }
+      const delayInMs = TimertronDefaults.beepDelayinSeconds * 1000;
+      updateTimeout(window.setTimeout(initiateStartDelay, delayInMs));
     } else {
       stopTimer();
     }
@@ -189,7 +130,7 @@ export default function Timertron(props: RouteComponentProps) {
       video: false
     }).then((stream: MediaStream) => {
       updateIsMicAccessGranted(true);
-      localStorage.setItem('isMicAccessGranted', 'true');
+      localStorage.setItem(micAccessKey, 'true');
 
       if (micElementRef.current) {
         micElementRef.current.srcObject = stream;
@@ -200,10 +141,6 @@ export default function Timertron(props: RouteComponentProps) {
       // https://stackoverflow.com/questions/15993581/reprompt-for-permissions-with-getusermedia-after-initial-denial
       console.error('permission denied');
     })
-  }
-
-  function onRequestMicAccessClick(event: SyntheticEvent): void {
-    configureAudioInput();
   }
 
   useEffect(() => {
@@ -236,16 +173,51 @@ export default function Timertron(props: RouteComponentProps) {
     // eslint-disable-next-line
   }, [])
 
-  // TODO: StatefulButton component
+
+  const featureContext: ITimertronContext = {
+    isTimerActive,
+    updateIsTimerActive,
+    interval,
+    updateInterval,
+    timeElapsed,
+    updateTimeElapsed,
+    timeout,
+    updateTimeout,
+    isMicAccessGranted,
+    updateIsMicAccessGranted,
+    mediaStream,
+    updateMediaStream,
+    audioProcessor,
+    updateAudioProcessor,
+  }
+
   return (
-      <>
-        <form
-          id="Timertron"
-          className="form">
-          <FeatureWithBottomButtonLayout
-            content={ content }
-            button={ buttons } />
-        </form>
-      </>
+    <TimertronContext.Provider value={ featureContext }>
+      <TimertronContext.Consumer>
+        {value =>
+          <form
+            id="Timertron"
+            className="form">
+            <FeatureWithBottomButtonLayout
+              content={
+                <>
+                  <TimerDisplay onRequestMicAccessClick={ configureAudioInput } />
+                  <audio ref={ micElementRef }></audio>
+                  <audio
+                    ref={ audioElementRef }
+                    src={ `${process.env.PUBLIC_URL}/beep.mp3` }
+                    preload="auto" />
+                </>
+              }
+              button={ 
+                <div className="button-container">
+                  <ResetButton onClick={ onResetButtonClick } />
+                  <ToggleButton onClick={ onToggleButtonClick } />
+                </div>
+               } />
+          </form>
+        }
+      </TimertronContext.Consumer>
+    </TimertronContext.Provider>
   );
 }
