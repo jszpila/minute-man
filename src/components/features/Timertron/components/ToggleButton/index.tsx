@@ -6,52 +6,77 @@
  * - active
  */
 
-import React, { SyntheticEvent, useContext } from 'react';
+import React, { SyntheticEvent, useContext, useState } from 'react';
 
 import { TimertronContext } from '../../context';
+import { TimertronConfig } from '../../data/Config';
 
 interface IProps {
-  onClick: (event: SyntheticEvent) => void,
+  onClick: () => void,
 }
 
 export default function ToggleButton(props: IProps) {
   const context = useContext(TimertronContext);
 
-  function getButtonStyle(): string {
-    let style = '';
+  const [secondsRemaining, setSecondsRemaining] = useState<number>(TimertronConfig.beepDelayinSeconds);
+  const [interval, setInterval] = useState<number | undefined>(undefined);
 
+  // determineValueFromDerivedState?
+  function getStatefulValue(inactiveVal: string, pendingVal: string, activeVal: string): string {
+    let statefulVal = activeVal;
+  
     if (!context.isTimerActive) {
-      style = 'button--primary';
+      statefulVal = inactiveVal;
     } else if (context.isTimerActive
       && context.timeElapsed === 0) {
-        style = '';
-    } else {
-      style = 'button--danger';
+        statefulVal = pendingVal;
     }
 
-    return style;
+    return statefulVal;
   }
 
-  // TODO: countdown on button
+  function getButtonStyle(): string {
+    return getStatefulValue('button--primary', '', 'button--danger');
+  }
+
   function getButtonText(): string | React.ReactNode {
-    let text;
+    return getStatefulValue('Start', secondsRemaining.toString(), 'Stop');
+  }
 
-    if (!context.isTimerActive) {
-      text = 'Start';
-    } else if (context.isTimerActive
-      && context.timeElapsed === 0) {
-        text = <>Waiting <span className="txt--muted">(Press to Cancel)</span></>;
+  function startCountdown(): void {
+    let remaining = TimertronConfig.beepDelayinSeconds;
+
+    const interval = window.setInterval(() => {
+      remaining--;
+      setSecondsRemaining(remaining);
+    }, 1000);
+
+    setInterval(interval);
+  }
+
+  function stopCountdown(): void {
+    setSecondsRemaining(TimertronConfig.beepDelayinSeconds);
+
+    clearInterval(interval);
+    setInterval(undefined);
+  }
+
+  function onClick(event: SyntheticEvent) {
+    props.onClick();
+
+    const status = getStatefulValue('inactive', 'pending', 'active');
+
+    if (status === 'inactive') {
+      startCountdown();
     } else {
-      text = 'Stop';
+      stopCountdown();
     }
-
-    return text;
   }
 
   return (
     <button
       type="button"
-      className={`button button--yuge button--flex-3 button--push-l ${ getButtonStyle() }`} 
-      onClick={ props.onClick }>{ getButtonText() }</button>
+      className={`button button--yuge button--flex-3 ${ getButtonStyle() }`} 
+      onClick={ onClick }>{ getButtonText() }</button>
   );
 }

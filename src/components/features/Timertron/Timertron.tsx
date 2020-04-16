@@ -13,7 +13,7 @@
  */
 
 import { RouteComponentProps } from '@reach/router';
-import React, { SyntheticEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import INavigationItem from '../../../interfaces/NavigationItem';
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
@@ -93,7 +93,7 @@ export default function Timertron(props: RouteComponentProps) {
       setAudioProcessor(defaults.audioProcessor);
     }
 
-    // NOTE: clear timeout here in case stop is pressed before time actually starts
+    // NOTE: clear timeout here in case stop is pressed before timer starts
     window.clearTimeout(timeout);
     setTimeout(defaults.timeout);
 
@@ -108,22 +108,24 @@ export default function Timertron(props: RouteComponentProps) {
       stopTimer();
     }
 
-    setInterval(undefined);
-    setTimeElapsed(0);
+    setInterval(TimertronDefaults.interval);
+    setTimeElapsed(TimertronDefaults.timeElapsed);
   }
 
-  function initiateStartDelay() {
+  function issueStartSignal() {
     outputElRef.current?.play();
     window.clearTimeout(timeout);
     setTimeout(defaults.timeout);
     startTimer();
   }
 
-  function onToggleButtonClick(event: SyntheticEvent): void {
+  function onToggleButtonClick(): void {
     if (!isTimerActive) {
-      setIsTimerActive(true);
       const delayInMs = TimertronConfig.beepDelayinSeconds * 1000;
-      setTimeout(window.setTimeout(initiateStartDelay, delayInMs));
+
+      setIsTimerActive(true);
+      setTimeElapsed(TimertronDefaults.timeElapsed);
+      setTimeout(window.setTimeout(issueStartSignal, delayInMs));
     } else {
       stopTimer();
     }
@@ -199,7 +201,7 @@ export default function Timertron(props: RouteComponentProps) {
   return (
     <TimertronContext.Provider value={ featureContext }>
       <TimertronContext.Consumer>
-        {value =>
+        { value =>
           <form
             id="Timertron"
             className="form">
