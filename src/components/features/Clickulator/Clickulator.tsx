@@ -84,11 +84,11 @@ export default function Clickulator(props: RouteComponentProps) {
   const buttons = 
     <div className="button-container">
       <button
-        className="button button--danger button--yuge button--flex-1 button--push-r"
+        className="button button--danger button--yuge button--flex-1"
         onClick={ onResetClick }
         type="reset">reset</button>
       <button
-        className="button button--primary button--yuge button--flex-3 button--push-l"
+        className="button button--primary button--yuge button--flex-3"
         onClick={ onCalculateClick }
         type="button">send it</button>
     </div>

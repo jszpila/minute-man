@@ -160,6 +160,19 @@ body,
   display: flex;
 }
 
+.button-container > .button {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.button-container > .button:first-child {
+  margin-left: 0;
+}
+
+.button-container > .button:last-child {
+  margin-right: 0;
+}
+
 .button--flex-1 {
   flex: 1;
 }
@@ -172,11 +185,4 @@ body,
   flex: 3;
 }
 
-.button--push-r {
-  margin-right: 0.75rem;
-}
-
-.button--push-l {
-  margin-left: 0.75rem;
-}
 /** THEME **/
