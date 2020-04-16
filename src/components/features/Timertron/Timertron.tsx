@@ -21,6 +21,7 @@ import ResetButton from './components/ResetButton';
 import TimerDisplay from './components/TimerDisplay';
 import ToggleButton from './components/ToggleButton';
 import { ITimertronContext, TimertronContext } from './context';
+import { TimertronConfig } from './data/Config';
 import { TimertronDefaults } from './data/Defaults';
 
 import './timertron.css';
@@ -36,27 +37,27 @@ export const TimertronNavConfig: INavigationItem = {
 };
 
 export default function Timertron(props: RouteComponentProps) {
-  const [isTimerActive, updateIsTimerActive] = useState<boolean>(defaults.isTimerActive);
-  const [interval, updateInterval] = useState<number | undefined>(defaults.interval);
-  const [timeElapsed, updateTimeElapsed] = useState<number>(defaults.timeElapsed);
-  const [timeout, updateTimeout] = useState<number | undefined>(defaults.timeout);
+  const [isTimerActive, setIsTimerActive] = useState<boolean>(defaults.isTimerActive);
+  const [interval, setInterval] = useState<number | undefined>(defaults.interval);
+  const [timeElapsed, setTimeElapsed] = useState<number>(defaults.timeElapsed);
+  const [timeout, setTimeout] = useState<number | undefined>(defaults.timeout);
   // NOTE: using with localStorage to prevent brief flash of false-y UI on reload/remount
-  const [isMicAccessGranted, updateIsMicAccessGranted] = useState<boolean>((localStorage.getItem(micAccessKey) === 'true') || defaults.isMicAccessGranted);
-  const [mediaStream, updateMediaStream] = useState<MediaStream | undefined>(defaults.mediaStream);
-  const [audioProcessor, updateAudioProcessor] = useState<ScriptProcessorNode | undefined>(defaults.audioProcessor);
+  const [isMicAccessGranted, setIsMicAccessGranted] = useState<boolean>((localStorage.getItem(micAccessKey) === 'true') || defaults.isMicAccessGranted);
+  const [mediaStream, setMediaStream] = useState<MediaStream | undefined>(defaults.mediaStream);
+  const [audioProcessor, setAudioProcessor] = useState<ScriptProcessorNode | undefined>(defaults.audioProcessor);
 
-  const audioElementRef = useRef<HTMLAudioElement>(null);
-  const micElementRef = useRef<HTMLAudioElement>(null);
+  const outputElRef = useRef<HTMLAudioElement>(null);
+  const inputElRef = useRef<HTMLAudioElement>(null);
 
   function startAudioStreamCapture(): void {
-    if (mediaStream != null) {
+    if (mediaStream) {
       const audioContext = new AudioContext();
       const source = audioContext.createMediaStreamSource(mediaStream);
       const processor = audioContext.createScriptProcessor(1024, 1, 1);
       let audioBuffer;
       let absValue;
 
-      updateAudioProcessor(processor);
+      setAudioProcessor(processor);
 
       source.connect(processor);
       processor.connect(audioContext.destination);
@@ -77,25 +78,29 @@ export default function Timertron(props: RouteComponentProps) {
 
   function startTimer(): void {
     const startedAt = Date.now();
-    const interval = window.setInterval(() => 
-      {updateTimeElapsed((Date.now() - startedAt))
+    const interval = window.setInterval(() => {
+      setTimeElapsed((Date.now() - startedAt))
     }, 1); // Thanks Mark!
 
-    updateInterval(interval);
+    setInterval(interval);
     startAudioStreamCapture();
   }
 
   function stopTimer(): void {
-    window.clearTimeout(timeout); // clear timeout here in case stop is pressed before time actually starts
-    window.clearInterval(interval);
-
-    if (audioProcessor != null) {
+    if (audioProcessor) {
       audioProcessor.disconnect();
       audioProcessor.onaudioprocess = null;
-      updateAudioProcessor(undefined);
+      setAudioProcessor(defaults.audioProcessor);
     }
 
-    updateIsTimerActive(false);
+    // NOTE: clear timeout here in case stop is pressed before time actually starts
+    window.clearTimeout(timeout);
+    setTimeout(defaults.timeout);
+
+    window.clearInterval(interval);
+    setInterval(defaults.interval);
+
+    setIsTimerActive(defaults.isTimerActive);
   }
 
   function onResetButtonClick(): void {
@@ -103,22 +108,22 @@ export default function Timertron(props: RouteComponentProps) {
       stopTimer();
     }
 
-    updateInterval(undefined);
-    updateTimeElapsed(0);
+    setInterval(undefined);
+    setTimeElapsed(0);
   }
 
   function initiateStartDelay() {
-    audioElementRef.current?.play();
+    outputElRef.current?.play();
     window.clearTimeout(timeout);
-    updateTimeout(undefined);
+    setTimeout(defaults.timeout);
     startTimer();
   }
 
   function onToggleButtonClick(event: SyntheticEvent): void {
     if (!isTimerActive) {
-      updateIsTimerActive(true);
-      const delayInMs = TimertronDefaults.beepDelayinSeconds * 1000;
-      updateTimeout(window.setTimeout(initiateStartDelay, delayInMs));
+      setIsTimerActive(true);
+      const delayInMs = TimertronConfig.beepDelayinSeconds * 1000;
+      setTimeout(window.setTimeout(initiateStartDelay, delayInMs));
     } else {
       stopTimer();
     }
@@ -129,12 +134,12 @@ export default function Timertron(props: RouteComponentProps) {
       audio: true,
       video: false
     }).then((stream: MediaStream) => {
-      updateIsMicAccessGranted(true);
+      setIsMicAccessGranted(true);
       localStorage.setItem(micAccessKey, 'true');
 
-      if (micElementRef.current) {
-        micElementRef.current.srcObject = stream;
-        updateMediaStream(stream);
+      if (inputElRef.current) {
+        inputElRef.current.srcObject = stream;
+        setMediaStream(stream);
       }
     }).catch((error) => {
       // TODO: how to re-request permission?
@@ -156,18 +161,18 @@ export default function Timertron(props: RouteComponentProps) {
       if (audioProcessor) {
         audioProcessor.disconnect();
         audioProcessor.onaudioprocess = null;
-        updateAudioProcessor(undefined);
+        setAudioProcessor(defaults.audioProcessor);
       }
 
       window.clearInterval(interval);
-      updateInterval(undefined);
+      setInterval(defaults.interval);
       
       window.clearTimeout(timeout);
-      updateTimeout(undefined);
+      setTimeout(defaults.timeout);
 
-      updateTimeElapsed(0);
-      updateIsTimerActive(false);
-      updateMediaStream(undefined);
+      setTimeElapsed(defaults.timeElapsed);
+      setIsTimerActive(defaults.isTimerActive);
+      setMediaStream(defaults.mediaStream);
     }
     // NOTE: disabling because no array or array of deps triggers on every render, breaking functionality
     // eslint-disable-next-line
@@ -176,19 +181,19 @@ export default function Timertron(props: RouteComponentProps) {
 
   const featureContext: ITimertronContext = {
     isTimerActive,
-    updateIsTimerActive,
+    setIsTimerActive,
     interval,
-    updateInterval,
+    setInterval,
     timeElapsed,
-    updateTimeElapsed,
+    setTimeElapsed,
     timeout,
-    updateTimeout,
+    setTimeout,
     isMicAccessGranted,
-    updateIsMicAccessGranted,
+    setIsMicAccessGranted,
     mediaStream,
-    updateMediaStream,
+    setMediaStream,
     audioProcessor,
-    updateAudioProcessor,
+    setAudioProcessor,
   }
 
   return (
@@ -202,9 +207,9 @@ export default function Timertron(props: RouteComponentProps) {
               mainAreaContent={
                 <>
                   <TimerDisplay onRequestMicAccessClick={ configureAudioInput } />
-                  <audio ref={ micElementRef }></audio>
+                  <audio ref={ inputElRef } />
                   <audio
-                    ref={ audioElementRef }
+                    ref={ outputElRef }
                     src={ `${process.env.PUBLIC_URL}/beep.mp3` }
                     preload="auto" />
                 </>

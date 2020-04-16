@@ -7,6 +7,7 @@
 import React, { SyntheticEvent, useContext } from 'react';
 
 import { TimertronContext } from '../../context';
+import { TimertronConfig } from '../../data/Config';
 
 interface IProps {
   onRequestMicAccessClick: () => void,
@@ -16,7 +17,7 @@ export default function TimerDisplay(props: IProps) {
   const context = useContext(TimertronContext);
 
   function formatElapseTime(): string {
-    return (context.timeElapsed / 1000).toFixed(3);
+    return (context.timeElapsed / 1000).toFixed(TimertronConfig.timerDecimalPlaces);
   }
 
   function onClick(event: SyntheticEvent): void {
