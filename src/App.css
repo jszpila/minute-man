@@ -63,7 +63,15 @@ body,
   font-size: 0.75rem;
 }
 
-.txt--embiggen {
+.txt--embiggen--2x {
+  font-size: 2rem;
+}
+
+.txt--embiggen--3x {
+  font-size: 3rem;
+}
+
+.txt--embiggen--4x {
   font-size: 4rem;
 }
 
@@ -105,7 +113,7 @@ body,
 }
 
 .button--primary:focus {
-  outline: 1px #1e88e5;;
+  outline: 1px #1e88e5;
 }
 
 .button--danger {

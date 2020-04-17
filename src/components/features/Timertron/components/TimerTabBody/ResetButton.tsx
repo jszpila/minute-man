@@ -17,4 +17,3 @@ export default function ResetButton(props: IProps) {
       onClick={ props.onClick }>Reset</button>
   );
 }
-

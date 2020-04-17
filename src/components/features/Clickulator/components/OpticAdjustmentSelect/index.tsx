@@ -4,6 +4,7 @@
  */
 
 import React, { Dispatch, SetStateAction } from 'react';
+
 import { OpticAdjustmentIncrements } from '../../data/OpticAdjustmentIncrements';
 
 interface IProps {
@@ -20,15 +21,15 @@ export default function OpticAdjustmentSelect(props: IProps) {
   return (
     <select
       className="field__select"
-      defaultValue={props.value}
-      name={props.name}
-      onChange={onChange}>
+      defaultValue={ props.value }
+      name={ props.name }
+      onChange={ onChange }>
     {
       OpticAdjustmentIncrements.map((option, index) => {
         return <option 
-            key={index}
-            value={option.value}>
-            {option.label}
+            key={ index }
+            value={ option.value }>
+            { option.label }
           </option>
       })
     }

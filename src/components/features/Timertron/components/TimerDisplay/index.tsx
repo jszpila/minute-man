@@ -29,7 +29,7 @@ export default function TimerDisplay(props: IProps) {
     { context.isMicAccessGranted ?
       <div>
         <div>Time Elapsed</div>
-        <div className="txt--embiggen">{`${ formatElapseTime() }`}</div>
+        <div className="txt--embiggen--4x">{`${ formatElapseTime() }`}s</div>
       </div>
       : 
       <div>
@@ -43,3 +43,27 @@ export default function TimerDisplay(props: IProps) {
     </>
   );
 }
+
+{/* <div className="info-block-flex-container">
+  <div className="info-block info-block--flex--2">
+    <div className="info-block__label">Time Elapsed</div>
+    <div className="txt--embiggen--3x">7.030s</div>
+  </div>
+  <div className="info-block info-block--flex--1">
+    <div className="info-block__label">Shots</div>
+    <div className="txt--embiggen--2x">4</div>
+  </div>
+  <div className="info-block info-block--flex--1">
+    <div className="info-block__label">Split Time</div>
+    <div className="txt--embiggen--2x">1.002s</div>
+  </div>
+  </div>
+  <div className="info-block">
+  <div className="info-block__label">Shot Times</div>
+  <ol className="shot-list">
+    <li>2.501s</li>
+    <li>3.752s</li>
+    <li>5.677s</li>
+    <li>7.030s</li>
+  </ol>
+</div> */}
