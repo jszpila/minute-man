@@ -1,8 +1,8 @@
  export const TimertronDefaults = {
   isTimerActive: false,
-  interval: undefined,
+  intervalId: undefined,
   timeElapsed: 0,
-  timeout: undefined,
+  timeoutId: undefined,
   isMicAccessGranted: false,
   mediaStream: undefined,
   audioProcessor: undefined,

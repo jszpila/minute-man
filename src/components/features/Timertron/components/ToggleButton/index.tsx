@@ -6,7 +6,7 @@
  * - active
  */
 
-import React, { SyntheticEvent, useContext, useState } from 'react';
+import React, { SyntheticEvent, useContext, useState, useEffect, useRef } from 'react';
 
 import { TimertronContext } from '../../context';
 import { TimertronConfig } from '../../data/Config';
@@ -16,12 +16,12 @@ interface IProps {
 }
 
 export default function ToggleButton(props: IProps) {
-  const context = useContext(TimertronContext);
-
   const [secondsRemaining, setSecondsRemaining] = useState<number>(TimertronConfig.beepDelayinSeconds);
-  const [interval, setInterval] = useState<number | undefined>(undefined);
+  const [intervalId, setIntervalId] = useState<number | undefined>(undefined);
 
-  // determineValueFromDerivedState?
+  const context = useContext(TimertronContext);
+  const isMountedRef = useRef<boolean>(false); // NOTE: used to address issue w/ setState in umounted component when user navigates away during active timer
+
   function getStatefulValue(inactiveVal: string, pendingVal: string, activeVal: string): string {
     let statefulVal = activeVal;
   
@@ -46,19 +46,21 @@ export default function ToggleButton(props: IProps) {
   function startCountdown(): void {
     let remaining = TimertronConfig.beepDelayinSeconds;
 
-    const interval = window.setInterval(() => {
-      remaining--;
-      setSecondsRemaining(remaining);
+    const newIntervalId = window.setInterval(() => {
+      if (isMountedRef.current === true) {
+        remaining--;
+        setSecondsRemaining(remaining);
+      }
     }, 1000);
 
-    setInterval(interval);
+    setIntervalId(newIntervalId);
   }
 
   function stopCountdown(): void {
     setSecondsRemaining(TimertronConfig.beepDelayinSeconds);
 
-    clearInterval(interval);
-    setInterval(undefined);
+    window.clearInterval(intervalId);
+    setIntervalId(undefined);
   }
 
   function onClick(event: SyntheticEvent) {
@@ -72,6 +74,17 @@ export default function ToggleButton(props: IProps) {
       stopCountdown();
     }
   }
+
+  useEffect(() => {
+    isMountedRef.current = true;
+
+    return () => {
+      isMountedRef.current = false;
+      window.clearInterval(intervalId);
+    }
+    // NOTE: disabling because no array or array of deps triggers on every render, breaking functionality
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <button

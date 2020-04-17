@@ -38,9 +38,9 @@ export const TimertronNavConfig: INavigationItem = {
 
 export default function Timertron(props: RouteComponentProps) {
   const [isTimerActive, setIsTimerActive] = useState<boolean>(defaults.isTimerActive);
-  const [interval, setInterval] = useState<number | undefined>(defaults.interval);
+  const [intervalId, setIntervalId] = useState<number | undefined>(defaults.intervalId);
   const [timeElapsed, setTimeElapsed] = useState<number>(defaults.timeElapsed);
-  const [timeout, setTimeout] = useState<number | undefined>(defaults.timeout);
+  const [timeoutId, setTimeoutId] = useState<number | undefined>(defaults.timeoutId);
   // NOTE: using with localStorage to prevent brief flash of false-y UI on reload/remount
   const [isMicAccessGranted, setIsMicAccessGranted] = useState<boolean>((localStorage.getItem(micAccessKey) === 'true') || defaults.isMicAccessGranted);
   const [mediaStream, setMediaStream] = useState<MediaStream | undefined>(defaults.mediaStream);
@@ -48,6 +48,7 @@ export default function Timertron(props: RouteComponentProps) {
 
   const outputElRef = useRef<HTMLAudioElement>(null);
   const inputElRef = useRef<HTMLAudioElement>(null);
+  const isMountedRef = useRef<boolean>(false);
 
   function startAudioStreamCapture(): void {
     if (mediaStream) {
@@ -79,28 +80,34 @@ export default function Timertron(props: RouteComponentProps) {
   function startTimer(): void {
     const startedAt = Date.now();
     const interval = window.setInterval(() => {
-      setTimeElapsed((Date.now() - startedAt))
+      if (isMountedRef.current === true) {
+        setTimeElapsed((Date.now() - startedAt))
+      }
     }, 1); // Thanks Mark!
 
-    setInterval(interval);
-    startAudioStreamCapture();
+    if (isMountedRef.current === true) {
+      setIntervalId(interval);
+      startAudioStreamCapture();
+    }
   }
 
   function stopTimer(): void {
-    if (audioProcessor) {
-      audioProcessor.disconnect();
-      audioProcessor.onaudioprocess = null;
-      setAudioProcessor(defaults.audioProcessor);
+    if (isMountedRef.current === true) {
+      if (audioProcessor) {
+        audioProcessor.disconnect();
+        audioProcessor.onaudioprocess = null;
+        setAudioProcessor(defaults.audioProcessor);
+      }
+
+      // NOTE: clear timeout here in case stop is pressed before timer starts
+      window.clearTimeout(timeoutId);
+      setTimeoutId(defaults.timeoutId);
+
+      window.clearInterval(intervalId);
+      setIntervalId(defaults.intervalId);
+
+      setIsTimerActive(defaults.isTimerActive);
     }
-
-    // NOTE: clear timeout here in case stop is pressed before timer starts
-    window.clearTimeout(timeout);
-    setTimeout(defaults.timeout);
-
-    window.clearInterval(interval);
-    setInterval(defaults.interval);
-
-    setIsTimerActive(defaults.isTimerActive);
   }
 
   function onResetButtonClick(): void {
@@ -108,14 +115,18 @@ export default function Timertron(props: RouteComponentProps) {
       stopTimer();
     }
 
-    setInterval(TimertronDefaults.interval);
+    setIntervalId(TimertronDefaults.intervalId);
     setTimeElapsed(TimertronDefaults.timeElapsed);
   }
 
   function issueStartSignal() {
     outputElRef.current?.play();
-    window.clearTimeout(timeout);
-    setTimeout(defaults.timeout);
+    window.clearTimeout(timeoutId);
+
+    if (isMountedRef.current === true) {
+      setTimeoutId(defaults.timeoutId);
+    }
+
     startTimer();
   }
 
@@ -123,9 +134,11 @@ export default function Timertron(props: RouteComponentProps) {
     if (!isTimerActive) {
       const delayInMs = TimertronConfig.beepDelayinSeconds * 1000;
 
-      setIsTimerActive(true);
-      setTimeElapsed(TimertronDefaults.timeElapsed);
-      setTimeout(window.setTimeout(issueStartSignal, delayInMs));
+      if (isMountedRef.current === true) {
+        setIsTimerActive(true);
+        setTimeElapsed(TimertronDefaults.timeElapsed);
+        setTimeoutId(window.setTimeout(issueStartSignal, delayInMs));
+      }
     } else {
       stopTimer();
     }
@@ -151,6 +164,8 @@ export default function Timertron(props: RouteComponentProps) {
   }
 
   useEffect(() => {
+    isMountedRef.current = true;
+
     navigator.permissions.query({name:'microphone'})
       .then((result: PermissionStatus) => {
         if (result.state === 'granted') {
@@ -160,36 +175,29 @@ export default function Timertron(props: RouteComponentProps) {
 
     // "unmount" clean up
     return () => {
+      isMountedRef.current = false;
+
       if (audioProcessor) {
         audioProcessor.disconnect();
         audioProcessor.onaudioprocess = null;
-        setAudioProcessor(defaults.audioProcessor);
       }
 
-      window.clearInterval(interval);
-      setInterval(defaults.interval);
-      
-      window.clearTimeout(timeout);
-      setTimeout(defaults.timeout);
-
-      setTimeElapsed(defaults.timeElapsed);
-      setIsTimerActive(defaults.isTimerActive);
-      setMediaStream(defaults.mediaStream);
+      window.clearInterval(intervalId);
+      window.clearTimeout(timeoutId);
     }
     // NOTE: disabling because no array or array of deps triggers on every render, breaking functionality
     // eslint-disable-next-line
   }, [])
 
-
   const featureContext: ITimertronContext = {
     isTimerActive,
     setIsTimerActive,
-    interval,
-    setInterval,
+    intervalId,
+    setIntervalId,
     timeElapsed,
     setTimeElapsed,
-    timeout,
-    setTimeout,
+    timeoutId,
+    setTimeoutId,
     isMicAccessGranted,
     setIsMicAccessGranted,
     mediaStream,
