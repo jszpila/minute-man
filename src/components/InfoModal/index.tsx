@@ -42,7 +42,7 @@ export default function InfoModal() {
   return (
     <Modal
       closeButtonText={'Got it'}
-      onClose={() => { context.updateShouldShowInfoModal(false) }}
+      onClose={() => { context.setShouldShowInfoModal(false) }}
       shouldShow={context.shouldShowInfoModal}>
         <Tabs
           tabNames={ ['About', 'Diagnostics'] }

@@ -5,9 +5,10 @@
  * https://blog.anam.co/progressive-web-apps-with-create-react-app/                                                                                    
  */
 
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+
 import { AppContext } from '../../context/AppContext';
-import { useAddToHomescreenPrompt, isAppInstalled } from './a2hsHelpers';
+import { isAppInstalled, useAddToHomescreenPrompt } from './a2hsHelpers';
 
 export default function A2HSButton() {
   const context = useContext(AppContext);
@@ -15,7 +16,7 @@ export default function A2HSButton() {
 
   useEffect(() => {
     const isInstalled = isAppInstalled();
-    context.updateShouldShowInstallButton(!isInstalled && prompt !== null);
+    context.setShouldShowInstallButton(!isInstalled && prompt !== null);
   }, [context, prompt]);
 
   return (

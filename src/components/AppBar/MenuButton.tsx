@@ -1,4 +1,5 @@
-import React, { useContext, SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useContext } from 'react';
+
 import { AppContext } from '../../context/AppContext';
 
 export default function MenuButton() {
@@ -6,7 +7,7 @@ export default function MenuButton() {
 
   function onClick(event: SyntheticEvent): void {
     event.preventDefault();
-    context.updateShouldShowMenu(!context.shouldShowMenu);
+    context.setShouldShowMenu(!context.shouldShowMenu);
   }
 
   return (

@@ -13,9 +13,11 @@ function Field(props: IProps) {
     <div className="field">
       <label
         className="field__label"
-        htmlFor={props.inputName}>{props.labelText}</label>
+        htmlFor={ props.inputName }>
+          { props.labelText }
+        </label>
       <div className="field__input__container">
-        {props.children}
+        { props.children }
       </div>
     </div>
   );

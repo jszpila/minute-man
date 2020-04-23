@@ -1,4 +1,5 @@
-import React, { useContext, SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useContext } from 'react';
+
 import { AppContext } from '../../context/AppContext';
 
 export default function InfoButton() {
@@ -6,7 +7,7 @@ export default function InfoButton() {
 
   function onClick(event: SyntheticEvent): void {
     event.preventDefault();
-    context.updateShouldShowInfoModal(!context.shouldShowInfoModal);
+    context.setShouldShowInfoModal(!context.shouldShowInfoModal);
   }
 
   return (
