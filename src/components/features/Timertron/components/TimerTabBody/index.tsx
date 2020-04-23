@@ -2,16 +2,16 @@
  * TimerTabBody
  */
 
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 
+import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
 import { TimertronContext } from '../../context';
 import { TimertronConfig } from '../../data/Config';
-import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
-import ResetButton from './ResetButton';
-import ToggleButton from './ToggleButton';
-import TimerDisplay from '../TimerDisplay';
 import { TimertronDefaults } from '../../data/Defaults';
 import { MicAccessKey } from '../../Timertron';
+import TimerDisplay from '../TimerDisplay';
+import ResetButton from './ResetButton';
+import ToggleButton from './ToggleButton';
 
 const localStorage = window.localStorage;
 const defaults = TimertronDefaults;
@@ -177,8 +177,12 @@ export default function TimerTabBody() {
         }
         buttonAreaContent={
           <div className="button-container">
-            <ResetButton onClick={ onResetButtonClick } />
-            <ToggleButton onClick={ onToggleButtonClick } />
+            { context.isMicAccessGranted &&
+              <>
+                <ResetButton onClick={ onResetButtonClick } />
+                <ToggleButton onClick={ onToggleButtonClick } />
+              </>
+            }
           </div>
         } />
     </form>

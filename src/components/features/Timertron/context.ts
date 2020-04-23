@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { TimertronConfig } from './data/Config';
 import { TimertronDefaults } from './data/Defaults';
 
 export interface ITimertronContext {
@@ -17,6 +18,8 @@ export interface ITimertronContext {
   setMediaStream: (Dispatch<SetStateAction<MediaStream | undefined>>),
   audioProcessor: ScriptProcessorNode | undefined;
   setAudioProcessor: (Dispatch<SetStateAction<ScriptProcessorNode | undefined>>)
+  timerMode: string,
+  setTimerMode: (Dispatch<SetStateAction<string>>),
 }
 
 const initialTimertronContext: ITimertronContext = {
@@ -34,6 +37,8 @@ const initialTimertronContext: ITimertronContext = {
   setMediaStream: (): void => {},
   audioProcessor: TimertronDefaults.audioProcessor,
   setAudioProcessor: (): void => {},
+  timerMode: TimertronConfig.timerMode,
+  setTimerMode: (): void => {},
 }
 
 export const TimertronContext = React.createContext(initialTimertronContext);

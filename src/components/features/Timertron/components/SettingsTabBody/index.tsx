@@ -2,15 +2,15 @@
  * SettingsTabBody
  */
 
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { TimertronContext } from '../../context';
-import { TimertronConfig } from '../../data/Config';
 import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
+// import { TimertronConfig } from '../../context';
+import { TimertronConfig } from '../../data/Config';
 import { TimerMode } from '../../enum/TimerMode';
 
 export default function SettingsTabBody() {
-  const context = useContext(TimertronContext);
+  // const context = useContext(TimertronContext);
 
   return (
     <form className="form">

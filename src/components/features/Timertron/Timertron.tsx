@@ -16,11 +16,12 @@ import { RouteComponentProps } from '@reach/router';
 import React, { useState } from 'react';
 
 import INavigationItem from '../../../interfaces/NavigationItem';
-import { ITimertronContext, TimertronContext } from './context';
-import { TimertronDefaults } from './data/Defaults';
 import Tabs from '../../Tabs';
-import TimerTabBody from './components/TimerTabBody';
 import SettingsTabBody from './components/SettingsTabBody';
+import TimerTabBody from './components/TimerTabBody';
+import { ITimertronContext, TimertronContext } from './context';
+import { TimertronConfig } from './data/Config';
+import { TimertronDefaults } from './data/Defaults';
 
 import './timertron.css';
 
@@ -43,6 +44,7 @@ export default function Timertron(props: RouteComponentProps) {
   const [isMicAccessGranted, setIsMicAccessGranted] = useState<boolean>((localStorage.getItem(MicAccessKey) === 'true') || defaults.isMicAccessGranted);
   const [mediaStream, setMediaStream] = useState<MediaStream | undefined>(defaults.mediaStream);
   const [audioProcessor, setAudioProcessor] = useState<ScriptProcessorNode | undefined>(defaults.audioProcessor);
+  const [timerMode, setTimerMode] = useState<string>(TimertronConfig.timerMode);
 
   const featureContext: ITimertronContext = {
     isTimerActive,
@@ -59,6 +61,8 @@ export default function Timertron(props: RouteComponentProps) {
     setMediaStream,
     audioProcessor,
     setAudioProcessor,
+    timerMode,
+    setTimerMode,
   }
 
   return (
