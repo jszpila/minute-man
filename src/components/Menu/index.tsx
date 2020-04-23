@@ -3,8 +3,8 @@ import React, { SyntheticEvent, useContext } from 'react';
 import ReactDOM from 'react-dom';
 
 import { AppContext } from '../../context/AppContext';
-import BuildConditionalClasses from '../../util/BuildConditionalClasses';
 import INavigationItem from '../../interfaces/NavigationItem';
+import BuildConditionalClasses from '../../util/BuildConditionalClasses';
 
 import './menu.css';
 
@@ -83,15 +83,15 @@ export default function Menu(props: IMenuProps) {
   const context = useContext(AppContext);
 
   function onMenuCoverClick(event: SyntheticEvent): void {
-    context.updateShouldShowMenu(false);
+    context.setShouldShowMenu(false);
   }
 
   function onInfoClick(event: SyntheticEvent): void {
-    context.updateShouldShowInfoModal(!context.shouldShowInfoModal);
+    context.setShouldShowInfoModal(!context.shouldShowInfoModal);
   }
 
   function closeMenu(event: SyntheticEvent): void {
-    context.updateShouldShowMenu(false);
+    context.setShouldShowMenu(false);
   }
 
   return ReactDOM.createPortal(

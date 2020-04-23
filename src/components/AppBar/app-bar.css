@@ -1,5 +1,5 @@
 .app-bar {
-	background-color: #1976d2;
+	background-color: var(--primary-color);
 	height: 100%;
 	width: 100%;
 	display: flex;
@@ -19,6 +19,13 @@
 	padding: 0 0.25rem;
 }
 
+.app-bar__title {
+	color: var(--primary-text-color);
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
 .app-bar__buttons {
 	flex: 1;
 	padding-left: 0.25rem;
@@ -27,7 +34,7 @@
 }
 
 .app-bar__button {
-	color: #fff;
+	color: var(--primary-text-color);
 	background-color: transparent;
 	margin: 0;
 	padding: 0;

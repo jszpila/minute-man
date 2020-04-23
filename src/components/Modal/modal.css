@@ -1,7 +1,7 @@
 .modal {
   position: fixed;
   z-index: 21;
-  background-color: #fff;
+  background-color: var(--bg-color);
   width: 90%;
   top: 25%;
   left: 5%;
