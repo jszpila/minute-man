@@ -22,12 +22,10 @@ import TimerTabBody from './components/TimerTabBody';
 import { ITimertronContext, TimertronContext } from './context';
 import { TimertronConfig } from './data/Config';
 import { TimertronDefaults } from './data/Defaults';
-
+import { LocalStorageKeys } from '../../../enum/LocalStorageKeys';
 import './timertron.css';
 
 const defaults = TimertronDefaults;
-
-export const MicAccessKey = 'isMicAccessGranted';
 
 export const TimertronNavConfig: INavigationItem = {
   route: '/timer',
@@ -41,7 +39,7 @@ export default function Timertron(props: RouteComponentProps) {
   const [timeElapsed, setTimeElapsed] = useState<number>(defaults.timeElapsed);
   const [timeoutId, setTimeoutId] = useState<number | undefined>(defaults.timeoutId);
   // NOTE: using with localStorage to prevent brief flash of false-y UI on reload/remount
-  const [isMicAccessGranted, setIsMicAccessGranted] = useState<boolean>((localStorage.getItem(MicAccessKey) === 'true') || defaults.isMicAccessGranted);
+  const [isMicAccessGranted, setIsMicAccessGranted] = useState<boolean>((localStorage.getItem(LocalStorageKeys.IsMicAccessGranted) === 'true') || defaults.isMicAccessGranted);
   const [mediaStream, setMediaStream] = useState<MediaStream | undefined>(defaults.mediaStream);
   const [audioProcessor, setAudioProcessor] = useState<ScriptProcessorNode | undefined>(defaults.audioProcessor);
   const [timerMode, setTimerMode] = useState<string>(TimertronConfig.timerMode);

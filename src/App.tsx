@@ -16,7 +16,7 @@ import { Router } from '@reach/router';
 
 import AppBar from './components/AppBar';
 import Clickulator, { ClickulatorNavConfig } from './components/features/Clickulator/Clickulator';
-import Settings, { SettingsNavConfig, ThemeKey } from './components/features/Settings/Settings';
+import Settings, { SettingsNavConfig } from './components/features/Settings/Settings';
 import Timertron, { TimertronNavConfig } from './components/features/Timertron/Timertron';
 import InfoModal from './components/InfoModal';
 import AppLayout from './components/layouts/AppLayout/AppLayout';
@@ -25,6 +25,7 @@ import { AppContext, IAppContext } from './context/AppContext';
 import { AppDefaultValues } from './data/AppDefaults';
 
 import './App.css';
+import { LocalStorageKeys } from './enum/LocalStorageKeys';
 
 export default function App() {
   const navItems = [ClickulatorNavConfig, TimertronNavConfig, SettingsNavConfig];
@@ -45,7 +46,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const persistedThemeValue = localStorage.getItem(ThemeKey);
+    const persistedThemeValue = localStorage.getItem(LocalStorageKeys.Theme);
     const initialTheme = persistedThemeValue !== null ? persistedThemeValue : AppDefaultValues.theme;
 
     document.documentElement.classList.add(initialTheme);

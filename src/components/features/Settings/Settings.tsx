@@ -13,10 +13,9 @@ import INavigationItem from '../../../interfaces/NavigationItem';
 import Field from '../../Field/Field';
 import { AppContext } from '../../../context/AppContext';
 import { AppDefaultValues } from '../../../data/AppDefaults';
+import { LocalStorageKeys } from '../../../enum/LocalStorageKeys';
 
 import './settings.css';
-
-export const ThemeKey = 'theme';
 
 export const SettingsNavConfig: INavigationItem = {
   route: '/settings',
@@ -39,33 +38,40 @@ export default function Settings(props: RouteComponentProps) {
     const themeToApply = isChecked ? darkThemeClassName : AppDefaultValues.theme;
 
     context.setTheme(themeToApply);
-    localStorage.setItem(ThemeKey, themeToApply);
+    localStorage.setItem(LocalStorageKeys.Theme, themeToApply);
 
     root.classList.toggle(AppDefaultValues.theme, themeToApply === AppDefaultValues.theme);
     root.classList.toggle(darkThemeClassName, themeToApply === darkThemeClassName);
   }
 
   return (
-    <form
-      id="Settings"
-      className="form">
-      <fieldset>
-        <Field
-          inputName="theme"
-          labelText="Dark Mode">
-          <>
-            <label>
-              <i className="material-icons"> { checkboxIcon } </i>
-              <input
-                className="field__checkbox"
-                defaultChecked={ isDarkThemeChecked() }
-                name="theme"
-                onChange={ onThemeChange }
-                type="checkbox" />
-            </label>
-          </>
-        </Field>
-      </fieldset>
-    </form>
+    <div className="layout--full">
+      <form
+        id="Settings"
+        className="form">
+        <div className="callout">
+          <i className="material-icons callout__icon">info</i>
+          <p className="callout__blurb">Settings will be applied and saved as soon as they're changed.</p>
+        </div>
+        <fieldset className="form__fieldset">
+          <legend className="form__fieldset__legend">App Settings</legend>
+          <Field
+            inputName="theme"
+            labelText="Dark Mode">
+            <>
+              <label>
+                <i className="material-icons"> { checkboxIcon } </i>
+                <input
+                  className="field__checkbox"
+                  defaultChecked={ isDarkThemeChecked() }
+                  name="theme"
+                  onChange={ onThemeChange }
+                  type="checkbox" />
+              </label>
+            </>
+          </Field>
+        </fieldset>
+      </form>
+    </div>
   );
 }

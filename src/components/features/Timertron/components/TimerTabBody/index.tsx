@@ -8,10 +8,10 @@ import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottom
 import { TimertronContext } from '../../context';
 import { TimertronConfig } from '../../data/Config';
 import { TimertronDefaults } from '../../data/Defaults';
-import { MicAccessKey } from '../../Timertron';
 import TimerDisplay from '../TimerDisplay';
 import ResetButton from './ResetButton';
 import ToggleButton from './ToggleButton';
+import { LocalStorageKeys } from '../../../../../enum/LocalStorageKeys';
 
 const localStorage = window.localStorage;
 const defaults = TimertronDefaults;
@@ -123,7 +123,7 @@ export default function TimerTabBody() {
       video: false
     }).then((stream: MediaStream) => {
       context.setIsMicAccessGranted(true);
-      localStorage.setItem(MicAccessKey, 'true');
+      localStorage.setItem(LocalStorageKeys.IsMicAccessGranted, 'true');
 
       if (inputElRef.current) {
         inputElRef.current.srcObject = stream;

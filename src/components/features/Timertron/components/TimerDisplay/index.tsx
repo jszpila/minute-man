@@ -60,14 +60,19 @@ export default function TimerDisplay(props: IProps) {
           }
       </>
       : 
-      <div>
-        <p>The first time you use this feature, you'll need to grant it access to your phone's microphone.</p>
-        <p>After clicking the button, you see a prompt asking to you "block" or "allow" microphone access; please select "allow".</p>
-        <button
-          type="button" 
-          className="button button--primary" 
-          onClick={ onClick }>Enable microphone access</button>
-      </div>
+      <>
+        <div className="callout">
+          <i className="material-icons callout__icon">perm_device_information</i>
+          <p className="callout__blurb">The first time you use this feature, you'll need to grant it access to your phone's microphone.</p>
+          <p className="callout__blurb">After clicking the button, you will see a prompt asking to you "block" or "allow" microphone access; please select "allow".</p>
+        </div>
+        <div className="u-center">
+          <button
+            type="button" 
+            className="button button--primary" 
+            onClick={ onClick }>Enable microphone access</button>
+        </div>
+      </>
     }
     </>
   );
