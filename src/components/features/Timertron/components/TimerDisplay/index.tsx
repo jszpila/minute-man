@@ -61,10 +61,10 @@ export default function TimerDisplay(props: IProps) {
       </>
       : 
       <>
-        <div className="callout">
-          <i className="material-icons callout__icon">perm_device_information</i>
-          <p className="callout__blurb">The first time you use this feature, you'll need to grant it access to your phone's microphone.</p>
-          <p className="callout__blurb">After clicking the button, you will see a prompt asking to you "block" or "allow" microphone access; please select "allow".</p>
+        <div className="b-callout">
+          <i className="material-icons b-callout__icon">perm_device_information</i>
+          <p className="b-callout__blurb">The first time you use this feature, you'll need to grant it access to your phone's microphone.</p>
+          <p className="b-callout__blurb">After clicking the button, you will see a prompt asking to you "block" or "allow" microphone access; please select "allow".</p>
         </div>
         <div className="u-center">
           <button

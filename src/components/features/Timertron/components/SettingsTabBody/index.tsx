@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
+import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottomButtonLayout';
 // import { TimertronConfig } from '../../context';
 import { TimertronConfig } from '../../data/Config';
 import { TimerMode } from '../../enum/TimerMode';

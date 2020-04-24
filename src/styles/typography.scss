@@ -1,0 +1,32 @@
+.txt__heading-1 {
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.txt__heading-2 {
+  font-size: 1.15rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.txt--muted {
+  color: var(--text-muted-color);
+}
+
+.txt--smaller {
+  font-size: 0.75rem;
+}
+
+.txt--embiggen--2x {
+  font-size: 2rem;
+}
+
+.txt--embiggen--3x {
+  font-size: 3rem;
+}
+
+.txt--embiggen--4x {
+  font-size: 4rem;
+}

@@ -1,0 +1,123 @@
+.form {
+  display: inline;
+}
+
+.form__fieldset {
+  border: 0;
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+.form__fieldset__legend {
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.button {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1rem;
+  font-size: 1rem;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  user-select: none;
+  outline: none;
+}
+
+.button--primary {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+}
+
+.button--primary:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.button--primary:active {
+  background-color: var(--primary-color-active);
+}
+
+.button--primary:focus {
+  outline: 1px var(--primary-color-hover);
+}
+
+.button--danger {
+  background-color: var(--danger-color);
+  color: var(--danger-text-color);
+}
+
+.button--danger:hover {
+  background-color: var(--danger-color-hover);
+}
+
+.button--danger:active {
+  background-color: var(--danger-color-active);
+}
+
+.button--danger:focus {
+  outline: 1px var(--danger-color-active);
+}
+
+.button--yuge {
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.info {
+  margin-top: 0;
+}
+
+.info-label {
+  font-style: italic;
+  display: inline-block;
+}
+
+.info-label:after {
+  content: ": ";
+  padding-right: 0.25rem;
+}
+
+.info-value {
+  margin: 0;
+  display: inline-block;
+}
+
+.info-list {
+  margin: 1rem 0 0 0.25rem;
+  padding: 0 0 0 1rem;
+  list-style: square;
+}
+
+.button-container {
+  height: 100%;
+  display: flex;
+}
+
+.button-container > .button {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.button-container > .button:first-child {
+  margin-left: 0;
+}
+
+.button-container > .button:last-child {
+  margin-right: 0;
+}
+
+.button--flex-1 {
+  flex: 1;
+}
+
+.button--flex-2 {
+  flex: 2;
+}
+
+.button--flex-3 {
+  flex: 3;
+}

@@ -4,7 +4,7 @@
 
 import React, { useContext, useEffect, useRef } from 'react';
 
-import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
+import FeatureWithBottomButtonLayout from '../../../../layouts/FeatureWithBottomButtonLayout';
 import { TimertronContext } from '../../context';
 import { TimertronConfig } from '../../data/Config';
 import { TimertronDefaults } from '../../data/Defaults';

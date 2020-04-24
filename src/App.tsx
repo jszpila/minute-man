@@ -19,7 +19,7 @@ import Clickulator, { ClickulatorNavConfig } from './components/features/Clickul
 import Settings, { SettingsNavConfig } from './components/features/Settings/Settings';
 import Timertron, { TimertronNavConfig } from './components/features/Timertron/Timertron';
 import InfoModal from './components/InfoModal';
-import AppLayout from './components/layouts/AppLayout/AppLayout';
+import AppLayout from './components/layouts/AppLayout';
 import Menu from './components/Menu';
 import { AppContext, IAppContext } from './context/AppContext';
 import { AppDefaultValues } from './data/AppDefaults';

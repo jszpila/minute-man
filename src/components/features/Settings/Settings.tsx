@@ -14,8 +14,7 @@ import Field from '../../Field/Field';
 import { AppContext } from '../../../context/AppContext';
 import { AppDefaultValues } from '../../../data/AppDefaults';
 import { LocalStorageKeys } from '../../../enum/LocalStorageKeys';
-
-import './settings.scss';
+import DefaultLayout from '../../layouts/Default';
 
 export const SettingsNavConfig: INavigationItem = {
   route: '/settings',
@@ -45,13 +44,13 @@ export default function Settings(props: RouteComponentProps) {
   }
 
   return (
-    <div className="layout--full">
+    <DefaultLayout>
       <form
         id="Settings"
         className="form">
-        <div className="callout">
-          <i className="material-icons callout__icon">info</i>
-          <p className="callout__blurb">Settings will be applied and saved as soon as they're changed.</p>
+        <div className="b-callout">
+          <i className="material-icons b-callout__icon">info</i>
+          <p className="b-callout__blurb">Settings will be applied and saved as soon as they're changed.</p>
         </div>
         <fieldset className="form__fieldset">
           <legend className="form__fieldset__legend">App Settings</legend>
@@ -72,6 +71,6 @@ export default function Settings(props: RouteComponentProps) {
           </Field>
         </fieldset>
       </form>
-    </div>
+    </DefaultLayout>
   );
 }

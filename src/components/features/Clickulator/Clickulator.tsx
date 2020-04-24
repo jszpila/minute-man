@@ -15,7 +15,7 @@ import { RouteComponentProps } from '@reach/router';
 import React, { SyntheticEvent, useState } from 'react';
 
 import INavigationItem from '../../../interfaces/NavigationItem';
-import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout/FeatureWithBottomButtonLayout';
+import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout';
 import Calculator from './Calculator';
 import FieldSet from './components/FieldSet';
 import ResultsModal from './components/Results';

@@ -1,0 +1,17 @@
+// Resuable structures that are not components... yet
+
+.b-callout {
+  margin-bottom: 2rem;
+}
+
+.b-callout:after {
+  clear: both;
+}
+
+.b-callout__icon {
+  float: left;
+}
+
+.b-callout__blurb {
+  margin-left: 2.5rem;
+}
