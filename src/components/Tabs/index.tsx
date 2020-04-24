@@ -6,7 +6,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import BuildConditionalClasses from '../../util/BuildConditionalClasses';
 
-import './tabs.css';
+import './tabs.scss';
 
 interface IProps {
   tabNames: Array<string>,

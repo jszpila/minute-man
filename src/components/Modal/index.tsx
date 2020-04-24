@@ -5,7 +5,7 @@
 import React, { useEffect, SyntheticEvent, Dispatch, SetStateAction } from 'react';
 import ReactDOM from 'react-dom';
 
-import './modal.css';
+import './modal.scss';
 
 interface IProps {
   children: React.ReactNode;

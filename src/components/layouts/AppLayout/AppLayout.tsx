@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './app-layout.css';
+import './app-layout.scss';
 
 interface IProps {
   header: React.ReactNode,

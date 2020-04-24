@@ -15,7 +15,7 @@ import { AppContext } from '../../../context/AppContext';
 import { AppDefaultValues } from '../../../data/AppDefaults';
 import { LocalStorageKeys } from '../../../enum/LocalStorageKeys';
 
-import './settings.css';
+import './settings.scss';
 
 export const SettingsNavConfig: INavigationItem = {
   route: '/settings',

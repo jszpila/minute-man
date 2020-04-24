@@ -23,9 +23,9 @@ import AppLayout from './components/layouts/AppLayout/AppLayout';
 import Menu from './components/Menu';
 import { AppContext, IAppContext } from './context/AppContext';
 import { AppDefaultValues } from './data/AppDefaults';
-
-import './App.css';
 import { LocalStorageKeys } from './enum/LocalStorageKeys';
+
+import './App.scss';
 
 export default function App() {
   const navItems = [ClickulatorNavConfig, TimertronNavConfig, SettingsNavConfig];

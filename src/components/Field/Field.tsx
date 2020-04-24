@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './field.css';
+import './field.scss';
 
 interface IProps {
   children: React.ReactChild,

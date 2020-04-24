@@ -6,7 +6,7 @@ import { AppContext } from '../../context/AppContext';
 import INavigationItem from '../../interfaces/NavigationItem';
 import BuildConditionalClasses from '../../util/BuildConditionalClasses';
 
-import './menu.css';
+import './menu.scss';
 
 type TMenuItem = 'button' | 'link';
 

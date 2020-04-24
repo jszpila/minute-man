@@ -23,7 +23,8 @@ import { ITimertronContext, TimertronContext } from './context';
 import { TimertronConfig } from './data/Config';
 import { TimertronDefaults } from './data/Defaults';
 import { LocalStorageKeys } from '../../../enum/LocalStorageKeys';
-import './timertron.css';
+
+import './timertron.scss';
 
 const defaults = TimertronDefaults;
 

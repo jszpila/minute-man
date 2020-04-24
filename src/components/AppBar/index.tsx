@@ -4,7 +4,7 @@ import A2HSButton from './A2HSButton';
 import Logo from './Logo';
 import MenuButton from './MenuButton';
 
-import './app-bar.css';
+import './app-bar.scss';
 
 export default function AppBar() {
   return (

@@ -10,7 +10,7 @@ import Corrections from './Corrections';
 import Errors from './Errors';
 import Modal from '../../../../Modal';
 
-import './results.css';
+import './results.scss';
 
 export default function ResultsModal() {
   const context = useContext(FeatureContext);

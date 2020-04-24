@@ -23,7 +23,7 @@ import { FeatureContext, IFeatureContext } from './context';
 import { DefaultValues } from './data/Defaults';
 import Validator from './validation/Validator';
 
-import './clickulator.css';
+import './clickulator.scss';
 
 export const ClickulatorNavConfig: INavigationItem = {
   route: '/',

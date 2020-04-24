@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './feature-with-bottom-button-layout.css';
+import './feature-with-bottom-button-layout.scss';
 
 interface IProps {
 	buttonAreaContent: React.ReactNode,
