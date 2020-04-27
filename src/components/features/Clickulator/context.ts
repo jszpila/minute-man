@@ -6,6 +6,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { DefaultValues } from './data/Defaults';
 
+const defaults = DefaultValues;
+
 export interface IFeatureContext {
   horizontalOffsetDistance: number | undefined,
   updateHorizontalOffsetDistance: (Dispatch<SetStateAction<number | undefined>>),
@@ -30,25 +32,25 @@ export interface IFeatureContext {
 }
 
 export const initialContext: IFeatureContext = {
-  horizontalOffsetDistance: DefaultValues.horizontalOffsetDistance,
+  horizontalOffsetDistance: defaults.horizontalOffsetDistance,
   updateHorizontalOffsetDistance: (): void => {},
-  horizontalOffsetDirection: DefaultValues.horizontalOffsetDirection,
+  horizontalOffsetDirection: defaults.horizontalOffsetDirection,
   updateHorizontalOffsetDirection: (): void => {},
-  verticalOffsetDistance: DefaultValues.verticalOffsetDistance,
+  verticalOffsetDistance: defaults.verticalOffsetDistance,
   updateVerticalOffsetDistance: (): void => {},
-  verticalOffsetDirection: DefaultValues.verticalOffsetDirection,
+  verticalOffsetDirection: defaults.verticalOffsetDirection,
   updateVerticalOffsetDirection: (): void => {},
-  zeroAtDistance: DefaultValues.zeroAtDistance,
+  zeroAtDistance: defaults.zeroAtDistance,
   updateZeroAtDistance: (): void => {},
-  opticAdjustmentIncrement: DefaultValues.opticAdjustmentIncrement,
+  opticAdjustmentIncrement: defaults.opticAdjustmentIncrement,
   updateOpticAdjustmentIncrement: (): void => {},
-  shouldShowResultsModal: DefaultValues.shouldShowResultsModal,
+  shouldShowResultsModal: defaults.shouldShowResultsModal,
   updateShouldShowResultsModal: (): void => {},
-  isValid: DefaultValues.isValid,
+  isValid: defaults.isValid,
   updateIsValid: (): void => {},
-  errors: DefaultValues.errors,
+  errors: defaults.errors,
   updateErrors: (): void => {},
-  corrections: DefaultValues.corrections,
+  corrections: defaults.corrections,
   updateCorrections: (): void => {},
 }
 

@@ -31,21 +31,23 @@ export const ClickulatorNavConfig: INavigationItem = {
   displayName: 'Zero Tool',
 };
 
+const defaults = DefaultValues;
+
 export default function Clickulator(props: RouteComponentProps) {
   // Local state
-  const [shouldShowResultsModal, updateShouldShowResultsModal] = useState<boolean>(DefaultValues.shouldShowResultsModal);
+  const [shouldShowResultsModal, updateShouldShowResultsModal] = useState<boolean>(defaults.shouldShowResultsModal);
 
   // FIXME: better way that avoids duplicate setting of values?
   // App context state
-  const [horizontalOffsetDistance, updateHorizontalOffsetDistance] = useState<number | undefined>(DefaultValues.horizontalOffsetDistance);
-  const [horizontalOffsetDirection, updateHorizontalOffsetDirection] = useState<string>(DefaultValues.horizontalOffsetDirection);
-  const [verticalOffsetDistance, updateVerticalOffsetDistance] = useState<number | undefined>(DefaultValues.verticalOffsetDistance);
-  const [verticalOffsetDirection, updateVerticalOffsetDirection] = useState<string>(DefaultValues.verticalOffsetDirection);
-  const [zeroAtDistance, updateZeroAtDistance] = useState<number>(DefaultValues.zeroAtDistance);
-  const [opticAdjustmentIncrement, updateOpticAdjustmentIncrement] = useState<number>(DefaultValues.opticAdjustmentIncrement);
-  const [isValid, updateIsValid] = useState<boolean>(DefaultValues.isValid);
-  const [errors, updateErrors] = useState<Array<string>>(DefaultValues.errors);
-  const [corrections, updateCorrections] = useState<Array<string>>(DefaultValues.corrections);
+  const [horizontalOffsetDistance, updateHorizontalOffsetDistance] = useState<number | undefined>(defaults.horizontalOffsetDistance);
+  const [horizontalOffsetDirection, updateHorizontalOffsetDirection] = useState<string>(defaults.horizontalOffsetDirection);
+  const [verticalOffsetDistance, updateVerticalOffsetDistance] = useState<number | undefined>(defaults.verticalOffsetDistance);
+  const [verticalOffsetDirection, updateVerticalOffsetDirection] = useState<string>(defaults.verticalOffsetDirection);
+  const [zeroAtDistance, updateZeroAtDistance] = useState<number>(defaults.zeroAtDistance);
+  const [opticAdjustmentIncrement, updateOpticAdjustmentIncrement] = useState<number>(defaults.opticAdjustmentIncrement);
+  const [isValid, updateIsValid] = useState<boolean>(defaults.isValid);
+  const [errors, updateErrors] = useState<Array<string>>(defaults.errors);
+  const [corrections, updateCorrections] = useState<Array<string>>(defaults.corrections);
 
   // FIXME: better way to make this manageable?
   const contextValue: IFeatureContext = {
@@ -73,12 +75,12 @@ export default function Clickulator(props: RouteComponentProps) {
 
   // TODO: probably also a better way to do this
   function onResetClick(): void {
-    updateHorizontalOffsetDistance(DefaultValues.horizontalOffsetDistance);
-    updateHorizontalOffsetDirection(DefaultValues.horizontalOffsetDirection);
-    updateVerticalOffsetDistance(DefaultValues.horizontalOffsetDistance);
-    updateVerticalOffsetDirection(DefaultValues.horizontalOffsetDirection);
-    updateZeroAtDistance(DefaultValues.zeroAtDistance);
-    updateOpticAdjustmentIncrement(DefaultValues.opticAdjustmentIncrement);
+    updateHorizontalOffsetDistance(defaults.horizontalOffsetDistance);
+    updateHorizontalOffsetDirection(defaults.horizontalOffsetDirection);
+    updateVerticalOffsetDistance(defaults.horizontalOffsetDistance);
+    updateVerticalOffsetDirection(defaults.horizontalOffsetDirection);
+    updateZeroAtDistance(defaults.zeroAtDistance);
+    updateOpticAdjustmentIncrement(defaults.opticAdjustmentIncrement);
   }
 
   const buttons = 
