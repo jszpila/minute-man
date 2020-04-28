@@ -37,3 +37,14 @@ body,
 main {
   background-color: var(--bg-color);
 }
+
+a,
+a:link,
+a:visited {
+  color: var(--primary-color);
+}
+
+a:hover,
+a:active {
+  color: var(--primary-color-active);
+}
