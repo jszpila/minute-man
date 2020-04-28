@@ -23,6 +23,7 @@ import { ITimertronContext, TimertronContext } from './context';
 import { TimertronConfig } from './data/Config';
 import { TimertronDefaults } from './data/Defaults';
 import { LocalStorageKeys } from '../../../enum/LocalStorageKeys';
+import DefaultLayout from '../../layouts/Default';
 
 import './timertron.scss';
 
@@ -64,17 +65,38 @@ export default function Timertron(props: RouteComponentProps) {
     setTimerMode,
   }
 
+  const isPermissionQueryApiSupported = navigator.permissions?.query != null;
+  const isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
+  const platform = isStandAlone ? 'operating system' : 'browser';
+
+  const featureBody = <Tabs
+    tabNames={ ['Timer', 'Settings'] }
+    tabContents={ [
+      <TimerTabBody />,
+      <SettingsTabBody />                  
+    ] } />
+
+  const errorPanel = <DefaultLayout>
+    <div className="b-callout">
+      <i className="material-icons b-callout__icon">sentiment_dissatisfied</i>
+      <p className="b-callout__blurb">This feature requires permissions that are not supported by your { platform }.</p>
+      {/* If they're in standalone mode, using a different browser won't help them */}
+      { !isStandAlone &&
+        <p className="b-callout__blurb">Download <a href="https://apps.apple.com/us/app/google-chrome/id535886823">Chrome</a> or <a href="https://apps.apple.com/us/app/id989804926">Firefox</a> and use those to come back and try again.</p>
+      }
+    </div>
+  </DefaultLayout>;
+
   return (
     <TimertronContext.Provider value={ featureContext }>
       <TimertronContext.Consumer>
         { value =>
           <div id="Timertron">
-            <Tabs
-              tabNames={ ['Timer', 'Settings'] }
-              tabContents={ [
-                <TimerTabBody />,
-                <SettingsTabBody />                  
-              ] } />
+            { isPermissionQueryApiSupported ? 
+                featureBody
+              :
+                errorPanel
+            }
           </div>
         }
       </TimertronContext.Consumer>
