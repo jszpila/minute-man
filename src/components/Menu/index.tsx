@@ -54,7 +54,7 @@ function MenuButton(props: IMenuItemProps) {
       className="app-menu__list__item__button"
       onClick={ props.onClick }
       type="button">
-      <i className="material-icons">{ props.iconName }</i>
+      <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
       <span className="app-menu__list__item__label">{ props.text }</span>
     </button>
   )
@@ -69,7 +69,7 @@ function MenuLink(props: IMenuItemProps) {
     <NavLink
       { ...adtlProps }
       to={ props.route }>
-        <i className="material-icons">{ props.iconName }</i>
+        <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
         <span className="app-menu__list__item__label">{ props.text }</span>
       </NavLink>
   )
