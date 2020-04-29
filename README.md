@@ -12,6 +12,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Tools & Libraries
 [React](https://reactjs.org/)  
 [Create React App](https://github.com/facebook/create-react-app)  
-[Jest](https://jestjs.io/) 
+[Jest](https://jestjs.io/)   
 [Husky](https://github.com/typicode/husky)  
 [TypeScript](https://www.typescriptlang.org/)   
