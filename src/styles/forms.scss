@@ -81,16 +81,17 @@
   padding-right: 0.25rem;
 }
 
-.info-value {
-  margin: 0;
-  display: inline-block;
+.app-info {
+  margin-top: 1rem;
 }
 
-.info-list {
-  margin: 1rem 0 0 0.25rem;
-  padding: 0 0 0 1rem;
-  list-style: square;
+.app-info__key {
+  font-weight: bold;
+  width: 30%;
+  vertical-align: top;
 }
+
+// .app-info__value {}
 
 .button-container {
   height: 100%;
