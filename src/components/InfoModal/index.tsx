@@ -9,6 +9,7 @@ import Tabs from '../Tabs';
 export default function InfoModal() {
   const env = process.env;
   const context = useContext(AppContext);
+  const isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
 
   const AboutPanel = <>    
     <p>{`${env.REACT_APP_DESCRIPTION}`}</p>
@@ -31,19 +32,36 @@ export default function InfoModal() {
     }
   </>;
 
-  const DiagnosticsPanel =
-    <ul className="info-list">
-      <li>{`${env.REACT_APP_NAME} v${env.REACT_APP_VERSION} ${GitInfo.sha}`}</li>
-      <li>{`${navigator.onLine ? 'connected' : 'not connected'}`}</li>
-      <li>{`${navigator.platform}`}</li>
-      <li>{`${navigator.userAgent}`}</li>
-    </ul>;
+  const DiagnosticsPanel = <table className="app-info">
+      <tbody>
+        <tr>
+          <td className="app-info__key">Version</td>
+          <td className="app-info__value">{ `v${ env.REACT_APP_VERSION } (${ GitInfo.sha })` }</td>
+        </tr>
+        <tr>
+          <td className="app-info__key">Network</td>
+          <td className="app-info__value">{ `${ navigator.onLine ? 'connected' : 'not connected' }` }</td>
+        </tr>
+        <tr>
+          <td className="app-info__key">Mode</td>
+          <td className="app-info__value">{ isStandAlone ? 'standalone' : 'web' }</td>
+        </tr>
+        <tr>
+          <td className="app-info__key">Platform</td>
+          <td className="app-info__value">{ `${ navigator.platform }` }</td>
+        </tr>
+        <tr>
+          <td className="app-info__key">User Agent</td>
+          <td className="app-info__value">{ `${ navigator.userAgent }` }</td>
+        </tr>
+      </tbody>
+    </table>;
 
   return (
     <Modal
       closeButtonText={'Got it'}
       onClose={() => { context.setShouldShowInfoModal(false) }}
-      shouldShow={context.shouldShowInfoModal}>
+      shouldShow={ context.shouldShowInfoModal }>
         <Tabs
           tabNames={ ['About', 'Diagnostics'] }
           tabContents={ [AboutPanel, DiagnosticsPanel] } />
