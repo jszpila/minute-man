@@ -13,15 +13,15 @@
 
 import { RouteComponentProps } from '@reach/router';
 import React, { SyntheticEvent, useState } from 'react';
-
 import INavigationItem from '../../../interfaces/NavigationItem';
-import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout';
 import Calculator from './Calculator';
 import FieldSet from './components/FieldSet';
 import ResultsModal from './components/Results';
-import { FeatureContext, IFeatureContext } from './context';
-import { DefaultValues } from './data/Defaults';
+import { ClickulatorContext, IClickulatorContext } from './context';
+import { ClickulatorDefaultValues } from './data/Defaults';
 import Validator from './validation/Validator';
+import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout';
+import SettingsStore from '../Settings/SettingsStore';
 
 import './clickulator.scss';
 
@@ -31,56 +31,58 @@ export const ClickulatorNavConfig: INavigationItem = {
   displayName: 'Zero Tool',
 };
 
-const defaults = DefaultValues;
+const defaults = ClickulatorDefaultValues;
 
 export default function Clickulator(props: RouteComponentProps) {
   // Local state
-  const [shouldShowResultsModal, updateShouldShowResultsModal] = useState<boolean>(defaults.shouldShowResultsModal);
+  const [shouldShowResultsModal, setShouldShowResultsModal] = useState<boolean>(defaults.shouldShowResultsModal);
 
   // FIXME: better way that avoids duplicate setting of values?
   // App context state
-  const [horizontalOffsetDistance, updateHorizontalOffsetDistance] = useState<number | undefined>(defaults.horizontalOffsetDistance);
-  const [horizontalOffsetDirection, updateHorizontalOffsetDirection] = useState<string>(defaults.horizontalOffsetDirection);
-  const [verticalOffsetDistance, updateVerticalOffsetDistance] = useState<number | undefined>(defaults.verticalOffsetDistance);
-  const [verticalOffsetDirection, updateVerticalOffsetDirection] = useState<string>(defaults.verticalOffsetDirection);
-  const [zeroAtDistance, updateZeroAtDistance] = useState<number>(defaults.zeroAtDistance);
-  const [opticAdjustmentIncrement, updateOpticAdjustmentIncrement] = useState<number>(defaults.opticAdjustmentIncrement);
-  const [isValid, updateIsValid] = useState<boolean>(defaults.isValid);
-  const [errors, updateErrors] = useState<Array<string>>(defaults.errors);
-  const [corrections, updateCorrections] = useState<Array<string>>(defaults.corrections);
+  const [horizontalOffsetDistance, setHorizontalOffsetDistance] = useState<number | undefined>(defaults.horizontalOffsetDistance);
+  const [horizontalOffsetDirection, setHorizontalOffsetDirection] = useState<string>(defaults.horizontalOffsetDirection);
+  const [verticalOffsetDistance, setVerticalOffsetDistance] = useState<number | undefined>(defaults.verticalOffsetDistance);
+  const [verticalOffsetDirection, setVerticalOffsetDirection] = useState<string>(defaults.verticalOffsetDirection);
+  const [zeroAtDistance, setZeroAtDistance] = useState<number>(defaults.zeroAtDistance);
+  const [opticAdjustmentIncrement, setOpticAdjustmentIncrement] = useState<number>(defaults.opticAdjustmentIncrement);
+  const [isValid, setIsValid] = useState<boolean>(defaults.isValid);
+  const [errors, setErrors] = useState<Array<string>>(defaults.errors);
+  const [corrections, setCorrections] = useState<Array<string>>(defaults.corrections);
+
+  const settings = SettingsStore.getInstance();
 
   // FIXME: better way to make this manageable?
-  const contextValue: IFeatureContext = {
+  const contextValue: IClickulatorContext = {
     horizontalOffsetDistance,
-    updateHorizontalOffsetDistance,
+    setHorizontalOffsetDistance,
     horizontalOffsetDirection,
-    updateHorizontalOffsetDirection,
+    setHorizontalOffsetDirection,
     verticalOffsetDistance,
-    updateVerticalOffsetDistance,
+    setVerticalOffsetDistance,
     verticalOffsetDirection,
-    updateVerticalOffsetDirection,
+    setVerticalOffsetDirection,
     zeroAtDistance,
-    updateZeroAtDistance,
+    setZeroAtDistance,
     opticAdjustmentIncrement,
-    updateOpticAdjustmentIncrement,
+    setOpticAdjustmentIncrement,
     shouldShowResultsModal,
-    updateShouldShowResultsModal,
+    setShouldShowResultsModal,
     isValid: isValid,
-    updateIsValid: updateIsValid,
+    setIsValid,
     errors,
-    updateErrors,
+    setErrors,
     corrections,
-    updateCorrections,
+    setCorrections,
   }
 
   // TODO: probably also a better way to do this
   function onResetClick(): void {
-    updateHorizontalOffsetDistance(defaults.horizontalOffsetDistance);
-    updateHorizontalOffsetDirection(defaults.horizontalOffsetDirection);
-    updateVerticalOffsetDistance(defaults.horizontalOffsetDistance);
-    updateVerticalOffsetDirection(defaults.horizontalOffsetDirection);
-    updateZeroAtDistance(defaults.zeroAtDistance);
-    updateOpticAdjustmentIncrement(defaults.opticAdjustmentIncrement);
+    setHorizontalOffsetDistance(defaults.horizontalOffsetDistance);
+    setHorizontalOffsetDirection(defaults.horizontalOffsetDirection);
+    setVerticalOffsetDistance(defaults.horizontalOffsetDistance);
+    setVerticalOffsetDirection(defaults.horizontalOffsetDirection);
+    setZeroAtDistance(settings.clickulator.zeroAtDistance);
+    setOpticAdjustmentIncrement(settings.clickulator.zeroAtDistance);
   }
 
   const buttons = 
@@ -96,7 +98,7 @@ export default function Clickulator(props: RouteComponentProps) {
     </div>
 
   return (
-    <FeatureContext.Provider value={ contextValue }>
+    <ClickulatorContext.Provider value={ contextValue }>
       <ResultsModal />
 
       <form
@@ -106,7 +108,7 @@ export default function Clickulator(props: RouteComponentProps) {
           mainAreaContent={ <FieldSet/> }
           buttonAreaContent={ buttons } />
       </form>
-    </FeatureContext.Provider>
+    </ClickulatorContext.Provider>
   );
 
   function onCalculateClick(event: SyntheticEvent): void {
@@ -130,11 +132,11 @@ export default function Clickulator(props: RouteComponentProps) {
         zeroAtDistance,
       });
 
-      updateCorrections(calculator.corrections);
+      setCorrections(calculator.corrections);
     }
     
-    updateErrors(validator.errors);
-    updateIsValid(validator.isValid);
-    updateShouldShowResultsModal(!shouldShowResultsModal);
+    setErrors(validator.errors);
+    setIsValid(validator.isValid);
+    setShouldShowResultsModal(!shouldShowResultsModal);
   }
 }

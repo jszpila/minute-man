@@ -3,13 +3,13 @@
  * Specifies the MOA-per-click adjustment value of the optic
  */
 
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import { OpticAdjustmentIncrements } from '../../data/OpticAdjustmentIncrements';
 
 interface IProps {
   name: string,
-  updaterFn: (Dispatch<SetStateAction<number>>),
+  updaterFn: ((value: number) => void),
   value: number,
 };
 

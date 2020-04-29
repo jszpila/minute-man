@@ -5,7 +5,7 @@
 
 import { Direction } from "../../../../enum/Direction"
 
-export const DefaultValues = {
+export const ClickulatorDefaultValues = {
   horizontalOffsetDistance: undefined,
   horizontalOffsetDirection: Direction.Left,
   verticalOffsetDistance: undefined,

@@ -4,10 +4,10 @@
  */
 
 import React, { useContext } from 'react';
-import { FeatureContext } from '../../context';
+import { ClickulatorContext } from '../../context';
 
 export default function Corrections() {
-  const context = useContext(FeatureContext);
+  const context = useContext(ClickulatorContext);
 
   return (
     <>

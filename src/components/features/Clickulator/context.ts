@@ -4,54 +4,54 @@
  */
 
 import React, { Dispatch, SetStateAction } from 'react';
-import { DefaultValues } from './data/Defaults';
+import { ClickulatorDefaultValues } from './data/Defaults';
 
-const defaults = DefaultValues;
+const defaults = ClickulatorDefaultValues;
 
-export interface IFeatureContext {
+export interface IClickulatorContext {
   horizontalOffsetDistance: number | undefined,
-  updateHorizontalOffsetDistance: (Dispatch<SetStateAction<number | undefined>>),
+  setHorizontalOffsetDistance: (Dispatch<SetStateAction<number | undefined>>),
   horizontalOffsetDirection: string,
-  updateHorizontalOffsetDirection: (Dispatch<SetStateAction<string>>),
+  setHorizontalOffsetDirection: (Dispatch<SetStateAction<string>>),
   verticalOffsetDistance: number | undefined,
-  updateVerticalOffsetDistance: (Dispatch<SetStateAction<number | undefined>>),
+  setVerticalOffsetDistance: (Dispatch<SetStateAction<number | undefined>>),
   verticalOffsetDirection: string,
-  updateVerticalOffsetDirection: (Dispatch<SetStateAction<string>>),
+  setVerticalOffsetDirection: (Dispatch<SetStateAction<string>>),
   zeroAtDistance: number,
-  updateZeroAtDistance: (Dispatch<SetStateAction<number>>),
+  setZeroAtDistance: (Dispatch<SetStateAction<number>>),
   opticAdjustmentIncrement: number,
-  updateOpticAdjustmentIncrement: (Dispatch<SetStateAction<number>>),
+  setOpticAdjustmentIncrement: (Dispatch<SetStateAction<number>>),
   shouldShowResultsModal: boolean;
-  updateShouldShowResultsModal: (Dispatch<SetStateAction<boolean>>),
+  setShouldShowResultsModal: (Dispatch<SetStateAction<boolean>>),
   isValid: boolean,
-  updateIsValid: (Dispatch<SetStateAction<boolean>>),
+  setIsValid: (Dispatch<SetStateAction<boolean>>),
   errors: Array<string>,
-  updateErrors: (Dispatch<SetStateAction<Array<string>>>),
+  setErrors: (Dispatch<SetStateAction<Array<string>>>),
   corrections: Array<string>,
-  updateCorrections: (Dispatch<SetStateAction<Array<string>>>),
+  setCorrections: (Dispatch<SetStateAction<Array<string>>>),
 }
 
-export const initialContext: IFeatureContext = {
+export const initialContext: IClickulatorContext = {
   horizontalOffsetDistance: defaults.horizontalOffsetDistance,
-  updateHorizontalOffsetDistance: (): void => {},
+  setHorizontalOffsetDistance: (): void => {},
   horizontalOffsetDirection: defaults.horizontalOffsetDirection,
-  updateHorizontalOffsetDirection: (): void => {},
+  setHorizontalOffsetDirection: (): void => {},
   verticalOffsetDistance: defaults.verticalOffsetDistance,
-  updateVerticalOffsetDistance: (): void => {},
+  setVerticalOffsetDistance: (): void => {},
   verticalOffsetDirection: defaults.verticalOffsetDirection,
-  updateVerticalOffsetDirection: (): void => {},
+  setVerticalOffsetDirection: (): void => {},
   zeroAtDistance: defaults.zeroAtDistance,
-  updateZeroAtDistance: (): void => {},
+  setZeroAtDistance: (): void => {},
   opticAdjustmentIncrement: defaults.opticAdjustmentIncrement,
-  updateOpticAdjustmentIncrement: (): void => {},
+  setOpticAdjustmentIncrement: (): void => {},
   shouldShowResultsModal: defaults.shouldShowResultsModal,
-  updateShouldShowResultsModal: (): void => {},
+  setShouldShowResultsModal: (): void => {},
   isValid: defaults.isValid,
-  updateIsValid: (): void => {},
+  setIsValid: (): void => {},
   errors: defaults.errors,
-  updateErrors: (): void => {},
+  setErrors: (): void => {},
   corrections: defaults.corrections,
-  updateCorrections: (): void => {},
+  setCorrections: (): void => {},
 }
 
-export const FeatureContext = React.createContext(initialContext);
+export const ClickulatorContext = React.createContext(initialContext);
