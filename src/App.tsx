@@ -28,7 +28,6 @@ import { LocalStorageKeys } from './enum/LocalStorageKeys';
 import './App.scss';
 
 export default function App() {
-  const navItems = [ClickulatorNavConfig, TimertronNavConfig, SettingsNavConfig];
   const [shouldShowInfoModal, setShouldShowInfoModal] = useState<boolean>(AppDefaultValues.shouldShowInfoModal);
   const [shouldShowInstallButton, setShouldShowInstallButton] = useState<boolean>(AppDefaultValues.shouldShowInstallButton);
   const [shouldShowMenu, setShouldShowMenu] = useState<boolean>(AppDefaultValues.shouldShowMenu);
@@ -44,6 +43,12 @@ export default function App() {
     theme,
     setTheme,
   }
+
+  const navItems = [
+    ClickulatorNavConfig,
+    // TimertronNavConfig,
+    SettingsNavConfig,
+  ];
 
   useEffect(() => {
     const persistedThemeValue = localStorage.getItem(LocalStorageKeys.Theme);
@@ -63,7 +68,7 @@ export default function App() {
             body={
               <Router id="router">
                 <Clickulator path={ ClickulatorNavConfig.route } />
-                <Timertron path={ TimertronNavConfig.route } />
+                {/* <Timertron path={ TimertronNavConfig.route } /> */}
                 <Settings path={ SettingsNavConfig.route } />
               </Router>
             } />
