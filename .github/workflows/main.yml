@@ -12,10 +12,7 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 2
-
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -29,10 +26,10 @@ jobs:
 #     - name: Unit Tests
 #       run: |
 #         yarn test
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.0.0
+    - name: git-ftp deploy
+      uses: sebastianpopp/ftp-action@releases/v2
       with:
-        ftp-server: ${{ secrets.FTP_DESTINATION }}
-        ftp-username: ${{ secrets.FTP_USER }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: build
+        host: ${{ secrets.FTP_DESTINATION }}
+        user: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        localDir: build
