@@ -23,9 +23,6 @@ jobs:
     - name: Production Build
       run: |
         yarn build
-#     - name: Unit Tests
-#       run: |
-#         yarn test
     - name: git-ftp deploy
       uses: sebastianpopp/ftp-action@releases/v2
       with:
