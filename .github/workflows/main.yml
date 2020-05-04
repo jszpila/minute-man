@@ -26,9 +26,9 @@ jobs:
     - name: Production Build
       run: |
         yarn build
-    - name: Unit Tests
-      run: |
-        yarn test
+#     - name: Unit Tests
+#       run: |
+#         yarn test
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@3.0.0
       with:
