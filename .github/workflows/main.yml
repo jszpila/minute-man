@@ -1,0 +1,44 @@
+name: Release Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - release
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Yarn Install
+      run: |
+        yarn install
+    - name: Production Build
+      run: |
+        yarn build
+    - name: Unit Tests
+      run: |
+        yarn test
+
+  FTP-Deploy-Action:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@3.0.0
+      with:
+        ftp-server: ${{ secrets.FTP_DESTINATION }}
+        ftp-username: ${{ secrets.FTP_USER }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: build
