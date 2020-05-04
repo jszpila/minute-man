@@ -17,12 +17,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Yarn Install
+    - name: NPM Install
       run: |
-        yarn install
-    - name: Production Build
+        npm install
+    - name: NPM Run Build
       run: |
-        yarn build
+        npm run build
     - name: git-ftp deploy
       uses: sebastianpopp/ftp-action@releases/v2
       with:
