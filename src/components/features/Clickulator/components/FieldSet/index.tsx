@@ -4,14 +4,15 @@
  */
 
 import React from 'react';
-import Field from '../../../../Field/Field';
-import OpticAdjustmentSelect from '../OpticAdjustmentSelect';
-import { ClickulatorContext } from '../../context';
-import ZeroAtDistanceInput from '../ZeroAtDistanceInput';
-import PointOfImpactInput from '../PointOfImpactInput';
-import { HorizontalDirectionOptions, VerticalDirectionOptions } from '../../data/DirectionListOptions';
+
 import RandomizeInputName from '../../../../../util/RandomizeInputName';
+import Field from '../../../../Field/Field';
 import SettingsStore from '../../../Settings/SettingsStore';
+import { ClickulatorContext } from '../../context';
+import { HorizontalDirectionOptions, VerticalDirectionOptions } from '../../data/DirectionListOptions';
+import OpticAdjustmentSelect from '../OpticAdjustmentSelect';
+import PointOfImpactInput from '../PointOfImpactInput';
+import ZeroAtDistanceInput from '../ZeroAtDistanceInput';
 
 export default function FieldSet() {
   const settings = SettingsStore.getInstance().clickulator;
@@ -64,18 +65,12 @@ export default function FieldSet() {
           </Field>
           <Field
             inputName={ inputNames.opticInc }
-            labelText="Optic Increment">
+            labelText="Adjustment Increment">
               <OpticAdjustmentSelect
                 name={ inputNames.opticInc }
                 updaterFn={ value.setOpticAdjustmentIncrement }
                 value={ settings.opticAdjustmentIncrement } />
             </Field>
-            {/* Advanced options:
-              - barrel length
-              - bullet grain
-              - ballistic coefficient
-              - velocity?
-            */}
         </fieldset>
       }
     </ClickulatorContext.Consumer>
