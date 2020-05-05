@@ -7,28 +7,29 @@
  * 88   e 88    88 88   e 88   8 88  8 88    88   8   88  8    8 88   8 
  * 88eee8 88eee 88 88eee8 88   8 88ee8 88eee 88   8   88  8eeee8 88   8  
  *                                                                 
- * Calibrate your optic with a few clicks. On your phone, even!
+ * Zero your rifle with a few clicks. On your phone, even!
  *
  */
 
 import { RouteComponentProps } from '@reach/router';
 import React, { SyntheticEvent, useState } from 'react';
+
 import INavigationItem from '../../../interfaces/NavigationItem';
+import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout';
+import SettingsStore from '../Settings/SettingsStore';
 import Calculator from './Calculator';
 import FieldSet from './components/FieldSet';
 import ResultsModal from './components/Results';
 import { ClickulatorContext, IClickulatorContext } from './context';
 import { ClickulatorDefaultValues } from './data/Defaults';
 import Validator from './validation/Validator';
-import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout';
-import SettingsStore from '../Settings/SettingsStore';
 
 import './clickulator.scss';
 
 export const ClickulatorNavConfig: INavigationItem = {
   route: '/',
   icon: 'gps_fixed',
-  displayName: 'Zero Tool',
+  displayName: 'Zero Calc',
 };
 
 const defaults = ClickulatorDefaultValues;
@@ -82,7 +83,7 @@ export default function Clickulator(props: RouteComponentProps) {
     setVerticalOffsetDistance(defaults.horizontalOffsetDistance);
     setVerticalOffsetDirection(defaults.horizontalOffsetDirection);
     setZeroAtDistance(settings.clickulator.zeroAtDistance);
-    setOpticAdjustmentIncrement(settings.clickulator.zeroAtDistance);
+    setOpticAdjustmentIncrement(settings.clickulator.opticAdjustmentIncrement);
   }
 
   const buttons = 

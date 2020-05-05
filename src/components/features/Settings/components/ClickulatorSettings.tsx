@@ -1,7 +1,7 @@
 /**
  *                    
  * Settings
- *                                                                 
+ *                                                      
  * App level settings
  *
  */
@@ -9,12 +9,12 @@
 import { RouteComponentProps } from '@reach/router';
 import React, { useContext } from 'react';
 
-import { ClickulatorContext } from '../../Clickulator/context';
-import SettingsStore from '../SettingsStore';
 import RandomizeInputName from '../../../../util/RandomizeInputName';
 import Field from '../../../Field/Field';
 import OpticAdjustmentSelect from '../../Clickulator/components/OpticAdjustmentSelect';
 import ZeroAtDistanceInput from '../../Clickulator/components/ZeroAtDistanceInput';
+import { ClickulatorContext } from '../../Clickulator/context';
+import SettingsStore from '../SettingsStore';
 
 export default function ClickulatorSettings(props: RouteComponentProps) {
   const context = useContext(ClickulatorContext);
@@ -37,7 +37,7 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
 
   return (
     <fieldset className="form__fieldset">
-      <legend className="form__fieldset__legend">Zero Tool Settings</legend>
+      <legend className="form__fieldset__legend">Zero Calc Settings</legend>
       <Field
         inputName={ inputNames.zeroDist }
         labelText={ zeroLabel }>
@@ -48,7 +48,7 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
       </Field>
       <Field
         inputName={ inputNames.opticInc }
-        labelText="Optic Increment">
+        labelText="Adjustment Increment">
           <OpticAdjustmentSelect
             name={ inputNames.opticInc }
             updaterFn={ onOpticAdjustmentIncrementChange }
