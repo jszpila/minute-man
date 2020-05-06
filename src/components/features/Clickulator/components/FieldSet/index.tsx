@@ -10,7 +10,7 @@ import Field from '../../../../Field/Field';
 import SettingsStore from '../../../Settings/SettingsStore';
 import { ClickulatorContext } from '../../context';
 import { HorizontalDirectionOptions, VerticalDirectionOptions } from '../../data/DirectionListOptions';
-import OpticAdjustmentSelect from '../OpticAdjustmentSelect';
+import AdjustmentSelect from '../AdjustmentSelect';
 import PointOfImpactInput from '../PointOfImpactInput';
 import ZeroAtDistanceInput from '../ZeroAtDistanceInput';
 
@@ -26,7 +26,7 @@ export default function FieldSet() {
     hOffsetDist: RandomizeInputName('horizontalOffsetDistance'),
     vOffsetDist: RandomizeInputName('verticalOffsetDistance'),
     zeroDist: RandomizeInputName('zeroAtDistance'),
-    opticInc: RandomizeInputName('opticAdjustmentIncrement'),
+    opticInc: RandomizeInputName('adjustmentIncrement'),
   }
 
   return (
@@ -66,10 +66,10 @@ export default function FieldSet() {
           <Field
             inputName={ inputNames.opticInc }
             labelText="Adjustment Increment">
-              <OpticAdjustmentSelect
+              <AdjustmentSelect
                 name={ inputNames.opticInc }
-                updaterFn={ value.setOpticAdjustmentIncrement }
-                value={ settings.opticAdjustmentIncrement } />
+                updaterFn={ value.setAdjustmentIncrement }
+                value={ settings.adjustmentIncrement } />
             </Field>
         </fieldset>
       }

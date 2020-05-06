@@ -4,7 +4,8 @@
  */
 
 import React, { Dispatch, SetStateAction } from 'react';
-import { ClickulatorDefaultValues } from './data/Defaults';
+
+import ClickulatorDefaultValues from './data/Defaults';
 
 const defaults = ClickulatorDefaultValues;
 
@@ -19,8 +20,8 @@ export interface IClickulatorContext {
   setVerticalOffsetDirection: (Dispatch<SetStateAction<string>>),
   zeroAtDistance: number,
   setZeroAtDistance: (Dispatch<SetStateAction<number>>),
-  opticAdjustmentIncrement: number,
-  setOpticAdjustmentIncrement: (Dispatch<SetStateAction<number>>),
+  adjustmentIncrement: number,
+  setAdjustmentIncrement: (Dispatch<SetStateAction<number>>),
   shouldShowResultsModal: boolean;
   setShouldShowResultsModal: (Dispatch<SetStateAction<boolean>>),
   isValid: boolean,
@@ -42,8 +43,8 @@ export const initialContext: IClickulatorContext = {
   setVerticalOffsetDirection: (): void => {},
   zeroAtDistance: defaults.zeroAtDistance,
   setZeroAtDistance: (): void => {},
-  opticAdjustmentIncrement: defaults.opticAdjustmentIncrement,
-  setOpticAdjustmentIncrement: (): void => {},
+  adjustmentIncrement: defaults.adjustmentIncrement,
+  setAdjustmentIncrement: (): void => {},
   shouldShowResultsModal: defaults.shouldShowResultsModal,
   setShouldShowResultsModal: (): void => {},
   isValid: defaults.isValid,

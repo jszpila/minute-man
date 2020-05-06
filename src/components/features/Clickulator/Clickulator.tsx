@@ -21,7 +21,7 @@ import Calculator from './Calculator';
 import FieldSet from './components/FieldSet';
 import ResultsModal from './components/Results';
 import { ClickulatorContext, IClickulatorContext } from './context';
-import { ClickulatorDefaultValues } from './data/Defaults';
+import ClickulatorDefaultValues from './data/Defaults';
 import Validator from './validation/Validator';
 
 import './clickulator.scss';
@@ -45,7 +45,7 @@ export default function Clickulator(props: RouteComponentProps) {
   const [verticalOffsetDistance, setVerticalOffsetDistance] = useState<number | undefined>(defaults.verticalOffsetDistance);
   const [verticalOffsetDirection, setVerticalOffsetDirection] = useState<string>(defaults.verticalOffsetDirection);
   const [zeroAtDistance, setZeroAtDistance] = useState<number>(defaults.zeroAtDistance);
-  const [opticAdjustmentIncrement, setOpticAdjustmentIncrement] = useState<number>(defaults.opticAdjustmentIncrement);
+  const [adjustmentIncrement, setAdjustmentIncrement] = useState<number>(defaults.adjustmentIncrement);
   const [isValid, setIsValid] = useState<boolean>(defaults.isValid);
   const [errors, setErrors] = useState<Array<string>>(defaults.errors);
   const [corrections, setCorrections] = useState<Array<string>>(defaults.corrections);
@@ -64,8 +64,8 @@ export default function Clickulator(props: RouteComponentProps) {
     setVerticalOffsetDirection,
     zeroAtDistance,
     setZeroAtDistance,
-    opticAdjustmentIncrement,
-    setOpticAdjustmentIncrement,
+    adjustmentIncrement,
+    setAdjustmentIncrement,
     shouldShowResultsModal,
     setShouldShowResultsModal,
     isValid: isValid,
@@ -83,7 +83,7 @@ export default function Clickulator(props: RouteComponentProps) {
     setVerticalOffsetDistance(defaults.horizontalOffsetDistance);
     setVerticalOffsetDirection(defaults.horizontalOffsetDirection);
     setZeroAtDistance(settings.clickulator.zeroAtDistance);
-    setOpticAdjustmentIncrement(settings.clickulator.opticAdjustmentIncrement);
+    setAdjustmentIncrement(settings.clickulator.adjustmentIncrement);
   }
 
   const buttons = 
@@ -129,7 +129,7 @@ export default function Clickulator(props: RouteComponentProps) {
         horizontalOffsetDirection,
         verticalOffsetDistance,
         verticalOffsetDirection,
-        opticAdjustmentIncrement,
+        adjustmentIncrement: adjustmentIncrement,
         zeroAtDistance,
       });
 
