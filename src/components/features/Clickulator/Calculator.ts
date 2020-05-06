@@ -3,14 +3,16 @@
  * Calculates correction data
  */
 
+import ClickulatorDefaultValues from "./data/Defaults";
 import InvertedDirection from "./data/InvertedDirection";
 
+const defaults = ClickulatorDefaultValues; // importing "as" throws error
 interface ICalculatorData {
   horizontalOffsetDistance: number | undefined,
   horizontalOffsetDirection: string,
   verticalOffsetDistance: number | undefined,
   verticalOffsetDirection: string,
-  opticAdjustmentIncrement: number,
+  adjustmentIncrement: number,
   zeroAtDistance: number,
 }
 
@@ -22,8 +24,8 @@ interface ICorrectionData {
 export default class Calculator {
   private static instance: Calculator;
 
-  private opticAdjustmentIncrement: number = 0;
-  private zeroAtDistance: number = 0;
+  private adjustmentIncrement: number = defaults.adjustmentIncrement;
+  private zeroAtDistance: number = defaults.zeroAtDistance;
   private correctionsList: Array<string> = [];
 
   private constructor() {}
@@ -45,7 +47,7 @@ export default class Calculator {
     const adjustmentDirection = InvertedDirection.get(data.direction);
     const moaAtDistance = this.zeroAtDistance / 100;
     const moaAdjustment = data.distance / moaAtDistance;
-    const numClicks = Math.floor(moaAdjustment / this.opticAdjustmentIncrement); // NOTE: No "half-clicks", force a whole number
+    const numClicks = Math.floor(moaAdjustment / this.adjustmentIncrement); // NOTE: No "half-clicks", force a whole number
 
     let correction = '';
 
@@ -60,7 +62,7 @@ export default class Calculator {
 
   public generateCorrectionsList(data: ICalculatorData): void {
     this.zeroAtDistance = data.zeroAtDistance;
-    this.opticAdjustmentIncrement = data.opticAdjustmentIncrement;
+    this.adjustmentIncrement = data.adjustmentIncrement;
     this.correctionsList = [];
 
     if (data.horizontalOffsetDistance !== undefined) {
