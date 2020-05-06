@@ -5,7 +5,7 @@
 
 import { IListOption } from "../../../../interfaces/ListOption";
 
-export const OpticAdjustmentIncrements: Array<IListOption> = [
+export const AdjustmentIncrements: Array<IListOption> = [
 	{
 		label: '.25 MOA/click',
 		value: 0.25,

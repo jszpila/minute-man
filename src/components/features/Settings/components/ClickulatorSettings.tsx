@@ -1,7 +1,6 @@
 /**
  *                    
- * Settings
- *                                                      
+ * Settings                                                  
  * App level settings
  *
  */
@@ -11,7 +10,7 @@ import React, { useContext } from 'react';
 
 import RandomizeInputName from '../../../../util/RandomizeInputName';
 import Field from '../../../Field/Field';
-import OpticAdjustmentSelect from '../../Clickulator/components/OpticAdjustmentSelect';
+import AdjustmentSelect from '../../Clickulator/components/AdjustmentSelect';
 import ZeroAtDistanceInput from '../../Clickulator/components/ZeroAtDistanceInput';
 import { ClickulatorContext } from '../../Clickulator/context';
 import SettingsStore from '../SettingsStore';
@@ -22,7 +21,7 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
   const zeroLabel = <>Zero Distance <i className="field__label__hint txt--smaller txt--muted">(yards)</i></>;
   const inputNames = {
     zeroDist: RandomizeInputName('zeroAtDistance'),
-    opticInc: RandomizeInputName('opticAdjustmentIncrement'),
+    opticInc: RandomizeInputName('adjustmentIncrement'),
   }
 
   function onZeroAtDistanceChange(value: number): void {
@@ -30,9 +29,9 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
     context.setZeroAtDistance(value);
   }
 
-  function onOpticAdjustmentIncrementChange(value: number): void {
-    settings.clickulator.opticAdjustmentIncrement = value;
-    context.setOpticAdjustmentIncrement(value);
+  function onAdjustmentIncrementChange(value: number): void {
+    settings.clickulator.adjustmentIncrement = value;
+    context.setAdjustmentIncrement(value);
   }
 
   return (
@@ -49,10 +48,10 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
       <Field
         inputName={ inputNames.opticInc }
         labelText="Adjustment Increment">
-          <OpticAdjustmentSelect
+          <AdjustmentSelect
             name={ inputNames.opticInc }
-            updaterFn={ onOpticAdjustmentIncrementChange }
-            value={ settings.clickulator.opticAdjustmentIncrement } />
+            updaterFn={ onAdjustmentIncrementChange }
+            value={ settings.clickulator.adjustmentIncrement } />
         </Field>
     </fieldset>
   );

@@ -3,10 +3,11 @@
  * Utility for accessing user-specified or default value of a setting
  */
 
+ import { AppDefaultValues } from "../../../data/AppDefaults";
 import { LocalStorageKeys } from "../../../enum/LocalStorageKeys";
-import { AppDefaultValues } from "../../../data/AppDefaults";
-import { ClickulatorDefaultValues } from "../Clickulator/data/Defaults";
+import ClickulatorDefaultValues from "../Clickulator/data/Defaults";
 
+const defaults = ClickulatorDefaultValues;
 class AppSettingsStore {
   private static instance: AppSettingsStore;
 
@@ -45,20 +46,20 @@ class ClickulatorSettingsStore {
 
   public get zeroAtDistance(): number {
     const localStorageValue = localStorage.getItem(LocalStorageKeys.ZeroAtDistance);
-    return localStorageValue != null ? parseInt(localStorageValue) : ClickulatorDefaultValues.zeroAtDistance;
+    return localStorageValue != null ? parseInt(localStorageValue) : defaults.zeroAtDistance;
   }
 
   public set zeroAtDistance(value: number) {
     localStorage.setItem(LocalStorageKeys.ZeroAtDistance, value.toString());
   }
 
-  public get opticAdjustmentIncrement(): number {
-    const localStorageValue = localStorage.getItem(LocalStorageKeys.OpticAdjustmentIncrement);
-    return localStorageValue != null ? Number(localStorageValue) : ClickulatorDefaultValues.opticAdjustmentIncrement;
+  public get adjustmentIncrement(): number {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.AdjustmentIncrement);
+    return localStorageValue != null ? Number(localStorageValue) : defaults.adjustmentIncrement;
   }
 
-  public set opticAdjustmentIncrement(value: number) {
-    localStorage.setItem(LocalStorageKeys.OpticAdjustmentIncrement, value.toString())
+  public set adjustmentIncrement(value: number) {
+    localStorage.setItem(LocalStorageKeys.AdjustmentIncrement, value.toString())
   }
 }
 

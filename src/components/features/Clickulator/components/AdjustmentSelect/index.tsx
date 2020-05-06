@@ -5,7 +5,7 @@
 
 import React from 'react';
 
-import { OpticAdjustmentIncrements } from '../../data/OpticAdjustmentIncrements';
+import { AdjustmentIncrements } from '../../data/AdjustmentIncrements';
 
 interface IProps {
   name: string,
@@ -13,7 +13,7 @@ interface IProps {
   value: number,
 };
 
-export default function OpticAdjustmentSelect(props: IProps) {
+export default function AdjustmentSelect(props: IProps) {
   function onChange(event: React.ChangeEvent<HTMLSelectElement>) {
     props.updaterFn(Number(event.currentTarget.value));
   }
@@ -25,7 +25,7 @@ export default function OpticAdjustmentSelect(props: IProps) {
       name={ props.name }
       onChange={ onChange }>
     {
-      OpticAdjustmentIncrements.map((option, index) => {
+      AdjustmentIncrements.map((option, index) => {
         return <option 
             key={ index }
             value={ option.value }>

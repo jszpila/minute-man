@@ -8,5 +8,5 @@ export enum LocalStorageKeys {
   Theme = 'theme',
   DefaultTimerMode = 'defaultTimerMode',
   ZeroAtDistance = '100',
-  OpticAdjustmentIncrement = '0.25',
+  AdjustmentIncrement = '0.25',
 }
