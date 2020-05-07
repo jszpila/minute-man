@@ -9,23 +9,23 @@
 }
 
 .form__fieldset__legend {
-  font-weight: bold;
+  font-weight: 500;
   display: block;
   width: 100%;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: solid 1px var(--divider-color);
+  border-bottom: solid 0.0625rem var(--divider-color);
 }
 
 .button {
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 600;
   padding: 1rem;
   font-size: 1rem;
   margin: 0;
   border: 0;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   user-select: none;
   outline: none;
 }
@@ -44,7 +44,7 @@
 }
 
 .button--primary:focus {
-  outline: 1px var(--primary-color-hover);
+  outline: 0.0625rem var(--primary-color-hover);
 }
 
 .button--danger {
@@ -61,7 +61,7 @@
 }
 
 .button--danger:focus {
-  outline: 1px var(--danger-color-active);
+  outline: 0.0625rem var(--danger-color-active);
 }
 
 .button--yuge {
@@ -88,7 +88,7 @@
 }
 
 .app-info__key {
-  font-weight: bold;
+  font-weight: 500;
   width: 30%;
   vertical-align: top;
 }

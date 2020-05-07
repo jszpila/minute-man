@@ -20,7 +20,7 @@
   background-color: var(--bg-color);
   color: var(--inactive-color);
   border: 0;
-  border-bottom: solid 1px var(--inactive-color);
+  border-bottom: solid 0.0625rem var(--inactive-color);
   text-transform: uppercase;
   user-select: none;
   box-sizing: border-box;
@@ -33,7 +33,7 @@
 
 .tabs__nav__button--active {
   color: var(--primary-color);
-  border-bottom: solid 2px var(--primary-color);
+  border-bottom: solid 0.125rem var(--primary-color);
   line-height: unset;
 }
 
