@@ -39,7 +39,7 @@ function NavLink(props: any) {
 
 function MenuItem(props: IMenuItemProps) {
   const type = props.type || MenuItemType.Link;
-  const child = type === MenuItemType.Link ? <MenuLink {...props } /> : <MenuButton { ...props } />;
+  const child = type === MenuItemType.Link ? <MenuLink { ...props } /> : <MenuButton { ...props } />;
 
   return(
     <li className="app-menu__list__item">
@@ -61,7 +61,7 @@ function MenuButton(props: IMenuItemProps) {
 }
 
 function MenuLink(props: IMenuItemProps) {
-  const adtlProps = { 
+  const adtlProps = {
     onClick: props.onClick || undefined,
   };
 
@@ -69,9 +69,9 @@ function MenuLink(props: IMenuItemProps) {
     <NavLink
       { ...adtlProps }
       to={ props.route }>
-        <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
-        <span className="app-menu__list__item__label">{ props.text }</span>
-      </NavLink>
+      <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
+      <span className="app-menu__list__item__label">{ props.text }</span>
+    </NavLink>
   )
 }
 
@@ -117,10 +117,18 @@ export default function Menu(props: IMenuProps) {
         <hr className="app-menu__list-divider" />
         <ul className="app-menu__list">
           <MenuItem
-              iconName="info"
-              onClick={ onInfoClick }
-              text="Info"
-              type={ MenuItemType.Button } />
+            iconName="info"
+            onClick={ onInfoClick }
+            text="Info"
+            type={ MenuItemType.Button } />
+          <a
+            className="app-menu__list__item__link"
+            href="https://www.buymeacoffee.com/jszpila"
+            rel="noopener noreferrer"
+            target="_blank">
+            <i className="material-icons app-menu__list__item__icon">attach_money</i>
+            <span className="app-menu__list__item__label">Donate</span>
+          </a>
         </ul>
       </nav>
     </>,

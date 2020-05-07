@@ -30,6 +30,8 @@ export default function InfoModal() {
         </ul>
       </p>
     }
+
+    <p>Like this app? You can <a href="https://www.buymeacoffee.com/jszpila" rel="noopener noreferrer" target="_blank">buy me a coffee</a>.</p>
   </>;
 
   const DiagnosticsPanel = <table className="app-info">
