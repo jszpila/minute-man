@@ -36,7 +36,7 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
 
   return (
     <fieldset className="form__fieldset">
-      <legend className="form__fieldset__legend">Zero Calc Settings</legend>
+      <legend className="form__fieldset__legend">Zero Calc Default Settings</legend>
       <Field
         inputName={ inputNames.zeroDist }
         labelText={ zeroLabel }>

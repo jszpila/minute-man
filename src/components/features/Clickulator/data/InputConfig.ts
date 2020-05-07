@@ -20,8 +20,3 @@ export const RestrictedNumericInputConfig = {
   maxValue: 99.99,
   placeholder: '00.00',
 }
-
-export const requireAtLeastOneOfFields = [
-  'horizontalOffsetDistance', 
-  'verticalOffsetDistance',
-]
