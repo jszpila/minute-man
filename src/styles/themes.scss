@@ -7,7 +7,7 @@
   --bg-color: #{ $theme-bg-color };
   --text-color: #{ $theme-text-color };
   --text-color-contrast: #{ $theme-text-color-contrast };
-  --text-muted-color: #{ $theme-text-color-muted };
+  --text-muted-color: #{ lighten($theme-text-color, 35%) };
   --primary-color: #{ $theme-primary-color };
   --primary-color-hover: #{ $theme-primary-hover };
   --primary-color-active: #{ $theme-primary-active };
@@ -28,7 +28,7 @@
   --bg-color: #{ darken($theme-bg-color, 80%) };
   --text-color: #{ invert($theme-text-color) };
   --text-color-contrast: #{ $theme-text-color-contrast };
-  --text-muted-color: #{ invert($theme-text-color-muted) };
+  --text-muted-color: #{ invert(lighten($theme-text-color, 35%)) };
   --primary-color: #{ lighten($theme-primary-color, 25%) };
   --primary-color-hover: #{ lighten($theme-primary-hover, 25%) };
   --primary-color-active: #{ lighten($theme-primary-active, 25%) };
