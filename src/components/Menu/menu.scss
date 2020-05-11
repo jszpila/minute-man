@@ -15,7 +15,7 @@
 
 .app-menu {
   background-color: var(--menu-bg-color);
-  height: 100%;
+  height: calc(100% - 5rem);
   position: fixed;
   right: 0;
   top: 5rem;
@@ -88,11 +88,19 @@
   color: var(--primary-color);
 }
 
-
 .app-menu__list-divider {
   height: 0.0625rem;
   border: none;
   margin: 0;
   background-color: var(--divider-color);
+}
+
+.app-menu__version {
+  color: var(--text-muted-color);
+  position: absolute;
+  bottom: 1rem;
+  text-align: right;
+  padding: 0 1rem;
+  right: 0;
 }
 

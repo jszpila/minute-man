@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { AppContext } from '../../context/AppContext';
 import INavigationItem from '../../interfaces/NavigationItem';
 import BuildConditionalClasses from '../../util/BuildConditionalClasses';
+import GitInfo from '../../static/GitInfo';
 
 import './menu.scss';
 
@@ -39,7 +40,7 @@ function NavLink(props: any) {
 
 function MenuItem(props: IMenuItemProps) {
   const type = props.type || MenuItemType.Link;
-  const child = type === MenuItemType.Link ? <MenuLink {...props } /> : <MenuButton { ...props } />;
+  const child = type === MenuItemType.Link ? <MenuLink { ...props } /> : <MenuButton { ...props } />;
 
   return(
     <li className="app-menu__list__item">
@@ -81,6 +82,7 @@ interface IMenuProps {
 
 export default function Menu(props: IMenuProps) {
   const context = useContext(AppContext);
+  const env = process.env;
 
   function onMenuCoverClick(event: SyntheticEvent): void {
     context.setShouldShowMenu(false);
@@ -106,7 +108,7 @@ export default function Menu(props: IMenuProps) {
           {
             props.navItems.map((item, index) => {
               return <MenuItem
-                key={index}
+                key={ index }
                 iconName={ item.icon }
                 onClick={ closeMenu }
                 route={ item.route }
@@ -122,6 +124,9 @@ export default function Menu(props: IMenuProps) {
               text="Info"
               type={ MenuItemType.Button } />
         </ul>
+        <div className="app-menu__version">
+          v{ env.REACT_APP_VERSION }
+        </div>
       </nav>
     </>,
     document.body,
