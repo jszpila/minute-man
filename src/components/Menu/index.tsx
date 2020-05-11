@@ -101,7 +101,7 @@ export default function Menu(props: IMenuProps) {
         onClick={ onMenuCoverClick }>
       </div>
       <nav
-        className={ `app-menu ${ BuildConditionalClasses(context.shouldShowMenu, 'app-menu--active') }` }>
+        className={ `app-menu ${ BuildConditionalClasses(!context.shouldShowMenu, 'app-menu--closed') }` }>
         <ul className="app-menu__list">
           {
             props.navItems.map((item, index) => {
