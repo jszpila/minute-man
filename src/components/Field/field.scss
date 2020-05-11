@@ -1,15 +1,19 @@
 .field {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 0.75rem;
 }
 
 .field__label {
   font-size: 1rem;
-  flex: 1;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 0;
   height: 100%;
   user-select: none;
+  white-space: nowrap;
 }
 
 .field__cell {
@@ -30,9 +34,10 @@
 
 .field__input__container {
   display: flex;
-  flex-direction: row;
   flex: 1;
-  max-width: 50%;
+  flex-direction: row;
+  flex-shrink: 0;
+  min-width: 50%;
 }
 
 .field__input,
