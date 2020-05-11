@@ -22,6 +22,7 @@ export default function AdjustmentSelect(props: IProps) {
     <select
       className="field__select"
       defaultValue={ props.value }
+      id={ props.name }
       name={ props.name }
       onChange={ onChange }>
     {
