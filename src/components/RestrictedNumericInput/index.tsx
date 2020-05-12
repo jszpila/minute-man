@@ -35,14 +35,15 @@ export default function RestrictedNumericInput(props: IProps) {
   return (
     <input
       autoComplete="none"
-      className={`field__input ${props.adtlClassNames}`}
-      defaultValue={props.value}
+      className={`field__input ${ props.adtlClassNames }`}
+      defaultValue={ props.value }
+      id={ props.name }
       inputMode="numeric"
-      maxLength={props.maxLength}
-      name={props.name}
-      onChange={onChange}
+      maxLength={ props.maxLength }
+      name={ props.name }
+      onChange={ onChange }
       pattern="^\d+(\.\d{1,2})?$"
-      placeholder={props.placeholder}/>
+      placeholder={ props.placeholder }/>
   );
 }
 

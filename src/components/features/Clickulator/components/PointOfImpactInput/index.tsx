@@ -6,6 +6,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import RestrictedNumericInput from '../../../../RestrictedNumericInput';
 import { IListOption } from '../../../../../interfaces/ListOption';
+import RandomizeInputName from '../../../../../util/RandomizeInputName';
 
 interface IProps {
   name: string,
@@ -17,6 +18,8 @@ interface IProps {
 };
 
 export default function PointOfImpactInput(props: IProps) {
+  const selectName = RandomizeInputName('offsetDirectSelect');
+
   function onSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
     props.directionUpdaterFn(event.currentTarget.value);
   }
@@ -25,22 +28,24 @@ export default function PointOfImpactInput(props: IProps) {
     <>
       <div className="field__cell">
         <RestrictedNumericInput
-          adtlClassNames='field__input--cell_width_fix'
-          value={props.distanceValue}
-          updaterFn={props.distanceUpdaterFn}
-          name={props.name}/>
+          adtlClassNames="field__input--cell_width_fix"
+          value={ props.distanceValue }
+          updaterFn={ props.distanceUpdaterFn }
+          name={ props.name }/>
       </div>
       <div className="field__cell">
         <select
           className="field__select field_select--cell_width_fix"
-          defaultValue={props.directionValue}
-          onChange={onSelectChange}>
+          defaultValue={ props.directionValue }
+          id={ selectName }
+          name={ selectName }
+          onChange={ onSelectChange }>
         {
           props.directions.map((option, index) => {
             return <option 
-                key={index}
-                value={option.value}>
-                {option.label}
+                key={ index }
+                value={ option.value }>
+                { option.label }
               </option>
           })
         }
