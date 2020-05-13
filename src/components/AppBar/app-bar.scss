@@ -1,3 +1,4 @@
+// TODO: not use rem
 .app-bar {
 	background-color: var(--primary-color);
 	height: 100%;
@@ -23,7 +24,7 @@
 	color: var(--primary-text-color);
   padding: 0;
   margin: 0;
-  text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .app-bar__buttons {

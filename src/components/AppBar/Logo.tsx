@@ -6,6 +6,7 @@ interface IProps {
 }
 
 export default function Logo(props: IProps) {
+  // TODO: update on theme change
   const fillColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-text-color');
 
   return (

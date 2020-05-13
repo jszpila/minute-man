@@ -1,3 +1,4 @@
+@import "../../styles/vars.scss";
 
 .tabs {
   display: inline;
@@ -20,7 +21,7 @@
   background-color: var(--bg-color);
   color: var(--inactive-color);
   border: 0;
-  border-bottom: solid 0.0625rem var(--inactive-color);
+  border-bottom: solid $u-onepx var(--inactive-color);
   text-transform: uppercase;
   user-select: none;
   box-sizing: border-box;

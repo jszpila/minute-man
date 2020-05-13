@@ -10,6 +10,7 @@ export default function AppBar() {
   return (
     <nav className="app-bar">
       <div className="app-bar__logo">
+        {/* TODO: not use rem */}
         <Logo 
           height={ '2.5rem' }
           width={ '2.5rem' } />

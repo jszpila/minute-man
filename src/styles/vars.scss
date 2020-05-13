@@ -1,4 +1,6 @@
 $layout-content-padding: 1.5rem;
+$layout-header-height: 8.5vh; // was 5rem
+$layout-button-area-height: 6.75vh; // was 4rem
 
 $theme-primary-color: #1976d2;
 $theme-primary-hover: lighten($theme-primary-color, 10%);
@@ -14,3 +16,5 @@ $theme-text-color: #111; // Body copy
 $theme-text-color-contrast: #fff;
 $theme-menu-bg-color: #434343;
 $theme-cover-bg-color: #00000050;
+
+$u-onepx: 0.0625rem;
