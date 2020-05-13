@@ -8,7 +8,7 @@
 import { RouteComponentProps } from '@reach/router';
 import React, { useContext } from 'react';
 
-import RandomizeInputName from '../../../../util/RandomizeInputName';
+import randomizeInputName from '../../../../util/RandomizeInputName';
 import Field from '../../../Field/Field';
 import AdjustmentSelect from '../../Clickulator/components/AdjustmentSelect';
 import ZeroAtDistanceInput from '../../Clickulator/components/ZeroAtDistanceInput';
@@ -20,8 +20,8 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
   const settings = SettingsStore.getInstance();
   const zeroLabel = <>Zero Distance <i className="field__label__hint txt--smaller txt--muted">(yards)</i></>;
   const inputNames = {
-    zeroDist: RandomizeInputName('zeroAtDistance'),
-    opticInc: RandomizeInputName('adjustmentIncrement'),
+    zeroDist: randomizeInputName('zeroAtDistance'),
+    opticInc: randomizeInputName('adjustmentIncrement'),
   }
 
   function onZeroAtDistanceChange(value: number): void {

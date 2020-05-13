@@ -8,6 +8,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { AppDefaultValues } from '../data/AppDefaults';
 
 export interface IAppContext {
+  locale: string,
+  setLocale: (Dispatch<SetStateAction<string>>),
   shouldShowInfoModal: boolean,
   setShouldShowInfoModal: (Dispatch<SetStateAction<boolean>>),
   shouldShowInstallButton: boolean,
@@ -19,6 +21,8 @@ export interface IAppContext {
 }
 
 const initialContext: IAppContext = {
+  locale: AppDefaultValues.locale,
+  setLocale: (): void => {},
   shouldShowInfoModal: AppDefaultValues.shouldShowInfoModal,
   setShouldShowInfoModal: (): void => {},
   shouldShowInstallButton: AppDefaultValues.shouldShowInstallButton,

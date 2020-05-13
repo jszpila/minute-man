@@ -3,7 +3,7 @@
  * Utility for accessing user-specified or default value of a setting
  */
 
- import { AppDefaultValues } from "../../../data/AppDefaults";
+import { AppDefaultValues } from "../../../data/AppDefaults";
 import { LocalStorageKeys } from "../../../enum/LocalStorageKeys";
 import ClickulatorDefaultValues from "../Clickulator/data/Defaults";
 
@@ -28,6 +28,15 @@ class AppSettingsStore {
 
   public set theme(value: string) {
     localStorage.setItem(LocalStorageKeys.Theme, value);
+  }
+
+  public get locale(): string {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.Locale);
+    return localStorageValue != null ? localStorageValue : AppDefaultValues.locale;
+  }
+
+  public set locale(value: string) {
+    localStorage.setItem(LocalStorageKeys.Locale, value);
   }
 }
 

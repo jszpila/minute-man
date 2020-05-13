@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import { AppContext } from '../../context/AppContext';
 import INavigationItem from '../../interfaces/NavigationItem';
-import BuildConditionalClasses from '../../util/BuildConditionalClasses';
+import buildConditionalClasses from '../../util/BuildConditionalClasses';
 import GitInfo from '../../static/GitInfo';
 
 import './menu.scss';
@@ -31,7 +31,7 @@ function NavLink(props: any) {
     <Link {...props}
       getProps={({ isCurrent }) => {
         return {
-          className: `app-menu__list__item__link ${ BuildConditionalClasses(isCurrent, 'app-menu__list__item__link--active') }`
+          className: `app-menu__list__item__link ${ buildConditionalClasses(isCurrent, 'app-menu__list__item__link--active') }`
         };
       }}
     />
@@ -99,11 +99,11 @@ export default function Menu(props: IMenuProps) {
   return ReactDOM.createPortal(
     <>
       <div
-        className={ `app-menu__cover ${ BuildConditionalClasses(context.shouldShowMenu, 'app-menu__cover--active') }` }
+        className={ `app-menu__cover ${ buildConditionalClasses(context.shouldShowMenu, 'app-menu__cover--active') }` }
         onClick={ onMenuCoverClick }>
       </div>
       <nav
-        className={ `app-menu ${ BuildConditionalClasses(!context.shouldShowMenu, 'app-menu--closed') }` }>
+        className={ `app-menu ${ buildConditionalClasses(!context.shouldShowMenu, 'app-menu--closed') }` }>
         <ul className="app-menu__list">
           {
             props.navItems.map((item, index) => {

@@ -9,4 +9,5 @@ export enum LocalStorageKeys {
   DefaultTimerMode = 'defaultTimerMode',
   ZeroAtDistance = '100',
   AdjustmentIncrement = '0.25',
+  Locale = 'locale',
 }

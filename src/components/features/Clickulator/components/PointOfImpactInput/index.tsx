@@ -6,7 +6,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import RestrictedNumericInput from '../../../../RestrictedNumericInput';
 import { IListOption } from '../../../../../interfaces/ListOption';
-import RandomizeInputName from '../../../../../util/RandomizeInputName';
+import randomizeInputName from '../../../../../util/RandomizeInputName';
 
 interface IProps {
   name: string,
@@ -18,7 +18,7 @@ interface IProps {
 };
 
 export default function PointOfImpactInput(props: IProps) {
-  const selectName = RandomizeInputName('offsetDirectSelect');
+  const selectName = randomizeInputName('offsetDirectSelect');
 
   function onSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
     props.directionUpdaterFn(event.currentTarget.value);

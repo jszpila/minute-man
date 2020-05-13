@@ -3,6 +3,7 @@
  */
 
 export const AppDefaultValues = {
+  locale: 'en-US',
   shouldShowInfoModal: false,
   shouldShowInstallButton: false,
   shouldShowMenu: false,

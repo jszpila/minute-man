@@ -7,6 +7,9 @@
 @import "./styles/typography.scss";
 @import "./styles/forms.scss";
 @import "./styles/blocks.scss";
+@import "./styles/locale/en-US.scss";
+@import "./styles/locale/es-MX.scss";
+@import "./styles/locale/pl-PL.scss";
 
 html {
   overscroll-behavior-y: contain;

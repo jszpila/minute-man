@@ -5,7 +5,7 @@
 
 import React from 'react';
 
-import RandomizeInputName from '../../../../../util/RandomizeInputName';
+import randomizeInputName from '../../../../../util/RandomizeInputName';
 import Field from '../../../../Field/Field';
 import SettingsStore from '../../../Settings/SettingsStore';
 import { ClickulatorContext } from '../../context';
@@ -23,10 +23,10 @@ export default function FieldSet() {
 
   // NOTE: use randomized input names to prevent auto-fill behavior
   const inputNames = {
-    hOffsetDist: RandomizeInputName('horizontalOffsetDistance'),
-    vOffsetDist: RandomizeInputName('verticalOffsetDistance'),
-    zeroDist: RandomizeInputName('zeroAtDistance'),
-    opticInc: RandomizeInputName('adjustmentIncrement'),
+    hOffsetDist: randomizeInputName('horizontalOffsetDistance'),
+    vOffsetDist: randomizeInputName('verticalOffsetDistance'),
+    zeroDist: randomizeInputName('zeroAtDistance'),
+    opticInc: randomizeInputName('adjustmentIncrement'),
   }
 
   return (

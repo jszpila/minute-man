@@ -12,6 +12,7 @@ import { AppContext } from '../../../../context/AppContext';
 import SettingsStore from '../SettingsStore';
 import { AppDefaultValues } from '../../../../data/AppDefaults';
 import Field from '../../../Field/Field';
+import applyLocaleLang from '../../../../util/applyLocaleLang';
 
 export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
@@ -37,6 +38,17 @@ export default function AppSettings(props: RouteComponentProps) {
     root.classList.toggle(darkThemeClassName, themeToApply === darkThemeClassName);
   }
 
+  function onLocaleChange(event: ChangeEvent<HTMLSelectElement>): void {
+    const prevLocale = settings.app.locale
+    const newLocale = event.currentTarget.value;
+
+    context.setLocale(newLocale);
+    settings.app.locale = newLocale;
+
+    root.classList.replace(`locale-${ prevLocale }`, `locale-${ newLocale }`);
+    applyLocaleLang();
+  }
+
   return (
     <fieldset className="form__fieldset">
       <legend className="form__fieldset__legend">App Settings</legend>
@@ -54,6 +66,20 @@ export default function AppSettings(props: RouteComponentProps) {
               type="checkbox" />
           </label>
         </>
+      </Field>
+      <Field
+        inputName="language"
+        labelText="Language">
+        <select
+          className="field__select"
+          defaultValue={ settings.app.locale }
+          id="locale"
+          name="locale"
+          onChange={ onLocaleChange }>
+            <option value="en-US">English/US</option>
+            <option value="es-MX">Española/Mexico</option>
+            <option value="pl-PL">Polskie/Polska</option>
+        </select>
       </Field>
     </fieldset>
   );
