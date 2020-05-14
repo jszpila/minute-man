@@ -3,7 +3,7 @@
  */
 
 export const AppDefaultValues = {
-  locale: 'en-US',
+  locale: navigator.language.split(/[-_]/)[0],
   shouldShowInfoModal: false,
   shouldShowInstallButton: false,
   shouldShowMenu: false,

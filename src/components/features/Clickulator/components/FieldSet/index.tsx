@@ -13,13 +13,24 @@ import { HorizontalDirectionOptions, VerticalDirectionOptions } from '../../data
 import AdjustmentSelect from '../AdjustmentSelect';
 import PointOfImpactInput from '../PointOfImpactInput';
 import ZeroAtDistanceInput from '../ZeroAtDistanceInput';
+import { FormattedMessage } from 'react-intl';
 
 export default function FieldSet() {
   const settings = SettingsStore.getInstance().clickulator;
 
-  const vertLabel = <>Vert. Offset <i className="field__label__hint txt--smaller txt--muted">(inches)</i></>;
-  const horizLabel = <>Horiz. Offset <i className="field__label__hint txt--smaller txt--muted">(inches)</i></>;
-  const zeroLabel = <>Zero Distance <i className="field__label__hint txt--smaller txt--muted">(yards)</i></>;
+  const vertLabel = <>
+    <FormattedMessage id="clickulator.horizontalOffsetLabel" /> 
+    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.offsetUnitLabel" />)</i></>;
+
+  const horizLabel = <>
+    <FormattedMessage id="clickulator.verticalOffsetLabel" /> 
+    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.offsetUnitLabel" />)</i></>;
+
+  const zeroLabel = <>
+    <FormattedMessage id="clickulator.zeroAtDistanceLabel" /> 
+    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.zeroAtDistanceUnitLabel" />)</i></>;
+  
+  const adjustmentLabel = <FormattedMessage id="clickulator.adjustmentIncrementLabel" />
 
   // NOTE: use randomized input names to prevent auto-fill behavior
   const inputNames = {
@@ -65,7 +76,7 @@ export default function FieldSet() {
           </Field>
           <Field
             inputName={ inputNames.opticInc }
-            labelText="Adjustment Increment">
+            labelText={ adjustmentLabel }>
               <AdjustmentSelect
                 name={ inputNames.opticInc }
                 updaterFn={ value.setAdjustmentIncrement }

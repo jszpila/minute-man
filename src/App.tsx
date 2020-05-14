@@ -1,3 +1,4 @@
+import { Router } from '@reach/router';
 /**
  * 
  *     ▄▄▄▄███▄▄▄▄    ▄█  ███▄▄▄▄   ███    █▄      ███        ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████ ███▄▄▄▄   
@@ -11,20 +12,21 @@
  *                                                                                                           
  */
 
-import React, { useState, useEffect } from 'react';
-import { Router } from '@reach/router';
+import React, { useEffect, useState } from 'react';
+import { IntlProvider } from "react-intl";
 
 import AppBar from './components/AppBar';
 import Clickulator, { ClickulatorNavConfig } from './components/features/Clickulator/Clickulator';
 import Settings, { SettingsNavConfig } from './components/features/Settings/Settings';
+import SettingsStore from './components/features/Settings/SettingsStore';
 // import Timertron, { TimertronNavConfig } from './components/features/Timertron/Timertron';
 import InfoModal from './components/InfoModal';
 import AppLayout from './components/layouts/AppLayout';
 import Menu from './components/Menu';
 import { AppContext, IAppContext } from './context/AppContext';
 import { AppDefaultValues } from './data/AppDefaults';
-import SettingsStore from './components/features/Settings/SettingsStore';
-import applyLocaleLang from './util/applyLocaleLang';
+import { localizations }  from './util/L10n';
+
 import './App.scss';
 
 export default function App() {
@@ -57,31 +59,35 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.classList.add(settings.app.theme);
-    document.documentElement.classList.add(`locale-${ settings.app.locale }`);
-    applyLocaleLang();
-
     setTheme(settings.app.theme);
+
+    document.documentElement.classList.add(`locale-${ settings.app.locale }`);
+    // applyLocaleLang();
   }, [settings.app.theme, settings.app.locale]);
 
   return (
-    <AppContext.Provider value={ contextValue }>
-      <AppContext.Consumer>
-      { value =>
-        <>
-          <AppLayout
-            header={ <AppBar/> }
-            body={
-              <Router id="router">
-                <Clickulator path={ ClickulatorNavConfig.route } />
-                {/* <Timertron path={ TimertronNavConfig.route } /> */}
-                <Settings path={ SettingsNavConfig.route } />
-              </Router>
-            } />
-          <InfoModal />
-          <Menu navItems={ navItems } />
-        </>
-      }
-      </AppContext.Consumer>
-    </AppContext.Provider>
+    <IntlProvider
+      locale={ settings.app.locale }
+      messages={ localizations.get(settings.app.locale) } >
+      <AppContext.Provider value={ contextValue }>
+        <AppContext.Consumer>
+        { value =>
+          <>
+            <AppLayout
+              header={ <AppBar/> }
+              body={
+                <Router id="router">
+                  <Clickulator path={ ClickulatorNavConfig.route } />
+                  {/* <Timertron path={ TimertronNavConfig.route } /> */}
+                  <Settings path={ SettingsNavConfig.route } />
+                </Router>
+              } />
+            <InfoModal />
+            <Menu navItems={ navItems } />
+          </>
+        }
+        </AppContext.Consumer>
+      </AppContext.Provider>
+    </IntlProvider>
   );
 }

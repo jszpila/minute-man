@@ -8,11 +8,13 @@
 
 import { RouteComponentProps } from '@reach/router';
 import React, { ChangeEvent, useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import { AppContext } from '../../../../context/AppContext';
-import SettingsStore from '../SettingsStore';
 import { AppDefaultValues } from '../../../../data/AppDefaults';
+import { applyLocaleLang } from '../../../../util/L10n';
 import Field from '../../../Field/Field';
-import applyLocaleLang from '../../../../util/applyLocaleLang';
+import SettingsStore from '../SettingsStore';
 
 export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
@@ -76,9 +78,9 @@ export default function AppSettings(props: RouteComponentProps) {
           id="locale"
           name="locale"
           onChange={ onLocaleChange }>
-            <option value="en-US">English/US</option>
-            <option value="es-MX">Española/Mexico</option>
-            <option value="pl-PL">Polskie/Polska</option>
+            <option value="en">English</option>
+            <option value="es">Española</option>
+            <option value="pl">Polskie</option>
         </select>
       </Field>
     </fieldset>

@@ -15,7 +15,10 @@ const ClickulatorDefaultValues = {
   shouldShowResultsModal: false,
   isValid: false,
   errors: [],
-  corrections: [],
+  corrections: {
+    horizontal: undefined,
+    vertical: undefined,
+  },
 }
 
 export default ClickulatorDefaultValues;
