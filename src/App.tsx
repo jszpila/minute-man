@@ -61,13 +61,9 @@ export default function App() {
   ];
 
   useEffect(() => {
-    document.documentElement.classList.add(settings.app.theme);
+    document.documentElement.classList.add(settings.app.theme, settings.app.fontSize, `locale-${ settings.app.locale }`);
     setTheme(settings.app.theme);
-
-    document.documentElement.classList.add(`locale-${ settings.app.locale }`);
     applyLocaleLang();
-
-    document.documentElement.classList.add(settings.app.fontSize);
   }, [settings.app.theme, settings.app.locale, settings.app.fontSize]);
 
   return (
