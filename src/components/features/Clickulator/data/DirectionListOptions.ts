@@ -5,25 +5,26 @@
 
 import { IListOption } from "../../../../interfaces/ListOption";
 import { Direction } from "../../../../enum/Direction";
+import { getLocalizedStringByKey } from "../../../../util/L10n";
 
 export const HorizontalDirectionOptions: Array<IListOption> = [
   {
-    label: 'Left',
+    label: getLocalizedStringByKey('clickulator.directions.left'),
     value: Direction.Left
   },
   {
-    label: 'Right', 
+    label: getLocalizedStringByKey('clickulator.directions.right'), 
     value: Direction.Right
   },
 ]
 
 export const VerticalDirectionOptions: Array<IListOption> = [
   {
-    label: 'Up',
+    label: getLocalizedStringByKey('clickulator.directions.up'),
     value: Direction.Up
   },
   {
-    label: 'Down',
+    label: getLocalizedStringByKey('clickulator.directions.down'),
     value: Direction.Down
   },
 ]

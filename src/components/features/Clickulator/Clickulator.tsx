@@ -24,14 +24,13 @@ import ResultsModal from './components/Results';
 import { ClickulatorContext, IClickulatorContext } from './context';
 import ClickulatorDefaultValues from './data/Defaults';
 import Validator, { IValidationError } from './validation/Validator';
-import { getLocalizedStringByKey } from '../../../util/L10n';
 
 import './clickulator.scss';
 
 export const ClickulatorNavConfig: INavigationItem = {
   route: '/',
   icon: 'gps_fixed',
-  displayName: getLocalizedStringByKey('clickulator.title'),
+  displayNameKey: 'clickulator.title' ,
 };
 
 const defaults = ClickulatorDefaultValues;

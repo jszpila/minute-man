@@ -14,11 +14,16 @@ import AdjustmentSelect from '../../Clickulator/components/AdjustmentSelect';
 import ZeroAtDistanceInput from '../../Clickulator/components/ZeroAtDistanceInput';
 import { ClickulatorContext } from '../../Clickulator/context';
 import SettingsStore from '../SettingsStore';
+import { FormattedMessage } from 'react-intl';
 
 export default function ClickulatorSettings(props: RouteComponentProps) {
   const context = useContext(ClickulatorContext);
   const settings = SettingsStore.getInstance();
-  const zeroLabel = <>Zero Distance <i className="field__label__hint txt--smaller txt--muted">(yards)</i></>;
+
+  const zeroLabel = <>
+    <FormattedMessage id="clickulator.zeroAtDistanceLabel" /> 
+    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.zeroAtDistanceUnitLabel" />)</i></>;
+  
   const inputNames = {
     zeroDist: randomizeInputName('zeroAtDistance'),
     opticInc: randomizeInputName('adjustmentIncrement'),
@@ -36,7 +41,9 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
 
   return (
     <fieldset className="form__fieldset">
-      <legend className="form__fieldset__legend">Zero Calc Default Settings</legend>
+      <legend className="form__fieldset__legend">
+        <FormattedMessage id="settings.clickulator.title" />
+      </legend>
       <Field
         inputName={ inputNames.zeroDist }
         labelText={ zeroLabel }>
@@ -47,7 +54,7 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
       </Field>
       <Field
         inputName={ inputNames.opticInc }
-        labelText="Adjustment Increment">
+        labelText={ <FormattedMessage id="clickulator.adjustmentIncrementLabel" /> }>
           <AdjustmentSelect
             name={ inputNames.opticInc }
             updaterFn={ onAdjustmentIncrementChange }

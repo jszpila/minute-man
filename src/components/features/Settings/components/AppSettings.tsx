@@ -53,10 +53,12 @@ export default function AppSettings(props: RouteComponentProps) {
 
   return (
     <fieldset className="form__fieldset">
-      <legend className="form__fieldset__legend">App Settings</legend>
+      <legend className="form__fieldset__legend">
+        <FormattedMessage id="settings.app.title" />
+      </legend>
       <Field
         inputName="theme"
-        labelText="Dark Mode">
+        labelText={ <FormattedMessage id="settings.app.darkMode" /> }>
         <>
           <label>
             <i className="material-icons"> { checkboxIcon } </i>
@@ -71,7 +73,7 @@ export default function AppSettings(props: RouteComponentProps) {
       </Field>
       <Field
         inputName="language"
-        labelText="Language">
+        labelText={ <FormattedMessage id="settings.app.language" />}>
         <select
           className="field__select"
           defaultValue={ settings.app.locale }

@@ -32,7 +32,7 @@ const defaults = TimertronDefaults;
 export const TimertronNavConfig: INavigationItem = {
   route: '/timer',
   icon: 'timer',
-  displayName: 'Shot Timer',
+  displayNameKey: 'Shot Timer',
 };
 
 export default function Timertron(props: RouteComponentProps) {

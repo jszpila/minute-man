@@ -13,7 +13,14 @@ export const localizations = new Map<string, any>([
 ]);
 
 export function getLocalizedStringByKey(key: string) {
-  return localizations.get(settings.app.locale)[key] || '';
+  const locale = settings.app.locale;
+  const localizedStr = localizations.get(locale)[key] || '';
+
+  if (localizedStr === '') {
+    console.warn(`No localized string in ${locale} with key ${key}`);
+  }
+
+  return localizedStr;
 }
 
 export function applyLocaleLang(): void {

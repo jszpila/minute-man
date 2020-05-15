@@ -8,6 +8,7 @@ import buildConditionalClasses from '../../util/BuildConditionalClasses';
 import GitInfo from '../../static/GitInfo';
 
 import './menu.scss';
+import { getLocalizedStringByKey } from '../../util/L10n';
 
 type TMenuItem = 'button' | 'link';
 
@@ -18,7 +19,7 @@ enum MenuItemType {
 
 interface IMenuItemProps {
   iconName: string,
-  text: string,
+  localizedTitleKey: string,
   onClick?: (event: SyntheticEvent) => void,
   route?: string,
   type?: TMenuItem,
@@ -56,7 +57,7 @@ function MenuButton(props: IMenuItemProps) {
       onClick={ props.onClick }
       type="button">
       <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
-      <span className="app-menu__list__item__label">{ props.text }</span>
+      <span className="app-menu__list__item__label">{ getLocalizedStringByKey(props.localizedTitleKey) }</span>
     </button>
   )
 }
@@ -71,7 +72,7 @@ function MenuLink(props: IMenuItemProps) {
       { ...adtlProps }
       to={ props.route }>
         <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
-        <span className="app-menu__list__item__label">{ props.text }</span>
+        <span className="app-menu__list__item__label">{ getLocalizedStringByKey(props.localizedTitleKey) }</span>
       </NavLink>
   )
 }
@@ -112,7 +113,7 @@ export default function Menu(props: IMenuProps) {
                 iconName={ item.icon }
                 onClick={ closeMenu }
                 route={ item.route }
-                text={ item.displayName } />
+                localizedTitleKey={ item.displayNameKey } />
             })
           }
         </ul>
@@ -121,7 +122,7 @@ export default function Menu(props: IMenuProps) {
           <MenuItem
               iconName="info"
               onClick={ onInfoClick }
-              text="Info"
+              localizedTitleKey="info.title"
               type={ MenuItemType.Button } />
         </ul>
         <div className="app-menu__version">

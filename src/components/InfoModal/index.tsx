@@ -5,49 +5,73 @@ import GitInfo from '../../static/GitInfo';
 import { isAppInstalled, isiOs } from '../AppBar/a2hsHelpers';
 import Modal from '../Modal';
 import Tabs from '../Tabs';
+import { FormattedMessage } from 'react-intl';
+import { getLocalizedStringByKey } from '../../util/L10n';
 
 export default function InfoModal() {
   const env = process.env;
   const context = useContext(AppContext);
   const isStandAlone = window.matchMedia('(display-mode: standalone)').matches;
 
-  const AboutPanel = <>    
-    <p>{`${env.REACT_APP_DESCRIPTION}`}</p>
+const AboutPanel = <>    
+    <p><FormattedMessage id="info.about.blurb" /></p>
 
     {/* TODO: break into own component? */}
     { context.shouldShowInstallButton &&
-      <p>Click the install button to add it to the home screen of your phone, like an app!</p>
+      <p><FormattedMessage id="info.about.a2hs.android" /></p>
     }
 
     {/* iOS does not support A2HS functionality; provide manual instructions */}
     { isiOs() && !isAppInstalled() &&
-      <p>
-        <b>Add MinuteMan to your homescreen so you can use it like an app!</b>
+      <>
+        <p>
+          <b><FormattedMessage id="info.about.a2hs.ios.title" /></b>
+        </p>
         <ul>
-          <li>Click the "share" button</li>
-          <li>Click "Add to Home Screen"</li>
-          <li>Click "Add" at the top</li>
+          <li><FormattedMessage id="info.about.a2hs.ios.1" /></li>
+          <li><FormattedMessage id="info.about.a2hs.ios.2" /></li>
+          <li><FormattedMessage id="info.about.a2hs.ios.3" /></li>
         </ul>
-      </p>
+      </>
     }
   </>;
 
   const DiagnosticsPanel = <table className="app-info">
       <tbody>
         <tr>
-          <td className="app-info__key">Version</td>
+          <td className="app-info__key">
+            <FormattedMessage id="info.diagnostics.version" />
+          </td>
           <td className="app-info__value">{ `v${ env.REACT_APP_VERSION } (${ GitInfo.sha })` }</td>
         </tr>
         <tr>
-          <td className="app-info__key">Network</td>
-          <td className="app-info__value">{ `${ navigator.onLine ? 'connected' : 'not connected' }` }</td>
+          <td className="app-info__key">
+            <FormattedMessage id="info.diagnostics.network" />
+          </td>
+          <td className="app-info__value">
+            { navigator.onLine ? 
+                <FormattedMessage id="info.diagnostics.network.connected" />
+              : 
+                <FormattedMessage id="info.diagnostics.network.notConnected" />
+            }
+          </td>
         </tr>
         <tr>
-          <td className="app-info__key">Mode</td>
-          <td className="app-info__value">{ isStandAlone ? 'standalone' : 'web' }</td>
+          <td className="app-info__key">
+            <FormattedMessage id="info.diagnostics.mode" />
+          </td>
+          <td className="app-info__value">
+            { isStandAlone ?
+                <FormattedMessage id="info.diagnostics.mode.standalone" />
+              : 
+                <FormattedMessage id="info.diagnostics.mode.web" />
+            }
+          </td>
         </tr>
         <tr>
-          <td className="app-info__key">Platform</td>
+          <td className="app-info__key">
+            <FormattedMessage id="info.diagnostics.platform" />
+          </td>
           <td className="app-info__value">{ `${ navigator.platform }` }</td>
         </tr>
         <tr>
@@ -59,11 +83,14 @@ export default function InfoModal() {
 
   return (
     <Modal
-      closeButtonText={'Got it'}
+      closeButtonText={ <FormattedMessage id="info.closeButton" /> }
       onClose={() => { context.setShouldShowInfoModal(false) }}
       shouldShow={ context.shouldShowInfoModal }>
         <Tabs
-          tabNames={ ['About', 'Diagnostics'] }
+          tabNames={ [
+            getLocalizedStringByKey('info.about.title'),
+            getLocalizedStringByKey('info.diagnostics.title'),
+          ] }
           tabContents={ [AboutPanel, DiagnosticsPanel] } />
     </Modal>
   );
