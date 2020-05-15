@@ -14,7 +14,7 @@
   width: 100%;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: solid $u-onepx var(--divider-color);
+  border-bottom: solid 1px var(--divider-color);
 }
 
 .button {
@@ -44,7 +44,7 @@
 }
 
 .button--primary:focus {
-  outline: $u-onepx var(--primary-color-hover);
+  outline: 1px var(--primary-color-hover);
 }
 
 .button--danger {
@@ -61,7 +61,7 @@
 }
 
 .button--danger:focus {
-  outline: $u-onepx var(--danger-color-active);
+  outline: 1px var(--danger-color-active);
 }
 
 .button--yuge {

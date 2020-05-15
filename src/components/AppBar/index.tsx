@@ -10,10 +10,9 @@ export default function AppBar() {
   return (
     <nav className="app-bar">
       <div className="app-bar__logo">
-        {/* TODO: not use rem */}
         <Logo 
-          height={ '2.5rem' }
-          width={ '2.5rem' } />
+          height={ '37px' }
+          width={ '37px' } />
       </div>
       <div className="app-bar__body">
         <h1 className="app-bar__title">{ `${process.env.REACT_APP_NAME_STYLIZED}` }</h1>
