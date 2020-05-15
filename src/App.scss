@@ -7,6 +7,7 @@
 @import "./styles/typography.scss";
 @import "./styles/forms.scss";
 @import "./styles/blocks.scss";
+@import "./styles/font-sizes.scss";
 
 html {
   overscroll-behavior-y: contain;
@@ -26,7 +27,6 @@ body {
 html,
 body,
 .app {
-  font-size: 100%;
   margin: 0;
   padding: 0;
   height: 100%;

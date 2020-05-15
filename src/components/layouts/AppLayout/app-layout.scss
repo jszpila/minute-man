@@ -1,8 +1,10 @@
+@import "../../../styles/vars.scss";
+
 .app-layout {
 	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 5rem auto;
+	grid-template-rows: $layout-header-height auto;
 	grid-gap: 0;
 	grid-template-areas: "app" "main";
 	width: 100%;

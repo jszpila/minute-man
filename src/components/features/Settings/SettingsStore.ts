@@ -11,8 +11,6 @@ const defaults = ClickulatorDefaultValues;
 class AppSettingsStore {
   private static instance: AppSettingsStore;
 
-  private constructor() {}
-
   static getInstance(): AppSettingsStore {
     if (!AppSettingsStore.instance) {
       AppSettingsStore.instance = new AppSettingsStore();
@@ -29,12 +27,19 @@ class AppSettingsStore {
   public set theme(value: string) {
     localStorage.setItem(LocalStorageKeys.Theme, value);
   }
+
+  public get fontSize(): string {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.FontSize);
+    return localStorageValue != null ? localStorageValue : AppDefaultValues.fontSize;
+  }
+
+  public set fontSize(value: string) {
+    localStorage.setItem(LocalStorageKeys.FontSize, value);
+  }
 }
 
 class ClickulatorSettingsStore {
   private static instance: ClickulatorSettingsStore;
-
-  private constructor() {}
 
   static getInstance(): ClickulatorSettingsStore {
     if (!ClickulatorSettingsStore.instance) {
@@ -65,7 +70,6 @@ class ClickulatorSettingsStore {
 
 export default class SettingsStore {
   private static instance: SettingsStore;
-  private constructor() {}
 
   static getInstance(): SettingsStore {
     if (!SettingsStore.instance) {

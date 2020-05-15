@@ -3,6 +3,7 @@
  */
 
 export const AppDefaultValues = {
+  fontSize: 'text-size-m',
   shouldShowInfoModal: false,
   shouldShowInstallButton: false,
   shouldShowMenu: false,

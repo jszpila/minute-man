@@ -1,4 +1,6 @@
-$layout-content-padding: 1.5rem;
+$layout-content-padding: 24px; // NOTE: using px to avoid resizing w/ user text size settings
+$layout-header-height: 8.5vh;
+$layout-button-area-height: 6.75vh;
 
 $theme-primary-color: #1976d2;
 $theme-primary-hover: lighten($theme-primary-color, 10%);

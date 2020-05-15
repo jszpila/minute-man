@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import { AppContext } from '../../context/AppContext';
 import INavigationItem from '../../interfaces/NavigationItem';
 import BuildConditionalClasses from '../../util/BuildConditionalClasses';
-import GitInfo from '../../static/GitInfo';
 
 import './menu.scss';
 
@@ -124,7 +123,7 @@ export default function Menu(props: IMenuProps) {
               text="Info"
               type={ MenuItemType.Button } />
         </ul>
-        <div className="app-menu__version">
+        <div className="app-menu__version txt--smaller txt--muted">
           v{ env.REACT_APP_VERSION }
         </div>
       </nav>

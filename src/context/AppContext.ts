@@ -8,6 +8,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { AppDefaultValues } from '../data/AppDefaults';
 
 export interface IAppContext {
+  fontSize: string,
+  setFontSize: (Dispatch<SetStateAction<string>>),
   shouldShowInfoModal: boolean,
   setShouldShowInfoModal: (Dispatch<SetStateAction<boolean>>),
   shouldShowInstallButton: boolean,
@@ -19,6 +21,8 @@ export interface IAppContext {
 }
 
 const initialContext: IAppContext = {
+  fontSize: AppDefaultValues.fontSize,
+  setFontSize: (): void => {},
   shouldShowInfoModal: AppDefaultValues.shouldShowInfoModal,
   setShouldShowInfoModal: (): void => {},
   shouldShowInstallButton: AppDefaultValues.shouldShowInstallButton,
