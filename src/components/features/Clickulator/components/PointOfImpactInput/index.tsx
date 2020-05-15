@@ -7,6 +7,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import RestrictedNumericInput from '../../../../RestrictedNumericInput';
 import { IListOption } from '../../../../../interfaces/ListOption';
 import randomizeInputName from '../../../../../util/RandomizeInputName';
+import { getLocalizedStringByKey } from '../../../../../util/L10n';
 
 interface IProps {
   name: string,
@@ -45,7 +46,7 @@ export default function PointOfImpactInput(props: IProps) {
             return <option 
                 key={ index }
                 value={ option.value }>
-                { option.label }
+                { getLocalizedStringByKey(option.labelKey) }
               </option>
           })
         }
