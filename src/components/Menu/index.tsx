@@ -5,10 +5,9 @@ import ReactDOM from 'react-dom';
 import { AppContext } from '../../context/AppContext';
 import INavigationItem from '../../interfaces/NavigationItem';
 import buildConditionalClasses from '../../util/BuildConditionalClasses';
-import GitInfo from '../../static/GitInfo';
+import { getLocalizedStringByKey } from '../../util/L10n';
 
 import './menu.scss';
-import { getLocalizedStringByKey } from '../../util/L10n';
 
 type TMenuItem = 'button' | 'link';
 
@@ -125,7 +124,7 @@ export default function Menu(props: IMenuProps) {
               localizedTitleKey="info.title"
               type={ MenuItemType.Button } />
         </ul>
-        <div className="app-menu__version">
+        <div className="app-menu__version txt--smaller txt--muted">
           v{ env.REACT_APP_VERSION }
         </div>
       </nav>

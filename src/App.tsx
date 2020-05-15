@@ -25,9 +25,9 @@ import AppLayout from './components/layouts/AppLayout';
 import Menu from './components/Menu';
 import { AppContext, IAppContext } from './context/AppContext';
 import { AppDefaultValues } from './data/AppDefaults';
-import { localizations }  from './util/L10n';
 
 import './App.scss';
+import { applyLocaleLang, localizations } from './util/L10n';
 
 export default function App() {
   const settings = SettingsStore.getInstance();
@@ -36,11 +36,14 @@ export default function App() {
   const [shouldShowInfoModal, setShouldShowInfoModal] = useState<boolean>(AppDefaultValues.shouldShowInfoModal);
   const [shouldShowInstallButton, setShouldShowInstallButton] = useState<boolean>(AppDefaultValues.shouldShowInstallButton);
   const [shouldShowMenu, setShouldShowMenu] = useState<boolean>(AppDefaultValues.shouldShowMenu);
-  const [theme, setTheme] = useState<string>(AppDefaultValues.theme);
+  const [theme, setTheme] = useState<string>(settings.app.theme);
+  const [fontSize, setFontSize] = useState<string>(settings.app.fontSize);
 
   const contextValue: IAppContext = {
     locale,
     setLocale,
+    fontSize,
+    setFontSize,
     shouldShowInfoModal,
     setShouldShowInfoModal,
     shouldShowInstallButton,
@@ -62,8 +65,10 @@ export default function App() {
     setTheme(settings.app.theme);
 
     document.documentElement.classList.add(`locale-${ settings.app.locale }`);
-    // applyLocaleLang();
-  }, [settings.app.theme, settings.app.locale]);
+    applyLocaleLang();
+
+    document.documentElement.classList.add(settings.app.fontSize);
+  }, [settings.app.theme, settings.app.locale, settings.app.fontSize]);
 
   return (
     <IntlProvider

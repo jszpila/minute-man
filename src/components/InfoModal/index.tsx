@@ -16,7 +16,6 @@ export default function InfoModal() {
 const AboutPanel = <>    
     <p><FormattedMessage id="info.about.blurb" /></p>
 
-    {/* TODO: break into own component? */}
     { context.shouldShowInstallButton &&
       <p><FormattedMessage id="info.about.a2hs.android" /></p>
     }
@@ -74,10 +73,10 @@ const AboutPanel = <>
           </td>
           <td className="app-info__value">{ `${ navigator.platform }` }</td>
         </tr>
-        <tr>
+        {/* <tr>
           <td className="app-info__key">User Agent</td>
           <td className="app-info__value">{ `${ navigator.userAgent }` }</td>
-        </tr>
+        </tr> */}
       </tbody>
     </table>;
 

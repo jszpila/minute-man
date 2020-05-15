@@ -10,6 +10,8 @@ import { AppDefaultValues } from '../data/AppDefaults';
 export interface IAppContext {
   locale: string,
   setLocale: (Dispatch<SetStateAction<string>>),
+  fontSize: string,
+  setFontSize: (Dispatch<SetStateAction<string>>),
   shouldShowInfoModal: boolean,
   setShouldShowInfoModal: (Dispatch<SetStateAction<boolean>>),
   shouldShowInstallButton: boolean,
@@ -23,6 +25,8 @@ export interface IAppContext {
 const initialContext: IAppContext = {
   locale: AppDefaultValues.locale,
   setLocale: (): void => {},
+  fontSize: AppDefaultValues.fontSize,
+  setFontSize: (): void => {},
   shouldShowInfoModal: AppDefaultValues.shouldShowInfoModal,
   setShouldShowInfoModal: (): void => {},
   shouldShowInstallButton: AppDefaultValues.shouldShowInstallButton,

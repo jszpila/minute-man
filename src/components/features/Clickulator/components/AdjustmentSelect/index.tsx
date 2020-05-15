@@ -14,7 +14,7 @@ interface IProps {
 };
 
 export default function AdjustmentSelect(props: IProps) {
-  function onChange(event: React.ChangeEvent<HTMLSelectElement>) {
+  function onChange(event: React.ChangeEvent<HTMLSelectElement>): void {
     props.updaterFn(Number(event.currentTarget.value));
   }
 

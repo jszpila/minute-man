@@ -31,13 +31,23 @@ export default function AppSettings(props: RouteComponentProps) {
 
   function onThemeChange(event: ChangeEvent<HTMLInputElement>): void {
     const isChecked = event.target.checked;
-    const themeToApply = isChecked ? darkThemeClassName : defaults.theme;
+    const prevTheme = settings.app.theme;
+    const newTheme = isChecked ? darkThemeClassName : defaults.theme;
 
-    context.setTheme(themeToApply);
-    settings.app.theme = themeToApply;
+    context.setTheme(newTheme);
+    settings.app.theme = newTheme;
 
-    root.classList.toggle(defaults.theme, themeToApply === defaults.theme);
-    root.classList.toggle(darkThemeClassName, themeToApply === darkThemeClassName);
+    root.classList.replace(prevTheme, newTheme);
+  }
+
+  function onFontSizeChange(event: React.ChangeEvent<HTMLSelectElement>): void {
+    const prevFontSize = settings.app.fontSize;
+    const newFontSize = event.currentTarget.value;
+
+    context.setFontSize(newFontSize);
+    settings.app.fontSize = newFontSize;
+
+    root.classList.replace(prevFontSize, newFontSize);
   }
 
   function onLocaleChange(event: ChangeEvent<HTMLSelectElement>): void {
@@ -84,6 +94,22 @@ export default function AppSettings(props: RouteComponentProps) {
             <option value="es">Española</option>
             <option value="pl">Polskie</option>
         </select>
+      </Field>
+      <Field
+        inputName="fontSize"
+        labelText="Font Size">
+        <select
+          className="field__select"
+          defaultValue={ settings.app.fontSize }
+          id="fontSize"
+          name="fontSize"
+          onChange={ onFontSizeChange }>
+            <option value="font-size-xs">Microscopic</option>
+            <option value="font-size-s">Diminutive</option>
+            <option value="font-size-m">Normie</option>
+            <option value="font-size-l">Embiggened</option>
+            <option value="font-size-xl">THICCC</option>
+          </select>
       </Field>
     </fieldset>
   );
