@@ -25,7 +25,8 @@
     transform 0.2s ease-in-out,
     visibility 0s;
   visibility: visible;
-  width: 10rem; //45%;
+  min-width: 45%;
+  max-width: 75%;
   z-index: 10;
 }
 
@@ -88,6 +89,8 @@
 .app-menu__list__item__link--active .app-menu__list__item__label,
 .app-menu__list__item__link--active .app-menu__list__item__icon {
   color: var(--primary-color);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .app-menu__list-divider {
