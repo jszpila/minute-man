@@ -97,7 +97,7 @@ export default function AppSettings(props: RouteComponentProps) {
       </Field>
       <Field
         inputName="fontSize"
-        labelText="Font Size">
+        labelText={ <FormattedMessage id="settings.app.fontSize" /> }>
         <select
           className="field__select"
           defaultValue={ settings.app.fontSize }
