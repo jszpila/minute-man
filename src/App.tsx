@@ -24,10 +24,10 @@ import InfoModal from './components/InfoModal';
 import AppLayout from './components/layouts/AppLayout';
 import Menu from './components/Menu';
 import { AppContext, IAppContext } from './context/AppContext';
-import { AppDefaultValues } from './data/AppDefaults';
+import AppDefaultValues from './data/AppDefaults';
+import { applyLocaleLang, localizations } from './util/L10n';
 
 import './App.scss';
-import { applyLocaleLang, localizations } from './util/L10n';
 
 export default function App() {
   const settings = SettingsStore.getInstance();
@@ -38,6 +38,7 @@ export default function App() {
   const [shouldShowMenu, setShouldShowMenu] = useState<boolean>(AppDefaultValues.shouldShowMenu);
   const [theme, setTheme] = useState<string>(settings.app.theme);
   const [fontSize, setFontSize] = useState<string>(settings.app.fontSize);
+  const [units, setUnits] = useState<string>(settings.app.units);
 
   const contextValue: IAppContext = {
     locale,
@@ -52,6 +53,8 @@ export default function App() {
     setShouldShowMenu,
     theme,
     setTheme,
+    units,
+    setUnits,
   }
 
   const navItems = [

@@ -4,7 +4,8 @@
  */
 
 import { OffsetConfig, ZeroAtDistanceConfig } from '../data/InputConfig';
-import { getLocalizedStringByKey } from '../../../../util/L10n';
+import { getLocalizedStringByKey, getLocalizedDistanceUnit } from '../../../../util/L10n';
+import SettingsStore from '../../Settings/SettingsStore';
 
 enum LocaleKeys {
   AtLeastOneOffset = 'clickulator.errors.offset.atLeastOne',
@@ -14,6 +15,10 @@ enum LocaleKeys {
   MaxZeroDistance = 'clickulator.errors.zeroDistance.max',
   HorizontalAxis = 'clickulator.axis.horizontal',
   VerticalAxis = 'clickulator.axis.vertical',
+  ImperialDistanceUnit = 'units.imperial.distance',
+  ImperialOffsetUnit = 'units.imperial.offset',
+  MetricDistanceUnit = 'units.metric.distance',
+  MetricOffsetUnit = 'units.metric.offset',
 }
 
 interface IValidatorData {
@@ -29,6 +34,7 @@ export interface IValidationError {
 
 export default class Validator {
   private static instance: Validator;
+  private settings = SettingsStore.getInstance().app;
 
   public errors: Array<IValidationError> = [];
 
@@ -84,11 +90,14 @@ export default class Validator {
   }
 
   private validateZeroAtDistance(value: number): void {
+    const distanceUnit = getLocalizedDistanceUnit();
+
     if (value < ZeroAtDistanceConfig.min) {
       this.errors.push({
         localeStringKey: LocaleKeys.MinZeroDistance,
         values: {
           min: ZeroAtDistanceConfig.min,
+          unit: distanceUnit,
         }
       })
     }
@@ -98,6 +107,7 @@ export default class Validator {
         localeStringKey: LocaleKeys.MaxZeroDistance,
         values: {
           max: ZeroAtDistanceConfig.max,
+          unit: distanceUnit,
         }
       })
     }

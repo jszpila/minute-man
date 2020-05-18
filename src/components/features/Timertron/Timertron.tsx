@@ -22,7 +22,7 @@ import TimerTabBody from './components/TimerTabBody';
 import { ITimertronContext, TimertronContext } from './context';
 import { TimertronConfig } from './data/Config';
 import { TimertronDefaults } from './data/Defaults';
-import { LocalStorageKeys } from '../../../enum/LocalStorageKeys';
+import LocalStorageKeys from '../../../enum/LocalStorageKeys';
 import DefaultLayout from '../../layouts/Default';
 
 import './timertron.scss';

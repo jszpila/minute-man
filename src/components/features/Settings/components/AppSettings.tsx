@@ -11,28 +11,31 @@ import React, { ChangeEvent, useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { AppContext } from '../../../../context/AppContext';
-import { AppDefaultValues } from '../../../../data/AppDefaults';
-import { applyLocaleLang } from '../../../../util/L10n';
+import AppDefaultValues from '../../../../data/AppDefaults';
+import { applyLocaleLang, getLocalizedStringByKey } from '../../../../util/L10n';
 import Field from '../../../Field/Field';
 import SettingsStore from '../SettingsStore';
+import Locales from '../../../../enum/Locales';
+import FontSizeStyles from '../../../../enum/FontSizeStyles';
+import Units from '../../../../enum/Units';
+import Themes from '../../../../enum/Themes';
 
 export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
 
   const root = document.documentElement;
-  const darkThemeClassName = 'theme-dark';
-  const checkboxIcon = context.theme === darkThemeClassName ? 'check_box' : 'check_box_outline_blank';
+  const checkboxIcon = context.theme === Themes.Dark ? 'check_box' : 'check_box_outline_blank';
   const settings = SettingsStore.getInstance();
   const defaults = AppDefaultValues;
 
   function isDarkThemeChecked(): boolean {
-    return context.theme === darkThemeClassName;
+    return context.theme === Themes.Dark;
   }
 
   function onThemeChange(event: ChangeEvent<HTMLInputElement>): void {
     const isChecked = event.target.checked;
     const prevTheme = settings.app.theme;
-    const newTheme = isChecked ? darkThemeClassName : defaults.theme;
+    const newTheme = isChecked ? Themes.Dark : Themes.Default;
 
     context.setTheme(newTheme);
     settings.app.theme = newTheme;
@@ -59,6 +62,13 @@ export default function AppSettings(props: RouteComponentProps) {
 
     root.classList.replace(`locale-${ prevLocale }`, `locale-${ newLocale }`);
     applyLocaleLang();
+  }
+
+  function onUnitsChange(event: ChangeEvent<HTMLSelectElement>): void {
+    const units = event.currentTarget.value;
+
+    context.setLocale(units);
+    settings.app.units = units;
   }
 
   return (
@@ -90,9 +100,9 @@ export default function AppSettings(props: RouteComponentProps) {
           id="locale"
           name="locale"
           onChange={ onLocaleChange }>
-            <option value="en">English</option>
-            <option value="es">Española</option>
-            <option value="pl">Polskie</option>
+            <option value={ Locales.en }>English</option>
+            <option value={ Locales.es }>Española</option>
+            <option value={ Locales.pl }>Polskie</option>
         </select>
       </Field>
       <Field
@@ -104,11 +114,24 @@ export default function AppSettings(props: RouteComponentProps) {
           id="fontSize"
           name="fontSize"
           onChange={ onFontSizeChange }>
-            <option value="font-size-xs">Microscopic</option>
-            <option value="font-size-s">Diminutive</option>
-            <option value="font-size-m">Normie</option>
-            <option value="font-size-l">Embiggened</option>
-            <option value="font-size-xl">THICCC</option>
+            <option value={ FontSizeStyles.ExtraSmall }>{ getLocalizedStringByKey('fontSizes.extraSmall') }</option>
+            <option value={ FontSizeStyles.Small }>{ getLocalizedStringByKey('fontSizes.small') }</option>
+            <option value={ FontSizeStyles.Medium }>{ getLocalizedStringByKey('fontSizes.medium') }</option>
+            <option value={ FontSizeStyles.Large }>{ getLocalizedStringByKey('fontSizes.large') }</option>
+            <option value={ FontSizeStyles.ExtraLarge }>{ getLocalizedStringByKey('fontSizes.extraLarge') }</option>
+          </select>
+      </Field>
+      <Field
+        inputName="fontSize"
+        labelText={ <FormattedMessage id="settings.app.units" /> }>
+        <select
+          className="field__select"
+          defaultValue={ settings.app.units }
+          id="units"
+          name="units"
+          onChange={ onUnitsChange }>
+            <option value={ Units.Imperial }>{ getLocalizedStringByKey('settings.app.units.imperial') }</option>
+            <option value={ Units.Metric }>{ getLocalizedStringByKey('settings.app.units.metric') }</option>
           </select>
       </Field>
     </fieldset>

@@ -15,6 +15,7 @@ import ZeroAtDistanceInput from '../../Clickulator/components/ZeroAtDistanceInpu
 import { ClickulatorContext } from '../../Clickulator/context';
 import SettingsStore from '../SettingsStore';
 import { FormattedMessage } from 'react-intl';
+import { getLocalizedDistanceUnit } from '../../../../util/L10n';
 
 export default function ClickulatorSettings(props: RouteComponentProps) {
   const context = useContext(ClickulatorContext);
@@ -22,7 +23,7 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
 
   const zeroLabel = <>
     <FormattedMessage id="clickulator.zeroAtDistanceLabel" /> 
-    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.zeroAtDistanceUnitLabel" />)</i></>;
+    <i className="field__label__hint txt--smaller txt--muted">({ getLocalizedDistanceUnit() })</i></>;
   
   const inputNames = {
     zeroDist: randomizeInputName('zeroAtDistance'),

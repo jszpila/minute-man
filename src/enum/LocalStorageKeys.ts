@@ -3,7 +3,7 @@
  * Centralized collection of keys used by local storage
  */
 
-export enum LocalStorageKeys {
+enum LocalStorageKeys {
   AdjustmentIncrement = 'adjustmentIncrement',
   DefaultTimerMode = 'defaultTimerMode',
   FontSize = 'fontSize',
@@ -11,4 +11,7 @@ export enum LocalStorageKeys {
   Locale = 'locale',
   Theme = 'theme',
   ZeroAtDistance = 'zeroAtDistance',
+  Units = 'units',
 }
+
+export default LocalStorageKeys;

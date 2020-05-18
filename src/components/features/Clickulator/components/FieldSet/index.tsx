@@ -14,21 +14,24 @@ import AdjustmentSelect from '../AdjustmentSelect';
 import PointOfImpactInput from '../PointOfImpactInput';
 import ZeroAtDistanceInput from '../ZeroAtDistanceInput';
 import { FormattedMessage } from 'react-intl';
+import { getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../../util/L10n';
 
 export default function FieldSet() {
   const settings = SettingsStore.getInstance().clickulator;
+  const offsetUnit = getLocalizedOffsetUnit();
+  const distanceUnit = getLocalizedDistanceUnit();
 
   const vertLabel = <>
     <FormattedMessage id="clickulator.horizontalOffsetLabel" /> 
-    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.offsetUnitLabel" />)</i></>;
+    <i className="field__label__hint txt--smaller txt--muted">({ offsetUnit })</i></>;
 
   const horizLabel = <>
     <FormattedMessage id="clickulator.verticalOffsetLabel" /> 
-    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.offsetUnitLabel" />)</i></>;
+    <i className="field__label__hint txt--smaller txt--muted">({ offsetUnit })</i></>;
 
   const zeroLabel = <>
     <FormattedMessage id="clickulator.zeroAtDistanceLabel" /> 
-    <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="clickulator.zeroAtDistanceUnitLabel" />)</i></>;
+    <i className="field__label__hint txt--smaller txt--muted">({ distanceUnit })</i></>;
   
   const adjustmentLabel = <FormattedMessage id="clickulator.adjustmentIncrementLabel" />
 

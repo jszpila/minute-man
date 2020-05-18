@@ -2,4 +2,5 @@
 
 .layout-default {
   padding: $layout-content-padding;
+  overflow-y: auto !important; // TODO: fix scrolling
 }

@@ -8,6 +8,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { ICorrectionResult } from '../../Calculator';
 import { ClickulatorContext } from '../../context';
+import { getLocalizedDistanceUnit } from '../../../../../util/L10n';
 
 interface ICorrectionsListItemProps {
   correction: ICorrectionResult | undefined,
@@ -34,6 +35,7 @@ function CorrectionsListItem(props: ICorrectionsListItemProps ) {
           values={{
             offset: props.offset,
             distance: context.zeroAtDistance,
+            unit: getLocalizedDistanceUnit(),
           }} />
       </li>
   }
