@@ -1,3 +1,7 @@
+@import '../../styles/vars.scss';
+
+$gutters: (2 * $layout-content-padding-num) + 'px';
+
 .field {
   display: flex;
   flex-direction: row;
@@ -14,7 +18,9 @@
   height: 100%;
   user-select: none;
   white-space: nowrap;
+  text-overflow: ellipsis;
   text-transform: capitalize;
+  max-width: calc(100% - #{ $gutters });
 }
 
 .field__cell {
@@ -32,6 +38,7 @@
 .field__label__hint {
   padding-left: 0.25rem;
   text-transform: lowercase;
+  text-overflow: ellipsis;
 }
 
 .field__input__container {
@@ -40,6 +47,7 @@
   flex-direction: row;
   flex-shrink: 0;
   min-width: 50%;
+  max-width: calc(100% - #{ $gutters });
 }
 
 .field__input,
