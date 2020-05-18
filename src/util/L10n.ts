@@ -1,4 +1,5 @@
 import SettingsStore from "../components/features/Settings/SettingsStore";
+import Units from "../enum/Units";
 import enCopy from "../data/locale/en.json";
 import esCopy from "../data/locale/es.json";
 import plCopy from "../data/locale/pl.json"
@@ -21,6 +22,20 @@ export function getLocalizedStringByKey(key: string) {
   }
 
   return localizedStr;
+}
+
+export function getLocalizedDistanceUnit() {
+  const units = settings.app.units;
+  const localizedStrKey = units === Units.Imperial ? 'units.imperial.distance' : 'units.metric.distance';
+
+  return getLocalizedStringByKey(localizedStrKey);
+}
+
+export function getLocalizedOffsetUnit() {
+  const units = settings.app.units;
+  const localizedStrKey = units === Units.Imperial ? 'units.imperial.offset' : 'units.metric.offset';
+
+  return getLocalizedStringByKey(localizedStrKey);
 }
 
 export function applyLocaleLang(): void {
