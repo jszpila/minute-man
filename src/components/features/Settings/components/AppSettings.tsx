@@ -11,7 +11,6 @@ import React, { ChangeEvent, useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { AppContext } from '../../../../context/AppContext';
-import AppDefaultValues from '../../../../data/AppDefaults';
 import { applyLocaleLang, getLocalizedStringByKey } from '../../../../util/L10n';
 import Field from '../../../Field/Field';
 import SettingsStore from '../SettingsStore';
@@ -19,6 +18,7 @@ import Locales from '../../../../enum/Locales';
 import FontSizeStyles from '../../../../enum/FontSizeStyles';
 import Units from '../../../../enum/Units';
 import Themes from '../../../../enum/Themes';
+import LocaleStyles from '../../../../data/locale/LocaleStyles';
 
 export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
@@ -26,7 +26,6 @@ export default function AppSettings(props: RouteComponentProps) {
   const root = document.documentElement;
   const checkboxIcon = context.theme === Themes.Dark ? 'check_box' : 'check_box_outline_blank';
   const settings = SettingsStore.getInstance();
-  const defaults = AppDefaultValues;
 
   function isDarkThemeChecked(): boolean {
     return context.theme === Themes.Dark;
@@ -56,11 +55,13 @@ export default function AppSettings(props: RouteComponentProps) {
   function onLocaleChange(event: ChangeEvent<HTMLSelectElement>): void {
     const prevLocale = settings.app.locale
     const newLocale = event.currentTarget.value;
+    const oldBodyClass = LocaleStyles.get(prevLocale) || '';
+    const newBodyClass = LocaleStyles.get(newLocale) || '';
 
     context.setLocale(newLocale);
     settings.app.locale = newLocale;
 
-    root.classList.replace(`locale-${ prevLocale }`, `locale-${ newLocale }`);
+    root.classList.replace(oldBodyClass, newBodyClass);
     applyLocaleLang();
   }
 
@@ -100,9 +101,9 @@ export default function AppSettings(props: RouteComponentProps) {
           id="locale"
           name="locale"
           onChange={ onLocaleChange }>
-            <option value={ Locales.en }>English</option>
-            <option value={ Locales.es }>Española</option>
-            <option value={ Locales.pl }>Polskie</option>
+            <option value={ Locales.EN }>English</option>
+            <option value={ Locales.ES }>Española</option>
+            <option value={ Locales.PL }>Polskie</option>
         </select>
       </Field>
       <Field

@@ -1,7 +1,7 @@
 enum Locales {
-  en = 'en',
-  es = 'es',
-  pl = 'pl',
+  EN = 'en',
+  ES = 'es',
+  PL = 'pl',
 }
 
 export default Locales;

@@ -26,6 +26,7 @@ import Menu from './components/Menu';
 import { AppContext, IAppContext } from './context/AppContext';
 import AppDefaultValues from './data/AppDefaults';
 import { applyLocaleLang, localizations } from './util/L10n';
+import LocaleStyles from './data/locale/LocaleStyles';
 
 import './App.scss';
 
@@ -64,7 +65,8 @@ export default function App() {
   ];
 
   useEffect(() => {
-    document.documentElement.classList.add(settings.app.theme, settings.app.fontSize, `locale-${ settings.app.locale }`);
+    const localeClass = LocaleStyles.get(settings.app.locale) || ''
+    document.documentElement.classList.add(settings.app.theme, settings.app.fontSize, localeClass);
     setTheme(settings.app.theme);
     applyLocaleLang();
   }, [settings.app.theme, settings.app.locale, settings.app.fontSize]);
