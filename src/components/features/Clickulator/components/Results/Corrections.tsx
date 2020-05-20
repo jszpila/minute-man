@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { ICorrectionResult } from '../../Calculator';
 import { ClickulatorContext } from '../../context';
-import { getLocalizedDistanceUnit } from '../../../../../util/L10n';
+import { getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../../util/L10n';
 
 interface ICorrectionsListItemProps {
   correction: ICorrectionResult | undefined,
@@ -34,8 +34,9 @@ function CorrectionsListItem(props: ICorrectionsListItemProps ) {
           id="clickulator.errors.withinOneMoa" 
           values={{
             offset: props.offset,
+            offsetUnit: getLocalizedOffsetUnit(),
             distance: context.zeroAtDistance,
-            unit: getLocalizedDistanceUnit(),
+            distanceUnit: getLocalizedDistanceUnit(),
           }} />
       </li>
   }

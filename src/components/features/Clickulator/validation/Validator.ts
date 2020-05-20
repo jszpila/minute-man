@@ -4,7 +4,7 @@
  */
 
 import { OffsetConfig, ZeroAtDistanceConfig } from '../data/InputConfig';
-import { getLocalizedStringByKey, getLocalizedDistanceUnit } from '../../../../util/L10n';
+import { getLocalizedStringByKey, getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../util/L10n';
 import SettingsStore from '../../Settings/SettingsStore';
 
 enum LocaleKeys {
@@ -66,6 +66,8 @@ export default class Validator {
   }
 
   private validateOffsetValue(value: number | undefined, fieldLabel: string): void {   
+    const localizedUnit = getLocalizedOffsetUnit();
+
     if (value !== undefined) {
       if (value < OffsetConfig.min) {
         this.errors.push({ 
@@ -73,6 +75,7 @@ export default class Validator {
           values: {
             axis: fieldLabel,
             min: OffsetConfig.min,
+            unit: localizedUnit,
           }
         });
       }
@@ -83,6 +86,7 @@ export default class Validator {
           values: {
             axis: fieldLabel,
             max: OffsetConfig.max,
+            unit: localizedUnit,
           }
         });
       }

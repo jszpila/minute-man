@@ -7,7 +7,7 @@ $gutters: (2 * $layout-content-padding-num) + 'px';
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .field__label {
@@ -20,7 +20,6 @@ $gutters: (2 * $layout-content-padding-num) + 'px';
   white-space: nowrap;
   text-overflow: ellipsis;
   text-transform: capitalize;
-  max-width: calc(100% - #{ $gutters });
 }
 
 .field__cell {
@@ -47,7 +46,6 @@ $gutters: (2 * $layout-content-padding-num) + 'px';
   flex-direction: row;
   flex-shrink: 0;
   min-width: 50%;
-  max-width: calc(100% - #{ $gutters });
 }
 
 .field__input,
@@ -82,7 +80,11 @@ $gutters: (2 * $layout-content-padding-num) + 'px';
 	background-image: var(--select-arrow);
   background-repeat: no-repeat, repeat;
 	background-position: right 0.7rem top 50%, 0 0;
-	background-size: 0.65rem auto, 100%;
+  background-size: 0.65rem auto, 100%;
+  padding-right: 1.75rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .field__select:focus {
