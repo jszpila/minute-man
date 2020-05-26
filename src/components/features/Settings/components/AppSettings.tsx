@@ -11,14 +11,14 @@ import React, { ChangeEvent, useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { AppContext } from '../../../../context/AppContext';
+import LocaleStyles from '../../../../data/locale/LocaleStyles';
+import FontSizeStyles from '../../../../enum/FontSizeStyles';
+import Locales from '../../../../enum/Locales';
+import Themes from '../../../../enum/Themes';
+import Units from '../../../../enum/Units';
 import { applyLocaleLang, getLocalizedStringByKey } from '../../../../util/L10n';
 import Field from '../../../Field/Field';
 import SettingsStore from '../SettingsStore';
-import Locales from '../../../../enum/Locales';
-import FontSizeStyles from '../../../../enum/FontSizeStyles';
-import Units from '../../../../enum/Units';
-import Themes from '../../../../enum/Themes';
-import LocaleStyles from '../../../../data/locale/LocaleStyles';
 
 export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
@@ -103,7 +103,7 @@ export default function AppSettings(props: RouteComponentProps) {
           onChange={ onLocaleChange }>
             <option value={ Locales.EN }>English</option>
             <option value={ Locales.ES }>Española</option>
-            <option value={ Locales.PL }>Polskie</option>
+            <option value={ Locales.PL }>Polski</option>
         </select>
       </Field>
       <Field
