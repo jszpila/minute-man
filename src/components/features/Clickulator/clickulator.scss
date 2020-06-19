@@ -2,3 +2,12 @@
  * Clickulator-specific CSS
  */
  
+#UsageMessage {
+  display: none;
+}
+
+@media (max-height: 567px) {
+  #UsageMessage {
+    display: block;
+  }
+}

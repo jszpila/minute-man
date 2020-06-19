@@ -103,15 +103,25 @@ export default function Clickulator(props: RouteComponentProps) {
         </button>
     </div>
 
+  const content =
+    <>
+      <div id="UsageMessage" role="status" className="b-callout">
+        <i className="material-icons b-callout__icon">info</i>
+        <p className="b-callout__blurb">
+          This app is best suited for smart phones in portrait orientation
+        </p>
+      </div>
+      <FieldSet />
+    </>
+
   return (
     <ClickulatorContext.Provider value={ contextValue }>
       <ResultsModal />
-
       <form
         id="Clickulator"
         className="form">
         <FeatureWithBottomButtonLayout
-          mainAreaContent={ <FieldSet/> }
+          mainAreaContent={ content }
           buttonAreaContent={ buttons } />
       </form>
     </ClickulatorContext.Provider>

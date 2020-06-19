@@ -11,6 +11,7 @@
 @import "./styles/locale/es.scss";
 @import "./styles/locale/pl.scss";
 @import "./styles/font-sizes.scss";
+@import "./components/features/Clickulator/clickulator.scss";
 
 html {
   overscroll-behavior-y: contain;
