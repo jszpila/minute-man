@@ -16,6 +16,8 @@
   --danger-color-hover: #{ $theme-danger-hover };
   --danger-color-active: #{ $theme-danger-active };
   --danger-text-color: #{ $theme-danger-text-color };
+  --warning-color: #{ $theme-warning-color };
+  --warning-text-color: #{ $theme-warning-color };
   --inactive-color: #{ $theme-inactive-color };
   --select-arrow: url(#{ generate-arrow($theme-inactive-color) });
   --select-arrow-focus: url(#{ generate-arrow($theme-primary-active) });
@@ -37,6 +39,8 @@
   --danger-color-hover:  #{ lighten($theme-danger-hover, 15%) };
   --danger-color-active: #{ lighten($theme-danger-active, 15%) };
   --danger-text-color: #{ darken($theme-danger-text-color, 75% )};
+  --warning-color: #{ lighten($theme-warning-color, 20%) };
+  --warning-text-color: #{ lighten($theme-warning-color, 20%) };
   --inactive-color: #{ $theme-inactive-color };
   --select-arrow: url(#{ generate-arrow($theme-inactive-color) });
   --select-arrow-focus: url(#{ generate-arrow( #{ lighten($theme-primary-active, 25%) } ) });
