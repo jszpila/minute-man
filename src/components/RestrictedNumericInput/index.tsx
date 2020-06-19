@@ -11,7 +11,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import { RestrictedNumericInputConfig } from '../features/Clickulator/data/InputConfig';
 
-interface IKeyValStore {
+interface IPropject {
   [key: string]: string | boolean,
 }
 
@@ -37,10 +37,10 @@ export default function RestrictedNumericInput(props: IProps) {
     }
   }
 
-  const optionalAttrs: IKeyValStore = {};
+  const optionalAttrs: IPropject = {};
 
   if (props.labelledBy) {
-    optionalAttrs['aria-labelledBy'] = props.labelledBy;
+    optionalAttrs['aria-labelledby'] = props.labelledBy;
   }
 
   return (
