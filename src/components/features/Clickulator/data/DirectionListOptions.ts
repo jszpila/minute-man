@@ -8,22 +8,22 @@ import { Direction } from "../../../../enum/Direction";
 
 export const HorizontalDirectionOptions: Array<IListOption> = [
   {
-    label: 'Left',
+    labelKey: 'clickulator.directions.left',
     value: Direction.Left
   },
   {
-    label: 'Right', 
+    labelKey: 'clickulator.directions.right', 
     value: Direction.Right
   },
 ]
 
 export const VerticalDirectionOptions: Array<IListOption> = [
   {
-    label: 'Up',
+    labelKey: 'clickulator.directions.up',
     value: Direction.Up
   },
   {
-    label: 'Down',
+    labelKey: 'clickulator.directions.down',
     value: Direction.Down
   },
 ]

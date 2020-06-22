@@ -5,8 +5,13 @@
 
 import ClickulatorDefaultValues from "./data/Defaults";
 import InvertedDirection from "./data/InvertedDirection";
+import SettingsStore from "../Settings/SettingsStore";
+import Units from "../../../enum/Units";
 
 const defaults = ClickulatorDefaultValues; // importing "as" throws error
+const CM_IN_INCH = 0.3937008;
+const METERS_IN_YARD = 1.093613;
+
 interface ICalculatorData {
   horizontalOffsetDistance: number | undefined,
   horizontalOffsetDirection: string,
@@ -21,14 +26,23 @@ interface ICorrectionData {
   direction: string,
 }
 
+export interface ICorrectionResult {
+  clicks: number,
+  direction: string,
+}
+
+export interface ICalculatorResult {
+  horizontal: ICorrectionResult | undefined,
+  vertical: ICorrectionResult | undefined,
+}
+
 export default class Calculator {
   private static instance: Calculator;
 
   private adjustmentIncrement: number = defaults.adjustmentIncrement;
   private zeroAtDistance: number = defaults.zeroAtDistance;
-  private correctionsList: Array<string> = [];
-
-  private constructor() {}
+  private horizontalCorrection: ICorrectionResult | undefined;
+  private verticalCorrection: ICorrectionResult | undefined;
 
   static getInstance(): Calculator {
     if (!Calculator.instance) {
@@ -38,45 +52,54 @@ export default class Calculator {
     return Calculator.instance;
   }
 
-  public get corrections(): Array<string> {
-    return this.correctionsList;
+  public get corrections(): ICalculatorResult {
+    return {
+      horizontal: this.horizontalCorrection,
+      vertical: this.verticalCorrection,
+    }
   }
 
   // NOTE: adapted from https://www.nssf.org/shooting/minute-angle-moa
-  private calculateCorrection(data: ICorrectionData): string {
-    const adjustmentDirection = InvertedDirection.get(data.direction);
-    const moaAtDistance = this.zeroAtDistance / 100;
-    const moaAdjustment = data.distance / moaAtDistance;
+  private calculateCorrection(data: ICorrectionData): ICorrectionResult | undefined {
+    const isImperial = SettingsStore.getInstance().app.units === Units.Imperial;
+    const direction = InvertedDirection.get(data.direction) || '';
+    const adjustmentNumerator: number = isImperial ? data.distance : data.distance * CM_IN_INCH;
+    const moaNumerator: number = isImperial ? this.zeroAtDistance : this.zeroAtDistance * METERS_IN_YARD;
+    const moaDenominator: number = isImperial ? 100 : 100 * METERS_IN_YARD;
+    const moaAtDistance =  moaNumerator / moaDenominator; // NOTE: 1moa = 1 inch @ 100 yards
+    const moaAdjustment = adjustmentNumerator / moaAtDistance;
     const numClicks = Math.floor(moaAdjustment / this.adjustmentIncrement); // NOTE: No "half-clicks", force a whole number
 
-    let correction = '';
+    console.log(adjustmentNumerator, moaNumerator, moaDenominator);
+
+    let correction = undefined;
 
     if (numClicks > 0) {
-      correction = `${numClicks} clicks ${adjustmentDirection}`;
-    } else {
-      correction = `${data.distance}" is within 1moa @ ${this.zeroAtDistance} yards`;
+      correction = {
+        clicks: numClicks,
+        direction: direction,
+      }
     }
 
     return correction;
   }
 
-  public generateCorrectionsList(data: ICalculatorData): void {
+  public calculateCorrections(data: ICalculatorData): void {
     this.zeroAtDistance = data.zeroAtDistance;
     this.adjustmentIncrement = data.adjustmentIncrement;
-    this.correctionsList = [];
 
     if (data.horizontalOffsetDistance !== undefined) {
-      this.corrections.push(this.calculateCorrection({
+      this.horizontalCorrection = this.calculateCorrection({
         distance: data.horizontalOffsetDistance,
         direction: data.horizontalOffsetDirection,
-      }));
+      });
     }
 
     if (data.verticalOffsetDistance !== undefined) {
-      this.corrections.push(this.calculateCorrection({
+      this.verticalCorrection = this.calculateCorrection({
         distance: data.verticalOffsetDistance,
         direction: data.verticalOffsetDirection,
-      }));
+      });
     }
   }
 }

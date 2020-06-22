@@ -1,5 +1,20 @@
-$layout-content-padding: 1.5rem;
+$layout-content-padding-num: 24;
+$layout-content-padding: 24px; // NOTE: using px to avoid resizing w/ user text size settings
+$layout-header-height: 8.5vh;
+$layout-button-area-height: 6.75vh;
 
-$inactive-color: #9e9e9e;
-$default-primary-color-hover: #1e88e5;
-$dark-primary-color-hover: #648dae;
+$theme-primary-color: #1976d2;
+$theme-primary-hover: lighten($theme-primary-color, 10%);
+$theme-primary-active: darken($theme-primary-color, 10%);
+$theme-primary-text-color: #fff; // Appearing on top of primary color
+$theme-danger-color: #f44336;
+$theme-warning-color: #ff9800;
+$theme-danger-hover: lighten($theme-danger-color, 10%);
+$theme-danger-active: darken($theme-danger-color, 10%);
+$theme-danger-text-color: #fff;
+$theme-inactive-color: #9e9e9e;
+$theme-bg-color: #fff;
+$theme-text-color: #111; // Body copy
+$theme-text-color-contrast: #fff;
+$theme-menu-bg-color: #434343;
+$theme-cover-bg-color: #00000050;

@@ -5,7 +5,9 @@
 
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { ICalculatorResult } from './Calculator';
 import ClickulatorDefaultValues from './data/Defaults';
+import { IValidationError } from './validation/Validator';
 
 const defaults = ClickulatorDefaultValues;
 
@@ -26,10 +28,10 @@ export interface IClickulatorContext {
   setShouldShowResultsModal: (Dispatch<SetStateAction<boolean>>),
   isValid: boolean,
   setIsValid: (Dispatch<SetStateAction<boolean>>),
-  errors: Array<string>,
-  setErrors: (Dispatch<SetStateAction<Array<string>>>),
-  corrections: Array<string>,
-  setCorrections: (Dispatch<SetStateAction<Array<string>>>),
+  errors: Array<IValidationError>,
+  setErrors: (Dispatch<SetStateAction<Array<IValidationError>>>),
+  corrections: ICalculatorResult,
+  setCorrections: (Dispatch<SetStateAction<ICalculatorResult>>),
 }
 
 export const initialContext: IClickulatorContext = {

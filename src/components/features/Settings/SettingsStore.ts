@@ -3,15 +3,13 @@
  * Utility for accessing user-specified or default value of a setting
  */
 
- import { AppDefaultValues } from "../../../data/AppDefaults";
-import { LocalStorageKeys } from "../../../enum/LocalStorageKeys";
+import AppDefaultValues  from "../../../data/AppDefaults";
+import LocalStorageKeys from "../../../enum/LocalStorageKeys";
 import ClickulatorDefaultValues from "../Clickulator/data/Defaults";
 
 const defaults = ClickulatorDefaultValues;
 class AppSettingsStore {
   private static instance: AppSettingsStore;
-
-  private constructor() {}
 
   static getInstance(): AppSettingsStore {
     if (!AppSettingsStore.instance) {
@@ -29,12 +27,37 @@ class AppSettingsStore {
   public set theme(value: string) {
     localStorage.setItem(LocalStorageKeys.Theme, value);
   }
+
+  public get locale(): string {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.Locale);
+    return localStorageValue != null ? localStorageValue : AppDefaultValues.locale;
+  }
+
+  public set locale(value: string) {
+    localStorage.setItem(LocalStorageKeys.Locale, value);
+  }
+
+  public get fontSize(): string {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.FontSize);
+    return localStorageValue != null ? localStorageValue : AppDefaultValues.fontSize;
+  }
+
+  public set fontSize(value: string) {
+    localStorage.setItem(LocalStorageKeys.FontSize, value);
+  }
+
+  public get units(): string {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.Units);
+    return localStorageValue != null ? localStorageValue : AppDefaultValues.units;
+  }
+
+  public set units(value: string) {
+    localStorage.setItem(LocalStorageKeys.Units, value);
+  }
 }
 
 class ClickulatorSettingsStore {
   private static instance: ClickulatorSettingsStore;
-
-  private constructor() {}
 
   static getInstance(): ClickulatorSettingsStore {
     if (!ClickulatorSettingsStore.instance) {
@@ -65,7 +88,6 @@ class ClickulatorSettingsStore {
 
 export default class SettingsStore {
   private static instance: SettingsStore;
-  private constructor() {}
 
   static getInstance(): SettingsStore {
     if (!SettingsStore.instance) {

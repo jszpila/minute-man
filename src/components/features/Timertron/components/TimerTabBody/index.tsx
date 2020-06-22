@@ -11,7 +11,7 @@ import { TimertronDefaults } from '../../data/Defaults';
 import TimerDisplay from '../TimerDisplay';
 import ResetButton from './ResetButton';
 import ToggleButton from './ToggleButton';
-import { LocalStorageKeys } from '../../../../../enum/LocalStorageKeys';
+import LocalStorageKeys  from '../../../../../enum/LocalStorageKeys';
 
 const localStorage = window.localStorage;
 const defaults = TimertronDefaults;

@@ -13,23 +13,24 @@
 
 import { RouteComponentProps } from '@reach/router';
 import React, { SyntheticEvent, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import INavigationItem from '../../../interfaces/NavigationItem';
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout';
 import SettingsStore from '../Settings/SettingsStore';
-import Calculator from './Calculator';
+import Calculator, { ICalculatorResult } from './Calculator';
 import FieldSet from './components/FieldSet';
 import ResultsModal from './components/Results';
 import { ClickulatorContext, IClickulatorContext } from './context';
 import ClickulatorDefaultValues from './data/Defaults';
-import Validator from './validation/Validator';
+import Validator, { IValidationError } from './validation/Validator';
 
 import './clickulator.scss';
 
 export const ClickulatorNavConfig: INavigationItem = {
   route: '/',
   icon: 'gps_fixed',
-  displayName: 'Zero Calc',
+  displayNameKey: 'clickulator.title' ,
 };
 
 const defaults = ClickulatorDefaultValues;
@@ -47,8 +48,8 @@ export default function Clickulator(props: RouteComponentProps) {
   const [zeroAtDistance, setZeroAtDistance] = useState<number>(defaults.zeroAtDistance);
   const [adjustmentIncrement, setAdjustmentIncrement] = useState<number>(defaults.adjustmentIncrement);
   const [isValid, setIsValid] = useState<boolean>(defaults.isValid);
-  const [errors, setErrors] = useState<Array<string>>(defaults.errors);
-  const [corrections, setCorrections] = useState<Array<string>>(defaults.corrections);
+  const [errors, setErrors] = useState<Array<IValidationError>>(defaults.errors);
+  const [corrections, setCorrections] = useState<ICalculatorResult>(defaults.corrections);
 
   const settings = SettingsStore.getInstance();
 
@@ -68,7 +69,7 @@ export default function Clickulator(props: RouteComponentProps) {
     setAdjustmentIncrement,
     shouldShowResultsModal,
     setShouldShowResultsModal,
-    isValid: isValid,
+    isValid,
     setIsValid,
     errors,
     setErrors,
@@ -91,22 +92,36 @@ export default function Clickulator(props: RouteComponentProps) {
       <button
         className="button button--danger button--yuge button--flex-1"
         onClick={ onResetClick }
-        type="reset">reset</button>
+        type="reset">
+          <FormattedMessage id="clickulator.resetButton" />
+        </button>
       <button
         className="button button--primary button--yuge button--flex-3"
         onClick={ onCalculateClick }
-        type="button">send it</button>
+        type="button">
+          <FormattedMessage id="clickulator.submitButton" />
+        </button>
     </div>
+
+  const content =
+    <>
+      <div id="UsageMessage" role="status" className="b-callout">
+        <i className="material-icons b-callout__icon">info</i>
+        <p className="b-callout__blurb">
+          This app is best suited for smart phones in portrait orientation
+        </p>
+      </div>
+      <FieldSet />
+    </>
 
   return (
     <ClickulatorContext.Provider value={ contextValue }>
       <ResultsModal />
-
       <form
         id="Clickulator"
         className="form">
         <FeatureWithBottomButtonLayout
-          mainAreaContent={ <FieldSet/> }
+          mainAreaContent={ content }
           buttonAreaContent={ buttons } />
       </form>
     </ClickulatorContext.Provider>
@@ -124,12 +139,12 @@ export default function Clickulator(props: RouteComponentProps) {
     if (validator.isValid) {
       const calculator = Calculator.getInstance();
       
-      calculator.generateCorrectionsList({
+      calculator.calculateCorrections({
         horizontalOffsetDistance,
         horizontalOffsetDirection,
         verticalOffsetDistance,
         verticalOffsetDirection,
-        adjustmentIncrement: adjustmentIncrement,
+        adjustmentIncrement,
         zeroAtDistance,
       });
 

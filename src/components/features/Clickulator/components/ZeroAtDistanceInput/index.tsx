@@ -23,6 +23,7 @@ export default function ZeroAtDistanceInput(props: IProps) {
   return (
     <input
       className="field__input"
+      id={ props.name }
       min={ ZeroAtDistanceConfig.min }
       max={ ZeroAtDistanceConfig.max }
       name={ props.name }

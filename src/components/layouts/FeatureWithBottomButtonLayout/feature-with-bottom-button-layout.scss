@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: auto 4rem;
+	grid-template-rows: auto $layout-button-area-height;
 	grid-gap: 0;
 	grid-template-areas: "content" "button-container";
 	width: 100%;
