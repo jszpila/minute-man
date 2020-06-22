@@ -9,16 +9,14 @@ import './modal.scss';
 
 interface IProps {
   children: React.ReactNode;
-  closeButtonText: string,
+  closeButtonText: string | React.ReactNode,
   onClose: (Dispatch<SetStateAction<boolean>>),
   shouldShow: boolean,
 }
 
 export default function Modal(props: IProps) {
-  const htmlEl: HTMLElement | null = document.querySelector<HTMLElement>('html');
-
   function toggleScrollLock(lock: boolean): void {
-    htmlEl?.classList.toggle('scroll-lock', lock);
+    document.documentElement.classList.toggle('scroll-lock', lock);
   }
 
   function onCloseModal(event: SyntheticEvent): void {
@@ -37,16 +35,16 @@ export default function Modal(props: IProps) {
         <>
           <div
             className="modal__cover"
-            onClick={onCloseModal}>
+            onClick={ onCloseModal }>
           </div>
           <div className="modal">
             <div className="modal__body">
-              { props.children}
+              { props.children }
               <div className="modal__footer">
                 <button 
                   type="button"
                   className="button button--primary"
-                  onClick={onCloseModal}>
+                  onClick={ onCloseModal }>
                     { props.closeButtonText }
                   </button>
               </div>

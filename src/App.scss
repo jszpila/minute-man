@@ -7,7 +7,11 @@
 @import "./styles/typography.scss";
 @import "./styles/forms.scss";
 @import "./styles/blocks.scss";
+@import "./styles/locale/en.scss";
+@import "./styles/locale/es.scss";
+@import "./styles/locale/pl.scss";
 @import "./styles/font-sizes.scss";
+@import "./components/features/Clickulator/clickulator.scss";
 
 html {
   overscroll-behavior-y: contain;
@@ -31,7 +35,6 @@ body,
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 main {

@@ -1,3 +1,4 @@
+$layout-content-padding-num: 24;
 $layout-content-padding: 24px; // NOTE: using px to avoid resizing w/ user text size settings
 $layout-header-height: 8.5vh;
 $layout-button-area-height: 6.75vh;
@@ -7,6 +8,7 @@ $theme-primary-hover: lighten($theme-primary-color, 10%);
 $theme-primary-active: darken($theme-primary-color, 10%);
 $theme-primary-text-color: #fff; // Appearing on top of primary color
 $theme-danger-color: #f44336;
+$theme-warning-color: #ff9800;
 $theme-danger-hover: lighten($theme-danger-color, 10%);
 $theme-danger-active: darken($theme-danger-color, 10%);
 $theme-danger-text-color: #fff;

@@ -11,11 +11,16 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import { RestrictedNumericInputConfig } from '../features/Clickulator/data/InputConfig';
 
+interface IPropject {
+  [key: string]: string | boolean,
+}
+
 interface IProps {
   name: string,
   updaterFn: (Dispatch<SetStateAction<number | undefined>>),
   value: number | undefined,
   adtlClassNames?: string,
+  labelledBy?: string | undefined,
   maxValue?: number,
   maxLength?: number,
   placeholder?: string | undefined,
@@ -32,8 +37,15 @@ export default function RestrictedNumericInput(props: IProps) {
     }
   }
 
+  const optionalAttrs: IPropject = {};
+
+  if (props.labelledBy) {
+    optionalAttrs['aria-labelledby'] = props.labelledBy;
+  }
+
   return (
     <input
+      { ...optionalAttrs }
       autoComplete="none"
       className={`field__input ${ props.adtlClassNames }`}
       defaultValue={ props.value }
@@ -49,6 +61,7 @@ export default function RestrictedNumericInput(props: IProps) {
 
 RestrictedNumericInput.defaultProps = {
   adtlClassNames: '',
+  labelledBy: undefined,
   maxLength: RestrictedNumericInputConfig.maxLength,
   maxValue: RestrictedNumericInputConfig.maxValue,
   placeholder: RestrictedNumericInputConfig.placeholder,

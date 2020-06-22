@@ -3,18 +3,21 @@
 }
 
 .form__fieldset {
+  width: 100%;
   border: 0;
   margin: 0 0 1rem 0;
   padding: 0;
 }
 
 .form__fieldset__legend {
+  width: 100%;
   font-weight: 500;
   display: block;
   width: 100%;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: solid 1px var(--divider-color);
+  text-transform: capitalize;
 }
 
 .button {
@@ -91,6 +94,7 @@
   font-weight: 500;
   padding-right: 1rem;
   vertical-align: top;
+  text-transform: capitalize;
 }
 
 // .app-info__value {}

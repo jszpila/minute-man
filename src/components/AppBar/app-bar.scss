@@ -42,6 +42,12 @@
 	justify-content: flex-end;
 }
 
+.app-bar__button {
+	appearance: none;
+	background-color: transparent;
+	border: none;
+}
+
 .app-bar__button > .material-icons {
 	color: var(--primary-text-color);
 	background-color: transparent;

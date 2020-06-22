@@ -3,8 +3,8 @@
  * Utility for accessing user-specified or default value of a setting
  */
 
- import { AppDefaultValues } from "../../../data/AppDefaults";
-import { LocalStorageKeys } from "../../../enum/LocalStorageKeys";
+import AppDefaultValues  from "../../../data/AppDefaults";
+import LocalStorageKeys from "../../../enum/LocalStorageKeys";
 import ClickulatorDefaultValues from "../Clickulator/data/Defaults";
 
 const defaults = ClickulatorDefaultValues;
@@ -28,6 +28,15 @@ class AppSettingsStore {
     localStorage.setItem(LocalStorageKeys.Theme, value);
   }
 
+  public get locale(): string {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.Locale);
+    return localStorageValue != null ? localStorageValue : AppDefaultValues.locale;
+  }
+
+  public set locale(value: string) {
+    localStorage.setItem(LocalStorageKeys.Locale, value);
+  }
+
   public get fontSize(): string {
     const localStorageValue = localStorage.getItem(LocalStorageKeys.FontSize);
     return localStorageValue != null ? localStorageValue : AppDefaultValues.fontSize;
@@ -35,6 +44,15 @@ class AppSettingsStore {
 
   public set fontSize(value: string) {
     localStorage.setItem(LocalStorageKeys.FontSize, value);
+  }
+
+  public get units(): string {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.Units);
+    return localStorageValue != null ? localStorageValue : AppDefaultValues.units;
+  }
+
+  public set units(value: string) {
+    localStorage.setItem(LocalStorageKeys.Units, value);
   }
 }
 

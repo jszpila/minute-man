@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 
 import { AppContext } from '../../context/AppContext';
 import INavigationItem from '../../interfaces/NavigationItem';
-import BuildConditionalClasses from '../../util/BuildConditionalClasses';
+import buildConditionalClasses from '../../util/BuildConditionalClasses';
+import { getLocalizedStringByKey } from '../../util/L10n';
 
 import './menu.scss';
 
@@ -17,7 +18,7 @@ enum MenuItemType {
 
 interface IMenuItemProps {
   iconName: string,
-  text: string,
+  localizedTitleKey: string,
   onClick?: (event: SyntheticEvent) => void,
   route?: string,
   type?: TMenuItem,
@@ -30,7 +31,7 @@ function NavLink(props: any) {
     <Link {...props}
       getProps={({ isCurrent }) => {
         return {
-          className: `app-menu__list__item__link ${ BuildConditionalClasses(isCurrent, 'app-menu__list__item__link--active') }`
+          className: `app-menu__list__item__link ${ buildConditionalClasses(isCurrent, 'app-menu__list__item__link--active') }`
         };
       }}
     />
@@ -55,7 +56,7 @@ function MenuButton(props: IMenuItemProps) {
       onClick={ props.onClick }
       type="button">
       <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
-      <span className="app-menu__list__item__label">{ props.text }</span>
+      <span className="app-menu__list__item__label">{ getLocalizedStringByKey(props.localizedTitleKey) }</span>
     </button>
   )
 }
@@ -70,7 +71,7 @@ function MenuLink(props: IMenuItemProps) {
       { ...adtlProps }
       to={ props.route }>
         <i className="material-icons app-menu__list__item__icon">{ props.iconName }</i>
-        <span className="app-menu__list__item__label">{ props.text }</span>
+        <span className="app-menu__list__item__label">{ getLocalizedStringByKey(props.localizedTitleKey) }</span>
       </NavLink>
   )
 }
@@ -98,11 +99,11 @@ export default function Menu(props: IMenuProps) {
   return ReactDOM.createPortal(
     <>
       <div
-        className={ `app-menu__cover ${ BuildConditionalClasses(context.shouldShowMenu, 'app-menu__cover--active') }` }
+        className={ `app-menu__cover ${ buildConditionalClasses(context.shouldShowMenu, 'app-menu__cover--active') }` }
         onClick={ onMenuCoverClick }>
       </div>
       <nav
-        className={ `app-menu ${ BuildConditionalClasses(!context.shouldShowMenu, 'app-menu--closed') }` }>
+        className={ `app-menu ${ buildConditionalClasses(!context.shouldShowMenu, 'app-menu--closed') }` }>
         <ul className="app-menu__list">
           {
             props.navItems.map((item, index) => {
@@ -111,7 +112,7 @@ export default function Menu(props: IMenuProps) {
                 iconName={ item.icon }
                 onClick={ closeMenu }
                 route={ item.route }
-                text={ item.displayName } />
+                localizedTitleKey={ item.displayNameKey } />
             })
           }
         </ul>
@@ -120,7 +121,7 @@ export default function Menu(props: IMenuProps) {
           <MenuItem
               iconName="info"
               onClick={ onInfoClick }
-              text="Info"
+              localizedTitleKey="info.title"
               type={ MenuItemType.Button } />
         </ul>
         <div className="app-menu__version txt--smaller txt--muted">
