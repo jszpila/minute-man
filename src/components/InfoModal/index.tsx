@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { AppContext } from '../../context/AppContext';
 import GitInfo from '../../static/GitInfo';
+import { getLocalizedStringByKey } from '../../util/L10n';
 import { isAppInstalled, isiOs } from '../AppBar/a2hsHelpers';
 import Modal from '../Modal';
 import Tabs from '../Tabs';
-import { FormattedMessage } from 'react-intl';
-import { getLocalizedStringByKey } from '../../util/L10n';
 
 export default function InfoModal() {
   const env = process.env;
@@ -33,6 +33,9 @@ const AboutPanel = <>
         </ul>
       </>
     }
+
+    <p>Special thanks to Mark and Kevin.</p>
+    <p>Like this app? You can <a href="https://www.buymeacoffee.com/jszpila" rel="noopener noreferrer" target="_blank">buy me a coffee</a>.</p>
   </>;
 
   const DiagnosticsPanel = <table className="app-info">

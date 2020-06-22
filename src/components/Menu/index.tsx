@@ -62,7 +62,7 @@ function MenuButton(props: IMenuItemProps) {
 }
 
 function MenuLink(props: IMenuItemProps) {
-  const adtlProps = { 
+  const adtlProps = {
     onClick: props.onClick || undefined,
   };
 
@@ -123,6 +123,16 @@ export default function Menu(props: IMenuProps) {
               onClick={ onInfoClick }
               localizedTitleKey="info.title"
               type={ MenuItemType.Button } />
+          <li>
+            <a
+              className="app-menu__list__item__link"
+              href="https://www.buymeacoffee.com/jszpila"
+              rel="noopener noreferrer"
+              target="_blank">
+              <i className="material-icons app-menu__list__item__icon">attach_money</i>
+              <span className="app-menu__list__item__label">Donate</span>
+            </a>
+          </li>
         </ul>
         <div className="app-menu__version txt--smaller txt--muted">
           v{ env.REACT_APP_VERSION }

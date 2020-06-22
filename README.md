@@ -2,6 +2,8 @@
 
 A progressive web app for your phone that will be ready at a moment's notice to help you with common range stuff.
 
+Like this app? You can [buy me a coffee](https://www.buymeacoffee.com/jszpila)!
+
 ## Features
 
 ### Clickulator
