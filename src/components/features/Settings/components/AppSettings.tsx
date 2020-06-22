@@ -20,6 +20,9 @@ import { applyLocaleLang, getLocalizedStringByKey } from '../../../../util/L10n'
 import Field from '../../../Field/Field';
 import SettingsStore from '../SettingsStore';
 
+// TODO: flip back when necessary I don't feeel like making feature flags right now
+const shouldEnableLocaleSelect = false;
+
 export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
 
@@ -92,20 +95,22 @@ export default function AppSettings(props: RouteComponentProps) {
           </label>
         </>
       </Field>
-      <Field
-        inputName="language"
-        labelText={ <FormattedMessage id="settings.app.language" />}>
-        <select
-          className="field__select"
-          defaultValue={ settings.app.locale }
-          id="locale"
-          name="locale"
-          onChange={ onLocaleChange }>
-            <option value={ Locales.EN }>English</option>
-            <option value={ Locales.ES }>Española</option>
-            <option value={ Locales.PL }>Polski</option>
-        </select>
-      </Field>
+      { shouldEnableLocaleSelect &&
+        <Field
+          inputName="language"
+          labelText={ <FormattedMessage id="settings.app.language" />}>
+          <select
+            className="field__select"
+            defaultValue={ settings.app.locale }
+            id="locale"
+            name="locale"
+            onChange={ onLocaleChange }>
+              <option value={ Locales.EN }>English</option>
+              <option value={ Locales.ES }>Española</option>
+              <option value={ Locales.PL }>Polski</option>
+          </select>
+        </Field>
+      }
       <Field
         inputName="fontSize"
         labelText={ <FormattedMessage id="settings.app.fontSize" /> }>
