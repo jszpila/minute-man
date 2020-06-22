@@ -3,31 +3,34 @@
 }
 
 .form__fieldset {
+  width: 100%;
   border: 0;
   margin: 0 0 1rem 0;
   padding: 0;
 }
 
 .form__fieldset__legend {
-  font-weight: bold;
+  width: 100%;
+  font-weight: 500;
   display: block;
   width: 100%;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: solid 1px var(--divider-color);
+  text-transform: capitalize;
 }
 
 .button {
   text-transform: uppercase;
-  font-weight: bold;
-  padding: 1rem;
+  font-weight: 600;
   font-size: 1rem;
   margin: 0;
   border: 0;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   user-select: none;
   outline: none;
+  min-height: 2.5rem;
 }
 
 .button--primary {
@@ -88,9 +91,10 @@
 }
 
 .app-info__key {
-  font-weight: bold;
-  width: 30%;
+  font-weight: 500;
+  padding-right: 1rem;
   vertical-align: top;
+  text-transform: capitalize;
 }
 
 // .app-info__value {}

@@ -11,11 +11,16 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import { RestrictedNumericInputConfig } from '../features/Clickulator/data/InputConfig';
 
+interface IPropject {
+  [key: string]: string | boolean,
+}
+
 interface IProps {
   name: string,
   updaterFn: (Dispatch<SetStateAction<number | undefined>>),
   value: number | undefined,
   adtlClassNames?: string,
+  labelledBy?: string | undefined,
   maxValue?: number,
   maxLength?: number,
   placeholder?: string | undefined,
@@ -32,22 +37,31 @@ export default function RestrictedNumericInput(props: IProps) {
     }
   }
 
+  const optionalAttrs: IPropject = {};
+
+  if (props.labelledBy) {
+    optionalAttrs['aria-labelledby'] = props.labelledBy;
+  }
+
   return (
     <input
+      { ...optionalAttrs }
       autoComplete="none"
-      className={`field__input ${props.adtlClassNames}`}
-      defaultValue={props.value}
+      className={`field__input ${ props.adtlClassNames }`}
+      defaultValue={ props.value }
+      id={ props.name }
       inputMode="numeric"
-      maxLength={props.maxLength}
-      name={props.name}
-      onChange={onChange}
+      maxLength={ props.maxLength }
+      name={ props.name }
+      onChange={ onChange }
       pattern="^\d+(\.\d{1,2})?$"
-      placeholder={props.placeholder}/>
+      placeholder={ props.placeholder }/>
   );
 }
 
 RestrictedNumericInput.defaultProps = {
   adtlClassNames: '',
+  labelledBy: undefined,
   maxLength: RestrictedNumericInputConfig.maxLength,
   maxValue: RestrictedNumericInputConfig.maxValue,
   placeholder: RestrictedNumericInputConfig.placeholder,

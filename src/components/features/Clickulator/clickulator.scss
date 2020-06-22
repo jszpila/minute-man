@@ -1,4 +1,20 @@
 /* 
  * Clickulator-specific CSS
  */
- 
+
+#UsageMessage {
+  display: none;
+  color: var(--warning-text-color);
+  border: solid 1px var(--warning-color);
+  padding: 1rem;
+
+  & > .b-callout__icon {
+    top: 1rem;
+  }
+}
+
+@media (max-height: 567px) {
+  #UsageMessage {
+    display: block;
+  }
+}

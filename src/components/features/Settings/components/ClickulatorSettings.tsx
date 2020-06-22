@@ -8,20 +8,26 @@
 import { RouteComponentProps } from '@reach/router';
 import React, { useContext } from 'react';
 
-import RandomizeInputName from '../../../../util/RandomizeInputName';
+import randomizeInputName from '../../../../util/RandomizeInputName';
 import Field from '../../../Field/Field';
 import AdjustmentSelect from '../../Clickulator/components/AdjustmentSelect';
 import ZeroAtDistanceInput from '../../Clickulator/components/ZeroAtDistanceInput';
 import { ClickulatorContext } from '../../Clickulator/context';
 import SettingsStore from '../SettingsStore';
+import { FormattedMessage } from 'react-intl';
+import { getLocalizedDistanceUnit } from '../../../../util/L10n';
 
 export default function ClickulatorSettings(props: RouteComponentProps) {
   const context = useContext(ClickulatorContext);
   const settings = SettingsStore.getInstance();
-  const zeroLabel = <>Zero Distance <i className="field__label__hint txt--smaller txt--muted">(yards)</i></>;
+
+  const zeroLabel = <>
+    <FormattedMessage id="clickulator.zeroAtDistanceLabel" /> 
+    <i className="field__label__hint txt--smaller txt--muted">({ getLocalizedDistanceUnit() })</i></>;
+  
   const inputNames = {
-    zeroDist: RandomizeInputName('zeroAtDistance'),
-    opticInc: RandomizeInputName('adjustmentIncrement'),
+    zeroDist: randomizeInputName('zeroAtDistance'),
+    opticInc: randomizeInputName('adjustmentIncrement'),
   }
 
   function onZeroAtDistanceChange(value: number): void {
@@ -36,7 +42,9 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
 
   return (
     <fieldset className="form__fieldset">
-      <legend className="form__fieldset__legend">Zero Calc Settings</legend>
+      <legend className="form__fieldset__legend">
+        <FormattedMessage id="settings.clickulator.title" />
+      </legend>
       <Field
         inputName={ inputNames.zeroDist }
         labelText={ zeroLabel }>
@@ -47,7 +55,7 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
       </Field>
       <Field
         inputName={ inputNames.opticInc }
-        labelText="Adjustment Increment">
+        labelText={ <FormattedMessage id="clickulator.adjustmentIncrementLabel" /> }>
           <AdjustmentSelect
             name={ inputNames.opticInc }
             updaterFn={ onAdjustmentIncrementChange }

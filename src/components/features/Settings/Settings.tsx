@@ -12,11 +12,12 @@ import INavigationItem from '../../../interfaces/NavigationItem';
 import DefaultLayout from '../../layouts/Default';
 import AppSettings from './components/AppSettings';
 import ClickulatorSettings from './components/ClickulatorSettings';
+import { FormattedMessage } from 'react-intl';
 
 export const SettingsNavConfig: INavigationItem = {
   route: '/settings',
   icon: 'settings',
-  displayName: 'Settings',
+  displayNameKey: 'settings.title',
 };
 
 export default function Settings(props: RouteComponentProps) {
@@ -27,7 +28,9 @@ export default function Settings(props: RouteComponentProps) {
         className="form">
         <div className="b-callout">
           <i className="material-icons b-callout__icon">info</i>
-          <p className="b-callout__blurb">Settings are saved and applied automatically.</p>
+          <p className="b-callout__blurb">
+            <FormattedMessage id="settings.info" />
+          </p>
         </div>
         <AppSettings />
         <ClickulatorSettings />

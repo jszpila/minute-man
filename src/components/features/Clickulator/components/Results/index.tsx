@@ -9,6 +9,7 @@ import { ClickulatorContext } from '../../context';
 import Corrections from './Corrections';
 import Errors from './Errors';
 import Modal from '../../../../Modal';
+import { FormattedMessage } from 'react-intl';
 
 import './results.scss';
 
@@ -18,7 +19,7 @@ export default function ResultsModal() {
 
   return (
     <Modal
-      closeButtonText={'OK Boomer'}
+      closeButtonText={ <FormattedMessage id="clickulator.modal.button" />}
       onClose={ context.setShouldShowResultsModal }
       shouldShow={ shouldShow }>
       { context.isValid ? 

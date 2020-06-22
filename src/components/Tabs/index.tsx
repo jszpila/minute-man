@@ -4,7 +4,7 @@
  */
 
 import React, { SyntheticEvent, useState } from 'react';
-import BuildConditionalClasses from '../../util/BuildConditionalClasses';
+import buildConditionalClasses from '../../util/BuildConditionalClasses';
 
 import './tabs.scss';
 
@@ -31,7 +31,7 @@ export default function Tabs(props: IProps) {
         {
           props.tabNames.map((name: string, index: number) => {
             return <button
-              className={ `tabs__nav__button ${ BuildConditionalClasses(isActiveTab(index), 'tabs__nav__button--active') }` }
+              className={ `tabs__nav__button ${ buildConditionalClasses(isActiveTab(index), 'tabs__nav__button--active') }` }
               key={index}
               onClick={(event: SyntheticEvent) => { event.stopPropagation(); onTabClick(index) }}
               type="button">
@@ -44,7 +44,7 @@ export default function Tabs(props: IProps) {
         {
           props.tabContents.map((node: React.ReactNode, index: number) => {
             return <section
-              className={ `tabs__content-pane ${ BuildConditionalClasses(isActiveTab(index), 'tabs__content-pane--active')}` }
+              className={ `tabs__content-pane ${ buildConditionalClasses(isActiveTab(index), 'tabs__content-pane--active')}` }
               key={index}>
                 {node}
               </section>

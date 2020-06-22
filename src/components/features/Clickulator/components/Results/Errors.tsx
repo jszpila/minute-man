@@ -4,7 +4,10 @@
  */
 
 import React, { useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import { ClickulatorContext } from '../../context';
+import { IValidationError } from '../../validation/Validator';
 
 export default function Errors() {
   const context = useContext(ClickulatorContext);
@@ -13,14 +16,17 @@ export default function Errors() {
     <>
       <h3 className="modal__heading">
         <i className="material-icons modal__heading__icon">error</i>
-        Does Not Compute</h3>
+        <FormattedMessage id="clickulator.modal.title.error" />
+      </h3>
       <ul className="feedback">
         { 
-          context.errors.map((error: string, index: number) => {
+          context.errors.map((error: IValidationError, index: number) => {
             return <li 
               className="feedback__item" 
-              key={index}>
-                {error}
+              key={ index }>
+                <FormattedMessage
+                  id={ error.localeStringKey }
+                  values={ error.values } />
               </li>
           })
         }
