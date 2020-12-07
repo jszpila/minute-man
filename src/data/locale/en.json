@@ -33,7 +33,7 @@
   "settings.app.units": "Units",
   "settings.app.units.imperial": "'Merican",
   "settings.app.units.metric": "Metric",
-  "settings.clickulator.title": "Zero Calc Default Settings",
+  "settings.clickulator.title": "Zero Tool Default Settings",
   "info.title": "Info",
   "info.closeButton": "Got it",
   "info.about.title": "About",
@@ -60,5 +60,6 @@
   "fontSizes.small": "Diminutive",
   "fontSizes.medium": "Normie",
   "fontSizes.large": "Embiggened",
-  "fontSizes.extraLarge": "THICCC"
+  "fontSizes.extraLarge": "THICCC",
+  "globalwarning": "MinuteMan is best suited for smart phones in portrait orientation"
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import GlobalWarning from '../../GlobalWarning'
 
 import './app-layout.scss';
 
@@ -14,6 +15,7 @@ function AppLayout(props: IProps) {
         {props.header}
       </header>
       <main className="app-layout__main">
+        <GlobalWarning />
         {props.body}
       </main>
     </div>
