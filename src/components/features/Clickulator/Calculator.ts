@@ -7,10 +7,9 @@ import ClickulatorDefaultValues from "./data/Defaults";
 import InvertedDirection from "./data/InvertedDirection";
 import SettingsStore from "../Settings/SettingsStore";
 import Units from "../../../enum/Units";
+import UnitConverter from "../../../util/UnitConversions";
 
 const defaults = ClickulatorDefaultValues; // importing "as" throws error
-const CM_IN_INCH = 0.3937008;
-const METERS_IN_YARD = 1.093613;
 
 interface ICalculatorData {
   horizontalOffsetDistance: number | undefined,
@@ -61,16 +60,15 @@ export default class Calculator {
 
   // NOTE: adapted from https://www.nssf.org/shooting/minute-angle-moa
   private calculateCorrection(data: ICorrectionData): ICorrectionResult | undefined {
+    const converter = UnitConverter.getInstance();
     const isImperial = SettingsStore.getInstance().app.units === Units.Imperial;
     const direction = InvertedDirection.get(data.direction) || '';
-    const adjustmentNumerator: number = isImperial ? data.distance : data.distance * CM_IN_INCH;
-    const moaNumerator: number = isImperial ? this.zeroAtDistance : this.zeroAtDistance * METERS_IN_YARD;
-    const moaDenominator: number = isImperial ? 100 : 100 * METERS_IN_YARD;
+    const adjustmentNumerator: number = isImperial ? data.distance : converter.cmToInches(data.distance);
+    const moaNumerator: number = isImperial ? this.zeroAtDistance : converter.yardsToMeters(this.zeroAtDistance);
+    const moaDenominator: number = isImperial ? 100 : converter.yardsToMeters(100);
     const moaAtDistance =  moaNumerator / moaDenominator; // NOTE: 1moa = 1 inch @ 100 yards
     const moaAdjustment = adjustmentNumerator / moaAtDistance;
     const numClicks = Math.floor(moaAdjustment / this.adjustmentIncrement); // NOTE: No "half-clicks", force a whole number
-
-    console.log(adjustmentNumerator, moaNumerator, moaDenominator);
 
     let correction = undefined;
 

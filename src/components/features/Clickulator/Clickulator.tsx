@@ -91,13 +91,13 @@ export default function Clickulator(props: RouteComponentProps) {
         className="button button--danger button--yuge button--flex-1"
         onClick={ onResetClick }
         type="reset">
-          <FormattedMessage id="clickulator.resetButton" />
+          <FormattedMessage id="buttons.reset" />
         </button>
       <button
         className="button button--primary button--yuge button--flex-3"
         onClick={ onCalculateClick }
         type="button">
-          <FormattedMessage id="clickulator.submitButton" />
+          <FormattedMessage id="buttons.submit" />
         </button>
     </div>
 
@@ -108,7 +108,12 @@ export default function Clickulator(props: RouteComponentProps) {
         id="Clickulator"
         className="form">
         <FeatureWithBottomButtonLayout
-          mainAreaContent={ <FieldSet /> }
+          mainAreaContent={
+            <>
+              <h2 className="txt__heading-2"><FormattedMessage id="clickulator.title" /></h2>
+              <FieldSet />
+            </>
+          }
           buttonAreaContent={ buttons } />
       </form>
     </ClickulatorContext.Provider>
