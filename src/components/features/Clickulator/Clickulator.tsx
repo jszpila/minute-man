@@ -25,11 +25,9 @@ import { ClickulatorContext, IClickulatorContext } from './context';
 import ClickulatorDefaultValues from './data/Defaults';
 import Validator, { IValidationError } from './validation/Validator';
 
-import './clickulator.scss';
-
 export const ClickulatorNavConfig: INavigationItem = {
   route: '/',
-  icon: 'gps_fixed',
+  icon: 'scatter_plot',
   displayNameKey: 'clickulator.title' ,
 };
 
@@ -93,26 +91,15 @@ export default function Clickulator(props: RouteComponentProps) {
         className="button button--danger button--yuge button--flex-1"
         onClick={ onResetClick }
         type="reset">
-          <FormattedMessage id="clickulator.resetButton" />
+          <FormattedMessage id="buttons.reset" />
         </button>
       <button
         className="button button--primary button--yuge button--flex-3"
         onClick={ onCalculateClick }
         type="button">
-          <FormattedMessage id="clickulator.submitButton" />
+          <FormattedMessage id="buttons.submit" />
         </button>
     </div>
-
-  const content =
-    <>
-      <div id="UsageMessage" role="status" className="b-callout">
-        <i className="material-icons b-callout__icon">info</i>
-        <p className="b-callout__blurb">
-          This app is best suited for smart phones in portrait orientation
-        </p>
-      </div>
-      <FieldSet />
-    </>
 
   return (
     <ClickulatorContext.Provider value={ contextValue }>
@@ -121,7 +108,12 @@ export default function Clickulator(props: RouteComponentProps) {
         id="Clickulator"
         className="form">
         <FeatureWithBottomButtonLayout
-          mainAreaContent={ content }
+          mainAreaContent={
+            <>
+              <h2 className="txt__heading-2"><FormattedMessage id="clickulator.title" /></h2>
+              <FieldSet />
+            </>
+          }
           buttonAreaContent={ buttons } />
       </form>
     </ClickulatorContext.Provider>

@@ -17,6 +17,7 @@ import { IntlProvider } from "react-intl";
 
 import AppBar from './components/AppBar';
 import Clickulator, { ClickulatorNavConfig } from './components/features/Clickulator/Clickulator';
+import MilDotCalc, { MilDotCalcNavConfig } from './components/features/MilDotCalc/MilDotCalc';
 import Settings, { SettingsNavConfig } from './components/features/Settings/Settings';
 import SettingsStore from './components/features/Settings/SettingsStore';
 // import Timertron, { TimertronNavConfig } from './components/features/Timertron/Timertron';
@@ -25,8 +26,8 @@ import AppLayout from './components/layouts/AppLayout';
 import Menu from './components/Menu';
 import { AppContext, IAppContext } from './context/AppContext';
 import AppDefaultValues from './data/AppDefaults';
-import { applyLocaleLang, localizations } from './util/L10n';
 import LocaleStyles from './data/locale/LocaleStyles';
+import { applyLocaleLang, localizations } from './util/L10n';
 
 import './App.scss';
 
@@ -60,6 +61,7 @@ export default function App() {
 
   const navItems = [
     ClickulatorNavConfig,
+    MilDotCalcNavConfig,
     // TimertronNavConfig,
     SettingsNavConfig,
   ];
@@ -82,11 +84,12 @@ export default function App() {
             <AppLayout
               header={ <AppBar/> }
               body={
-                <Router id="router">
-                  <Clickulator path={ ClickulatorNavConfig.route } />
-                  {/* <Timertron path={ TimertronNavConfig.route } /> */}
-                  <Settings path={ SettingsNavConfig.route } />
-                </Router>
+                  <Router id="router">
+                    <Clickulator path={ ClickulatorNavConfig.route } />
+                    {/* <Timertron path={ TimertronNavConfig.route } /> */}
+                    <Settings path={ SettingsNavConfig.route } />
+                    <MilDotCalc path={ MilDotCalcNavConfig.route } />
+                  </Router>
               } />
             <InfoModal />
             <Menu navItems={ navItems } />

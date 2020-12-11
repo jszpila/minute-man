@@ -3,7 +3,6 @@
 @import "./styles/vars.scss";
 @import "./styles/themes.scss";
 @import "./styles/util.scss";
-@import "./styles/fonts.scss";
 @import "./styles/typography.scss";
 @import "./styles/forms.scss";
 @import "./styles/blocks.scss";
@@ -11,7 +10,6 @@
 @import "./styles/locale/es.scss";
 @import "./styles/locale/pl.scss";
 @import "./styles/font-sizes.scss";
-@import "./components/features/Clickulator/clickulator.scss";
 
 html {
   overscroll-behavior-y: contain;
