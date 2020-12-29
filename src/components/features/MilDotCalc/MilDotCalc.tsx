@@ -1,26 +1,17 @@
-/**
- *  ___  ____ _______      _   _____       _      
- *  |  \/  (_) |  _  \    | | /  __ \     | |     
- *  | .  . |_| | | | |___ | |_| /  \/ __ _| | ___ 
- *  | |\/| | | | | | / _ \| __| |    / _` | |/ __|
- *  | |  | | | | |/ / (_) | |_| \__/\ (_| | | (__ 
- *  \_|  |_/_|_|___/ \___/ \__|\____/\__,_|_|\___|
- * 
- * Calculate things using Mil Dots
- * 
- */
+// MilDot Calc
 
-import Calculator, { ICalculatorResult } from './Calculator';
-import FieldSet from './components/FieldSet';
-import ResultsModal from './components/Results';
-import MilDotCalcDefaultSettings from './data/Defaults';
-import MilDotCalcValidator, { IValidationError } from './validation/Validator';
 import { RouteComponentProps } from '@reach/router';
 import React, { SyntheticEvent, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import INavigationItem from '../../../interfaces/NavigationItem';
 import FeatureWithBottomButtonLayout from '../../layouts/FeatureWithBottomButtonLayout';
+import Calculator, { ICalculatorResult } from './Calculator';
+import FieldSet from './components/FieldSet';
+import ResultsModal from './components/Results';
 import { IMilDotCalcContext, MilDotCalcContenxt } from './context';
+import MilDotCalcDefaultSettings from './data/Defaults';
+import MilDotCalcValidator, { IValidationError } from './validation/Validator';
 
 export const MilDotCalcNavConfig: INavigationItem = {
   route: '/mildotcalc',
@@ -56,7 +47,7 @@ export default function MilDotCalc(props: RouteComponentProps) {
     setResult
   }
 
-  function onResetClick(): void {
+  function onReset(): void {  
     setMilSize(defaults.milSize);
     setPhysicalSize(defaults.physicalSize);
     setDistance(defaults.distance);
@@ -64,7 +55,9 @@ export default function MilDotCalc(props: RouteComponentProps) {
     setResult(defaults.result);
   }
 
-  function onSubmitClick(event: SyntheticEvent): void {
+  function onSubmit(event: SyntheticEvent): void {
+    event.preventDefault();
+
     const validator = MilDotCalcValidator.getInstance();
     const calculator = Calculator.getInstance();
 
@@ -75,7 +68,6 @@ export default function MilDotCalc(props: RouteComponentProps) {
       setResult(calculator.result);
     }
 
-    console.log(validator.isValid, validator.errors)
     setErrors(validator.errors);
     setIsValid(validator.isValid);
     setShouldShowResultsModal(!shouldShowResultsModal);
@@ -85,14 +77,12 @@ export default function MilDotCalc(props: RouteComponentProps) {
     <div className="button-container">
       <button
         className="button button--danger button--yuge button--flex-1"
-        onClick={ onResetClick }
         type="reset">
           <FormattedMessage id="buttons.reset" />
         </button>
       <button
         className="button button--primary button--yuge button--flex-3"
-        onClick={ onSubmitClick }
-        type="button">
+        type="submit">
           <FormattedMessage id="buttons.submit" />
         </button>
     </div>
@@ -102,7 +92,9 @@ export default function MilDotCalc(props: RouteComponentProps) {
       <ResultsModal />
       <form
         id="MilDotCalc"
-        className="form">
+        className="form"
+        onSubmit={ onSubmit }
+        onReset={ onReset } >
         <FeatureWithBottomButtonLayout
           mainAreaContent={ 
             <>

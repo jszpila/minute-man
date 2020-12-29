@@ -1,17 +1,19 @@
 /**
  * Calculator
  * Calculates mildot data
+ * Math taken or derived from material at https://skillatarms.com/mil-dot-formula-calculator-ranging-and-measuring-made-easy/
  */
 
-import SettingsStore from "../Settings/SettingsStore";
 import Units from "../../../enum/Units";
 import { getLocalizedDistanceUnit, getLocalizedOffsetUnit, getLocalizedStringByKey } from "../../../util/L10n";
+import SettingsStore from "../Settings/SettingsStore";
 
 interface ICalculatorData {
   milSize: number | undefined,
   physicalSize: number | undefined,
   distance: number | undefined
 }
+
 export interface ICalculatorResult {
   key: string,
   value: string,
@@ -34,11 +36,10 @@ export default class Calculator {
     return Calculator.instance;
   }
 
-  // NOTE: https://skillatarms.com/mil-dot-formula-calculator-ranging-and-measuring-made-easy/
   private calculateDistance(physicalSize: number, milSize: number): void {
     this.resultData = {
       key: 'mildotcalc.results.distance',
-      value: (physicalSize / milSize * this.milModifier).toPrecision(3),
+      value: ((physicalSize / milSize) * this.milModifier).toFixed(2),
       unit: this.distanceUnit
     };
   }
@@ -46,7 +47,7 @@ export default class Calculator {
   private calculateMilSize(physicalSize: number, distance: number): void {
     this.resultData = {
       key: 'mildotcalc.results.size', 
-      value: (distance / physicalSize / this.milModifier).toPrecision(3),
+      value: (distance / physicalSize / this.milModifier).toFixed(2),
       unit: getLocalizedStringByKey('units.mil')
     };
   }
@@ -54,7 +55,7 @@ export default class Calculator {
   private calculatePhysicalSize(milSize: number, distance: number): void {
     this.resultData = {
       key: 'mildotcalc.results.size',
-      value: (distance * milSize / this.milModifier).toPrecision(3),
+      value: (distance * milSize / this.milModifier).toFixed(2),
       unit: this.sizeUnit};
   }
 
@@ -66,7 +67,7 @@ export default class Calculator {
     const { distance, milSize, physicalSize } = data;
   
     if (milSize !== undefined && physicalSize !== undefined) {
-      this.calculateDistance(milSize, physicalSize);
+      this.calculateDistance(physicalSize, milSize);
     } else if (physicalSize !== undefined && distance !== undefined) {
       this.calculateMilSize(physicalSize, distance)
     } else if (milSize !== undefined && distance !== undefined) {
