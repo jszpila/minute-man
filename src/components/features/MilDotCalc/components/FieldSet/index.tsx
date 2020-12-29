@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../../util/L10n';
 import randomizeInputName from '../../../../../util/RandomizeInputName';
 import Field, { LabelElementType } from '../../../../Field/Field';
@@ -20,6 +21,7 @@ export default function FieldSet() {
   const distanceLabelId = "mildotcalc.distance"
   const defaults = MilDotCalcDefaultValues;
 
+  // TODO: make IconLabel component
   const milSizeLabel = <>
     <FormattedMessage id={ milSizeLabelId } /> 
     <i className="field__label__hint txt--smaller txt--muted">(<FormattedMessage id="units.mil" />)</i></>;
@@ -32,16 +34,18 @@ export default function FieldSet() {
     <FormattedMessage id={ distanceLabelId } /> 
     <i className="field__label__hint txt--smaller txt--muted">({ distanceUnit })</i></>;
 
+  // TODO: bake randomizeInputNames into Field?
   const inputNames = {
     milSize: randomizeInputName('milSize'),
     physicalSize: randomizeInputName('physicalSize'),
     distance: randomizeInputName('distance'),
   }
-
+  
   return (
     <MilDotCalcContenxt.Consumer>
       {value =>
         <fieldset className="form__fieldset">
+          {/* TODO: Callout component */}
           <div className="b-callout">
             <i className="material-icons b-callout__icon">info</i>
             <p className="b-callout__blurb">
@@ -54,7 +58,7 @@ export default function FieldSet() {
             labelElementType={ LabelElementType.Span }>
             <RestrictedNumericInput 
               labelledBy={ milSizeLabelId }
-              name="milSize"
+              name={ inputNames.milSize }
               value={ defaults.milSize }
               updaterFn={ value.setMilSize } />
           </Field>
@@ -64,7 +68,7 @@ export default function FieldSet() {
             labelElementType={ LabelElementType.Span }>
             <RestrictedNumericInput 
               labelledBy={ physicalSizeLabelId }
-              name="physicalSize"
+              name={ inputNames.physicalSize }
               value={ defaults.physicalSize }
               updaterFn={ value.setPhysicalSize } />
           </Field>
@@ -74,7 +78,7 @@ export default function FieldSet() {
             labelElementType={ LabelElementType.Span }>
             <RestrictedNumericInput 
               labelledBy={ distanceLabelId }
-              name="targetDisance"
+              name={ inputNames.distance }
               value={ defaults.distance }
               updaterFn={ value.setDistance } />
           </Field>
