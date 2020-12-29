@@ -85,6 +85,7 @@ export default function Clickulator(props: RouteComponentProps) {
     setAdjustmentIncrement(settings.clickulator.adjustmentIncrement);
   }
 
+  // TODO: convert click handlers to form action attributes
   const buttons = 
     <div className="button-container">
       <button
