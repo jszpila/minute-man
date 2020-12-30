@@ -12,18 +12,18 @@ import RestrictedNumericInput from "../../../../RestrictedNumericInput";
 
 interface IProps {
   axis: string;
-  name: string;
   directions: Array<IListOption>;
   directionValue: string;
   directionUpdaterFn: Dispatch<SetStateAction<string>>;
   distanceValue: number | undefined;
   distanceUpdaterFn: Dispatch<SetStateAction<number | undefined>>;
+  name?: string;
 }
 
 export default function PointOfImpactInput(props: IProps) {
   const selectName = randomizeInputName("offsetDirectSelect");
-  const distanceLabel = `${props.axis}OffsetDistance`;
-  const directionLabel = `${props.axis}OffsetDirection`;
+  const directionLabel = `${props.name}DirectionLabel`;
+  const distanceLabel = `${props.name}DistanceLabel`;
 
   function onSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
     props.directionUpdaterFn(event.currentTarget.value);
@@ -77,3 +77,7 @@ export default function PointOfImpactInput(props: IProps) {
     </>
   );
 }
+
+PointOfImpactInput.defaultProps = {
+  name: "",
+};

@@ -10,7 +10,6 @@ import {
   getLocalizedDistanceUnit,
   getLocalizedOffsetUnit,
 } from "../../../../../util/L10n";
-import randomizeInputName from "../../../../../util/RandomizeInputName";
 import Field, { LabelElementType } from "../../../../Field";
 import FieldLabelWithHint from "../../../../Field/FieldLabelWithHint";
 import SettingsStore from "../../../Settings/SettingsStore";
@@ -27,14 +26,6 @@ export default function FieldSet() {
   const settings = SettingsStore.getInstance().clickulator;
   const offsetUnit = getLocalizedOffsetUnit();
 
-  // NOTE: use randomized input names to prevent auto-fill behavior
-  const inputNames = {
-    hOffsetDist: randomizeInputName("horizontalOffsetDistance"),
-    vOffsetDist: randomizeInputName("verticalOffsetDistance"),
-    zeroDist: randomizeInputName("zeroAtDistance"),
-    opticInc: randomizeInputName("adjustmentIncrement"),
-  };
-
   return (
     <ClickulatorContext.Consumer>
       {(value) => (
@@ -42,10 +33,10 @@ export default function FieldSet() {
           <fieldset className="form__fieldset">
             <legend className="form__fieldset__legend">Point of Impact</legend>
             <Field
-              inputName={inputNames.hOffsetDist}
+              inputName="horizontalOffsetDistance"
               labelText={
                 <FieldLabelWithHint
-                  messageId="clickulator.verticalOffsetLabel"
+                  messageId="clickulator.horizontalOffsetLabel"
                   hintText={offsetUnit}
                 />
               }
@@ -58,14 +49,13 @@ export default function FieldSet() {
                 directionUpdaterFn={value.setHorizontalOffsetDirection}
                 distanceValue={value.horizontalOffsetDistance}
                 distanceUpdaterFn={value.setHorizontalOffsetDistance}
-                name={inputNames.hOffsetDist}
               />
             </Field>
             <Field
-              inputName={inputNames.vOffsetDist}
+              inputName="verticalOffsetDistance"
               labelText={
                 <FieldLabelWithHint
-                  messageId="clickulator.horizontalOffsetLabel"
+                  messageId="clickulator.verticalOffsetLabel"
                   hintText={offsetUnit}
                 />
               }
@@ -78,14 +68,13 @@ export default function FieldSet() {
                 directionUpdaterFn={value.setVerticalOffsetDirection}
                 distanceValue={value.verticalOffsetDistance}
                 distanceUpdaterFn={value.setVerticalOffsetDistance}
-                name={inputNames.vOffsetDist}
               />
             </Field>
           </fieldset>
           <fieldset className="form__fieldset">
             <legend className="form__fieldset__legend">General</legend>
             <Field
-              inputName={inputNames.zeroDist}
+              inputName="zeroAtDistance"
               labelText={
                 <FieldLabelWithHint
                   messageId="clickulator.zeroAtDistanceLabel"
@@ -94,19 +83,17 @@ export default function FieldSet() {
               }
             >
               <ZeroAtDistanceInput
-                name={inputNames.zeroDist}
                 updaterFn={value.setZeroAtDistance}
                 value={settings.zeroAtDistance}
               />
             </Field>
             <Field
-              inputName={inputNames.opticInc}
+              inputName="adjustmentIncrement"
               labelText={
                 <FormattedMessage id="clickulator.adjustmentIncrementLabel" />
               }
             >
               <AdjustmentSelect
-                name={inputNames.opticInc}
                 updaterFn={value.setAdjustmentIncrement}
                 value={settings.adjustmentIncrement}
               />

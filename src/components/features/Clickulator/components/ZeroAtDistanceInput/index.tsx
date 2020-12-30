@@ -8,9 +8,9 @@ import React from "react";
 import { ZeroAtDistanceConfig } from "../../data/InputConfig";
 
 interface IProps {
-  name: string;
   updaterFn: (value: number) => void;
   value: number;
+  name?: string;
 }
 
 export default function ZeroAtDistanceInput(props: IProps) {
@@ -31,6 +31,11 @@ export default function ZeroAtDistanceInput(props: IProps) {
       step={ZeroAtDistanceConfig.step}
       type="number"
       defaultValue={props.value}
+      aria-labelledBy={`${props.name}Label`}
     />
   );
 }
+
+ZeroAtDistanceInput.defaultProps = {
+  name: "",
+};

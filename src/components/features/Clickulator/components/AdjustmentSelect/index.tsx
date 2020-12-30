@@ -8,9 +8,9 @@ import React from "react";
 import { getLocalizedStringByKey } from "../../../../../util/L10n";
 
 interface IProps {
-  name: string;
   updaterFn: (value: number) => void;
   value: number;
+  name?: string;
 }
 
 export default function AdjustmentSelect(props: IProps) {
@@ -35,6 +35,7 @@ export default function AdjustmentSelect(props: IProps) {
       id={props.name}
       name={props.name}
       onChange={onChange}
+      aria-labelledBy={`${props.name}Label`}
     >
       {options.map((option, index) => {
         return (
@@ -46,3 +47,7 @@ export default function AdjustmentSelect(props: IProps) {
     </select>
   );
 }
+
+AdjustmentSelect.defaultProps = {
+  name: "",
+};

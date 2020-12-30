@@ -10,7 +10,6 @@ import {
   getLocalizedDistanceUnit,
   getLocalizedOffsetUnit,
 } from "../../../../../util/L10n";
-import randomizeInputName from "../../../../../util/RandomizeInputName";
 import Callout from "../../../../Callout";
 import Field, { LabelElementType } from "../../../../Field";
 import FieldLabelWithHint from "../../../../Field/FieldLabelWithHint";
@@ -24,13 +23,6 @@ export default function FieldSet() {
   const distanceLabelId = "mildotcalc.distance";
   const defaults = MilDotCalcDefaultValues;
 
-  // TODO: bake randomizeInputNames into Field?
-  const inputNames = {
-    milSize: randomizeInputName("milSize"),
-    physicalSize: randomizeInputName("physicalSize"),
-    distance: randomizeInputName("distance"),
-  };
-
   return (
     <MilDotCalcContenxt.Consumer>
       {(value) => (
@@ -39,7 +31,7 @@ export default function FieldSet() {
             <FormattedMessage id="mildotcalc.blurb" />
           </Callout>
           <Field
-            inputName={inputNames.milSize}
+            inputName="milSize"
             labelText={
               <FieldLabelWithHint
                 messageId={milSizeLabelId}
@@ -49,14 +41,12 @@ export default function FieldSet() {
             labelElementType={LabelElementType.Span}
           >
             <RestrictedNumericInput
-              labelledBy={milSizeLabelId}
-              name={inputNames.milSize}
               value={defaults.milSize}
               updaterFn={value.setMilSize}
             />
           </Field>
           <Field
-            inputName={inputNames.physicalSize}
+            inputName="physicalSize"
             labelText={
               <FieldLabelWithHint
                 messageId={physicalSizeLabelId}
@@ -66,14 +56,12 @@ export default function FieldSet() {
             labelElementType={LabelElementType.Span}
           >
             <RestrictedNumericInput
-              labelledBy={physicalSizeLabelId}
-              name={inputNames.physicalSize}
               value={defaults.physicalSize}
               updaterFn={value.setPhysicalSize}
             />
           </Field>
           <Field
-            inputName={inputNames.distance}
+            inputName="distance"
             labelText={
               <FieldLabelWithHint
                 messageId={distanceLabelId}
@@ -83,8 +71,6 @@ export default function FieldSet() {
             labelElementType={LabelElementType.Span}
           >
             <RestrictedNumericInput
-              labelledBy={distanceLabelId}
-              name={inputNames.distance}
               value={defaults.distance}
               updaterFn={value.setDistance}
             />

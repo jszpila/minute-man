@@ -16,17 +16,19 @@ interface IPropject {
 }
 
 interface IProps {
-  name: string;
   updaterFn: Dispatch<SetStateAction<number | undefined>>;
   value: number | undefined;
   adtlClassNames?: string;
   labelledBy?: string | undefined;
   maxValue?: number;
   maxLength?: number;
+  name?: string;
   placeholder?: string | undefined;
 }
 
 export default function RestrictedNumericInput(props: IProps) {
+  const labelledBy = `${props.labelledBy ? props.labelledBy : props.name}Label`;
+
   function onChange(event: React.ChangeEvent<HTMLInputElement>): void {
     try {
       const tmp = parseFloat(event.currentTarget.value);
@@ -37,17 +39,11 @@ export default function RestrictedNumericInput(props: IProps) {
     }
   }
 
-  const optionalAttrs: IPropject = {};
-
-  if (props.labelledBy) {
-    optionalAttrs["aria-labelledby"] = props.labelledBy;
-  }
-
   return (
     <input
-      {...optionalAttrs}
       autoComplete="none"
-      className={`field__input ${props.adtlClassNames}`}
+      aria-labelledby={labelledBy}
+      className={`field__input field__numeric ${props.adtlClassNames}`}
       defaultValue={props.value}
       id={props.name}
       inputMode="numeric"
@@ -65,5 +61,6 @@ RestrictedNumericInput.defaultProps = {
   labelledBy: undefined,
   maxLength: RestrictedNumericInputConfig.maxLength,
   maxValue: RestrictedNumericInputConfig.maxValue,
+  name: "",
   placeholder: RestrictedNumericInputConfig.placeholder,
 };
