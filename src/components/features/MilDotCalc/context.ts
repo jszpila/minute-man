@@ -3,28 +3,28 @@
  * Datastore for MilDotCalc feature
  */
 
-import React, { Dispatch, SetStateAction } from 'react';
-import MilDotCalcDefaultValues from './data/Defaults';
-import { ICalculatorResult } from './Calculator';
-import { IValidationError } from './validation/Validator';
+import React, { Dispatch, SetStateAction } from "react";
+import MilDotCalcDefaultValues from "./data/Defaults";
+import { ICalculatorResult } from "./Calculator";
+import { IValidationError } from "./validation/Validator";
 
 const defaults = MilDotCalcDefaultValues;
 
 export interface IMilDotCalcContext {
-  milSize: number | undefined,
-  setMilSize: (Dispatch<SetStateAction<number | undefined>>),
-  physicalSize: number | undefined,
-  setPhysicalSize: (Dispatch<SetStateAction<number | undefined>>),
-  distance: number | undefined,
-  setDistance: (Dispatch<SetStateAction<number | undefined>>),
+  milSize: number | undefined;
+  setMilSize: Dispatch<SetStateAction<number | undefined>>;
+  physicalSize: number | undefined;
+  setPhysicalSize: Dispatch<SetStateAction<number | undefined>>;
+  distance: number | undefined;
+  setDistance: Dispatch<SetStateAction<number | undefined>>;
   shouldShowResultsModal: boolean;
-  setShouldShowResultsModal: (Dispatch<SetStateAction<boolean>>),
-  isValid: boolean,
-  setIsValid: (Dispatch<SetStateAction<boolean>>),
-  errors: Array<IValidationError>,
-  setErrors: (Dispatch<SetStateAction<Array<IValidationError>>>),
-  result: ICalculatorResult | undefined,
-  setResult: (Dispatch<SetStateAction<ICalculatorResult | undefined>>),
+  setShouldShowResultsModal: Dispatch<SetStateAction<boolean>>;
+  isValid: boolean;
+  setIsValid: Dispatch<SetStateAction<boolean>>;
+  errors: Array<IValidationError>;
+  setErrors: Dispatch<SetStateAction<Array<IValidationError>>>;
+  result: ICalculatorResult | undefined;
+  setResult: Dispatch<SetStateAction<ICalculatorResult | undefined>>;
 }
 
 export const initialContext: IMilDotCalcContext = {
@@ -41,7 +41,7 @@ export const initialContext: IMilDotCalcContext = {
   errors: defaults.errors,
   setErrors: (): void => {},
   result: defaults.result,
-  setResult: (): void => {}
-}
+  setResult: (): void => {},
+};
 
 export const MilDotCalcContenxt = React.createContext(initialContext);

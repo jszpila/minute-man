@@ -3,7 +3,7 @@
  * Default data for form fields
  */
 
-import { Direction } from "../../../../enum/Direction"
+import { Direction } from "../../../../enum/Direction";
 
 const ClickulatorDefaultValues = {
   horizontalOffsetDistance: undefined,
@@ -19,6 +19,6 @@ const ClickulatorDefaultValues = {
     horizontal: undefined,
     vertical: undefined,
   },
-}
+};
 
 export default ClickulatorDefaultValues;

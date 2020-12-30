@@ -7,62 +7,56 @@
  * - max of 2 digits before & after decimal - accepts #, #.#, #.##, ##, ##.#, ##.##
  */
 
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from "react";
 
-import { RestrictedNumericInputConfig } from '../features/Clickulator/data/InputConfig';
-
-interface IPropject {
-  [key: string]: string | boolean,
-}
+import { RestrictedNumericInputConfig } from "../features/Clickulator/data/InputConfig";
 
 interface IProps {
-  name: string,
-  updaterFn: (Dispatch<SetStateAction<number | undefined>>),
-  value: number | undefined,
-  adtlClassNames?: string,
-  labelledBy?: string | undefined,
-  maxValue?: number,
-  maxLength?: number,
-  placeholder?: string | undefined,
-};
+  updaterFn: Dispatch<SetStateAction<number | undefined>>;
+  value: number | undefined;
+  labelledBy?: string | undefined;
+  maxValue?: number;
+  maxLength?: number;
+  name?: string;
+  placeholder?: string | undefined;
+}
 
-export default function RestrictedNumericInput(props: IProps) {
+export default function RestrictedNumericInput(
+  props: IProps & React.HTMLAttributes<HTMLDivElement>
+) {
+  const labelledBy = `${props.labelledBy ? props.labelledBy : props.name}Label`;
+
   function onChange(event: React.ChangeEvent<HTMLInputElement>): void {
     try {
       const tmp = parseFloat(event.currentTarget.value);
-      let updateVal = !isNaN(tmp) ? tmp : undefined;
+      const updateVal = !isNaN(tmp) ? tmp : undefined;
       props.updaterFn(updateVal);
-    } catch(error) {
-      console.error('Invalid input');
+    } catch (error) {
+      console.error("Invalid input");
     }
-  }
-
-  const optionalAttrs: IPropject = {};
-
-  if (props.labelledBy) {
-    optionalAttrs['aria-labelledby'] = props.labelledBy;
   }
 
   return (
     <input
-      { ...optionalAttrs }
       autoComplete="none"
-      className={`field__input ${ props.adtlClassNames }`}
-      defaultValue={ props.value }
-      id={ props.name }
+      aria-labelledby={labelledBy}
+      className={`field__input field__numeric ${props.className}`}
+      defaultValue={props.value}
+      id={props.name}
       inputMode="numeric"
-      maxLength={ props.maxLength }
-      name={ props.name }
-      onChange={ onChange }
+      maxLength={props.maxLength}
+      name={props.name}
+      onChange={onChange}
       pattern="^\d+(\.\d{1,2})?$"
-      placeholder={ props.placeholder }/>
+      placeholder={props.placeholder}
+    />
   );
 }
 
 RestrictedNumericInput.defaultProps = {
-  adtlClassNames: '',
   labelledBy: undefined,
   maxLength: RestrictedNumericInputConfig.maxLength,
   maxValue: RestrictedNumericInputConfig.maxValue,
+  name: "",
   placeholder: RestrictedNumericInputConfig.placeholder,
-}
+};

@@ -15,10 +15,12 @@ interface IBeforeInstallPromptEvent extends Event {
 }
 
 export function useAddToHomescreenPrompt(): [
-    IBeforeInstallPromptEvent | null,
-    () => void
-  ] {
-  const [prompt, setState] = React.useState<IBeforeInstallPromptEvent | null>(null);
+  IBeforeInstallPromptEvent | null,
+  () => void
+] {
+  const [prompt, setState] = React.useState<IBeforeInstallPromptEvent | null>(
+    null
+  );
   const promptToInstall = () => {
     if (prompt) {
       return prompt.prompt();
@@ -50,9 +52,11 @@ export function useAddToHomescreenPrompt(): [
 export function isAppInstalled(): boolean {
   let isInstalled = false;
 
-  if (window.matchMedia
-    && window.matchMedia('(display-mode: standalone)').matches) {
-      isInstalled = true;
+  if (
+    window.matchMedia &&
+    window.matchMedia("(display-mode: standalone)").matches
+  ) {
+    isInstalled = true;
   }
 
   return isInstalled;
@@ -60,5 +64,5 @@ export function isAppInstalled(): boolean {
 
 // iOS doesn't support A2HS functionality
 export function isiOs(): boolean {
-  return /iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase() );
+  return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
 }

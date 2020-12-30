@@ -1,21 +1,21 @@
 @import "../../../styles/vars.scss";
 
 .app-layout {
-	box-sizing: border-box;
-	display: grid;
-	grid-template-columns: 100%;
-	grid-template-rows: $layout-header-height auto;
-	grid-gap: 0;
-	grid-template-areas: "app" "main";
-	width: 100%;
-	height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: $layout-header-height auto;
+  grid-gap: 0;
+  grid-template-areas: "app" "main";
+  width: 100%;
+  height: 100%;
 }
 
 .app-layout__header {
-	grid-area: app;
+  grid-area: app;
 }
 
 .app-layout__main {
-	grid-area: main;
-	overflow-y: auto;
+  grid-area: main;
+  overflow-y: auto;
 }

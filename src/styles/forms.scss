@@ -21,8 +21,9 @@
 }
 
 .button {
+  font-family: "Roboto", sans-serif; // TODO: figure out why this isn't being inherited
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   margin: 0;
   border: 0;
@@ -31,40 +32,42 @@
   user-select: none;
   outline: none;
   min-height: 2.5rem;
+  padding: 1rem;
+  letter-spacing: 0.1rem;
 }
 
 .button--primary {
   background-color: var(--primary-color);
   color: var(--primary-text-color);
-}
 
-.button--primary:hover {
-  background-color: var(--primary-color-hover);
-}
+  &:active {
+    background-color: var(--primary-color-active);
+  }
 
-.button--primary:active {
-  background-color: var(--primary-color-active);
-}
+  &:focus {
+    outline: 1px var(--primary-color-hover);
+  }
 
-.button--primary:focus {
-  outline: 1px var(--primary-color-hover);
+  &:hover {
+    background-color: var(--primary-color-hover);
+  }
 }
 
 .button--danger {
   background-color: var(--danger-color);
   color: var(--danger-text-color);
-}
 
-.button--danger:hover {
-  background-color: var(--danger-color-hover);
-}
+  &:hover {
+    background-color: var(--danger-color-hover);
+  }
 
-.button--danger:active {
-  background-color: var(--danger-color-active);
-}
+  &:active {
+    background-color: var(--danger-color-active);
+  }
 
-.button--danger:focus {
-  outline: 1px var(--danger-color-active);
+  &:focus {
+    outline: 1px var(--danger-color-active);
+  }
 }
 
 .button--yuge {
@@ -79,11 +82,11 @@
 .info-label {
   font-style: italic;
   display: inline-block;
-}
 
-.info-label:after {
-  content: ": ";
-  padding-right: 0.25rem;
+  &:after {
+    content: ": ";
+    padding-right: 0.25rem;
+  }
 }
 
 .app-info {
@@ -97,24 +100,22 @@
   text-transform: capitalize;
 }
 
-// .app-info__value {}
-
 .button-container {
   height: 100%;
   display: flex;
-}
 
-.button-container > .button {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-}
+  & > .button {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
 
-.button-container > .button:first-child {
-  margin-left: 0;
-}
+    &:first-child {
+      margin-left: 0;
+    }
 
-.button-container > .button:last-child {
-  margin-right: 0;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 .button--flex-1 {

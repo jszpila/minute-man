@@ -17,13 +17,11 @@
 
 .app-menu {
   background-color: var(--menu-bg-color);
-  height: calc(100% - #{ $layout-header-height });
+  height: calc(100% - #{$layout-header-height});
   position: fixed;
   right: 0;
   top: $layout-header-height;
-  transition: 
-    transform 0.2s ease-in-out,
-    visibility 0s;
+  transition: transform 0.2s ease-in-out, visibility 0s;
   visibility: visible;
   min-width: 45%;
   max-width: 75%;
@@ -32,9 +30,7 @@
 
 .app-menu--closed {
   transform: translateX(100%);
-  transition:
-    transform 0.2s ease-in-out,
-    visibility 0s 0.2s;
+  transition: transform 0.2s ease-in-out, visibility 0s 0.2s;
   visibility: hidden;
 }
 
@@ -108,4 +104,3 @@
   right: 1rem;
   text-align: right;
 }
-

@@ -1,24 +1,27 @@
 /**
- *                    
+ *
  * Settings
- *                                                                 
+ *
  * App level settings
  *
  */
 
-import { RouteComponentProps } from '@reach/router';
-import React, { ChangeEvent, useContext } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { RouteComponentProps } from "@reach/router";
+import React, { ChangeEvent, useContext } from "react";
+import { FormattedMessage } from "react-intl";
 
-import { AppContext } from '../../../../context/AppContext';
-import LocaleStyles from '../../../../data/locale/LocaleStyles';
-import FontSizeStyles from '../../../../enum/FontSizeStyles';
-import Locales from '../../../../enum/Locales';
-import Themes from '../../../../enum/Themes';
-import Units from '../../../../enum/Units';
-import { applyLocaleLang, getLocalizedStringByKey } from '../../../../util/L10n';
-import Field from '../../../Field/Field';
-import SettingsStore from '../SettingsStore';
+import { AppContext } from "../../../../context/AppContext";
+import LocaleStyles from "../../../../data/locale/LocaleStyles";
+import FontSizeStyles from "../../../../enum/FontSizeStyles";
+import Locales from "../../../../enum/Locales";
+import Themes from "../../../../enum/Themes";
+import Units from "../../../../enum/Units";
+import {
+  applyLocaleLang,
+  getLocalizedStringByKey,
+} from "../../../../util/L10n";
+import Field from "../../../Field";
+import SettingsStore from "../SettingsStore";
 
 // TODO: flip back when necessary I don't feeel like making feature flags right now
 const shouldEnableLocaleSelect = false;
@@ -27,7 +30,8 @@ export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
 
   const root = document.documentElement;
-  const checkboxIcon = context.theme === Themes.Dark ? 'check_box' : 'check_box_outline_blank';
+  const checkboxIcon =
+    context.theme === Themes.Dark ? "check_box" : "check_box_outline_blank";
   const settings = SettingsStore.getInstance();
 
   function isDarkThemeChecked(): boolean {
@@ -56,10 +60,10 @@ export default function AppSettings(props: RouteComponentProps) {
   }
 
   function onLocaleChange(event: ChangeEvent<HTMLSelectElement>): void {
-    const prevLocale = settings.app.locale
+    const prevLocale = settings.app.locale;
     const newLocale = event.currentTarget.value;
-    const oldBodyClass = LocaleStyles.get(prevLocale) || '';
-    const newBodyClass = LocaleStyles.get(newLocale) || '';
+    const oldBodyClass = LocaleStyles.get(prevLocale) || "";
+    const newBodyClass = LocaleStyles.get(newLocale) || "";
 
     context.setLocale(newLocale);
     settings.app.locale = newLocale;
@@ -82,63 +86,85 @@ export default function AppSettings(props: RouteComponentProps) {
       </legend>
       <Field
         inputName="theme"
-        labelText={ <FormattedMessage id="settings.app.darkMode" /> }>
+        labelText={<FormattedMessage id="settings.app.darkMode" />}
+      >
         <>
           <label>
-            <i className="material-icons"> { checkboxIcon } </i>
+            <i className="material-icons"> {checkboxIcon} </i>
             <input
               className="field__checkbox"
-              defaultChecked={ isDarkThemeChecked() }
+              defaultChecked={isDarkThemeChecked()}
               name="theme"
-              onChange={ onThemeChange }
-              type="checkbox" />
+              onChange={onThemeChange}
+              type="checkbox"
+            />
           </label>
         </>
       </Field>
-      { shouldEnableLocaleSelect &&
+      {shouldEnableLocaleSelect && (
         <Field
           inputName="language"
-          labelText={ <FormattedMessage id="settings.app.language" />}>
+          labelText={<FormattedMessage id="settings.app.language" />}
+        >
           <select
             className="field__select"
-            defaultValue={ settings.app.locale }
+            defaultValue={settings.app.locale}
             id="locale"
             name="locale"
-            onChange={ onLocaleChange }>
-              <option value={ Locales.EN }>English</option>
-              <option value={ Locales.ES }>Española</option>
-              <option value={ Locales.PL }>Polski</option>
+            onChange={onLocaleChange}
+          >
+            <option value={Locales.EN}>English</option>
+            <option value={Locales.ES}>Española</option>
+            <option value={Locales.PL}>Polski</option>
           </select>
         </Field>
-      }
+      )}
       <Field
         inputName="fontSize"
-        labelText={ <FormattedMessage id="settings.app.fontSize" /> }>
+        labelText={<FormattedMessage id="settings.app.fontSize" />}
+      >
         <select
           className="field__select"
-          defaultValue={ settings.app.fontSize }
+          defaultValue={settings.app.fontSize}
           id="fontSize"
           name="fontSize"
-          onChange={ onFontSizeChange }>
-            <option value={ FontSizeStyles.ExtraSmall }>{ getLocalizedStringByKey('fontSizes.extraSmall') }</option>
-            <option value={ FontSizeStyles.Small }>{ getLocalizedStringByKey('fontSizes.small') }</option>
-            <option value={ FontSizeStyles.Medium }>{ getLocalizedStringByKey('fontSizes.medium') }</option>
-            <option value={ FontSizeStyles.Large }>{ getLocalizedStringByKey('fontSizes.large') }</option>
-            <option value={ FontSizeStyles.ExtraLarge }>{ getLocalizedStringByKey('fontSizes.extraLarge') }</option>
-          </select>
+          onChange={onFontSizeChange}
+        >
+          <option value={FontSizeStyles.ExtraSmall}>
+            {getLocalizedStringByKey("fontSizes.extraSmall")}
+          </option>
+          <option value={FontSizeStyles.Small}>
+            {getLocalizedStringByKey("fontSizes.small")}
+          </option>
+          <option value={FontSizeStyles.Medium}>
+            {getLocalizedStringByKey("fontSizes.medium")}
+          </option>
+          <option value={FontSizeStyles.Large}>
+            {getLocalizedStringByKey("fontSizes.large")}
+          </option>
+          <option value={FontSizeStyles.ExtraLarge}>
+            {getLocalizedStringByKey("fontSizes.extraLarge")}
+          </option>
+        </select>
       </Field>
       <Field
         inputName="fontSize"
-        labelText={ <FormattedMessage id="settings.app.units" /> }>
+        labelText={<FormattedMessage id="settings.app.units" />}
+      >
         <select
           className="field__select"
-          defaultValue={ settings.app.units }
+          defaultValue={settings.app.units}
           id="units"
           name="units"
-          onChange={ onUnitsChange }>
-            <option value={ Units.Imperial }>{ getLocalizedStringByKey('settings.app.units.imperial') }</option>
-            <option value={ Units.Metric }>{ getLocalizedStringByKey('settings.app.units.metric') }</option>
-          </select>
+          onChange={onUnitsChange}
+        >
+          <option value={Units.Imperial}>
+            {getLocalizedStringByKey("settings.app.units.imperial")}
+          </option>
+          <option value={Units.Metric}>
+            {getLocalizedStringByKey("settings.app.units.metric")}
+          </option>
+        </select>
       </Field>
     </fieldset>
   );

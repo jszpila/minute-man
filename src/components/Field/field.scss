@@ -1,6 +1,6 @@
-@import '../../styles/vars.scss';
+@import "../../styles/vars.scss";
 
-$gutters: (2 * $layout-content-padding-num) + 'px';
+$gutters: (2 * $layout-content-padding-num) + "px";
 
 .field {
   display: flex;
@@ -24,20 +24,14 @@ $gutters: (2 * $layout-content-padding-num) + 'px';
 
 .field__cell {
   flex: 1;
-}
 
-.field__cell:first-child {
-  margin-right: 0.125rem;
-}
+  &:first-child {
+    margin-right: 0.125rem;
+  }
 
-.field__cell:last-child {
-  margin-left: 0.125rem;
-}
-
-.field__label__hint {
-  padding-left: 0.25rem;
-  text-transform: lowercase;
-  text-overflow: ellipsis;
+  &:last-child {
+    margin-left: 0.125rem;
+  }
 }
 
 .field__input__container {
@@ -61,12 +55,11 @@ $gutters: (2 * $layout-content-padding-num) + 'px';
   border-radius: 0;
   appearance: none;
   text-transform: capitalize;
-}
 
-.field__input:focus,
-.field__select:focus {
-  outline: none;
-  border-bottom: solid 1px var(--primary-color-hover);
+  &:focus {
+    outline: none;
+    border-bottom: solid 1px var(--primary-color-hover);
+  }
 }
 
 .field__input {
@@ -76,23 +69,33 @@ $gutters: (2 * $layout-content-padding-num) + 'px';
 .field__select {
   padding: 0.22rem 0;
   border-radius: 0;
-	appearance: none;
-	background-image: var(--select-arrow);
+  appearance: none;
+  background-image: var(--select-arrow);
   background-repeat: no-repeat, repeat;
-	background-position: right 0.7rem top 50%, 0 0;
+  background-position: right 0.7rem top 50%, 0 0;
   background-size: 0.65rem auto, 100%;
   padding-right: 1.75rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  &:focus {
+    background-image: var(--select-arrow-focus);
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
 }
 
-.field__select:focus {
-	background-image: var(--select-arrow-focus);
+// NOTE: to prevent browser/password managers from injecting icons
+.field__numeric {
+  background: none !important;
 }
 
-.field__select::-ms-expand {
-  display: none;
+// NOTE: to prevent browser/password managers from injecting icons
+img[id^="__lpform_"] {
+  display: none !important;
 }
 
 .field__input--cell_width_fix,

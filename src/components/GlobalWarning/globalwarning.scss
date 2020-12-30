@@ -1,4 +1,4 @@
-@import '../../styles/vars.scss';
+@import "../../styles/vars.scss";
 
 #GlobalWarning {
   display: none;
@@ -6,7 +6,7 @@
   border: solid 1px var(--warning-color);
   padding: 1rem;
 
-  & > .b-callout__icon {
+  & > .callout__icon {
     top: 1rem;
   }
 }

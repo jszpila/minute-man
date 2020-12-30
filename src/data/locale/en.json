@@ -75,7 +75,7 @@
   "mildotcalc.results.size": "Target is {value} {unit} tall",
   "mildotcalc.modal.title.success": "Result",
   "mildotcalc.modal.title.error": "Does Not Compute",
-  "globalwarning": "MinuteMan is best suited for smart phones in portrait orientation",
+  "app.warnings.orientation": "MinuteMan is best suited for smart phones in portrait orientation",
   "buttons.reset": "Reset",
   "buttons.submit": "Send It",
   "buttons.ok": "OK Boomer"

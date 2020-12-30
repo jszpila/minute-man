@@ -1,4 +1,4 @@
 export interface IListOption {
-    labelKey: string,
-    value: number | string,
-};
+  labelKey: string;
+  value: number | string;
+}

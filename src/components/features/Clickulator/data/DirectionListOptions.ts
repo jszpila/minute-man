@@ -1,10 +1,10 @@
+import { Direction } from "../../../../enum/Direction";
 /**
  * DirectionListOptions
  * List options with which to populate direction select elements
  */
 
 import { IListOption } from "../../../../interfaces/ListOption";
-import { Direction } from "../../../../enum/Direction";
 
 export const HorizontalDirectionOptions: Array<IListOption> = [
   {

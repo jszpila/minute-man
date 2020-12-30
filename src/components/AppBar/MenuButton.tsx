@@ -1,6 +1,6 @@
-import React, { SyntheticEvent, useContext } from 'react';
+import React, { SyntheticEvent, useContext } from "react";
 
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from "../../context/AppContext";
 
 export default function MenuButton() {
   const context = useContext(AppContext);
@@ -11,11 +11,8 @@ export default function MenuButton() {
   }
 
   return (
-    <button
-      className="app-bar__button"
-      type="button"
-      onClick={onClick}>
-        <i className="material-icons">menu</i>
-      </button>
+    <button className="app-bar__button" type="button" onClick={onClick}>
+      <i className="material-icons">menu</i>
+    </button>
   );
 }
