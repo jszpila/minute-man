@@ -96,7 +96,7 @@ export default function Clickulator(props: RouteComponentProps) {
   };
 
   // TODO: probably also a better way to do this
-  function onResetClick(): void {
+  function onReset(): void {
     setHorizontalOffsetDistance(defaults.horizontalOffsetDistance);
     setHorizontalOffsetDirection(defaults.horizontalOffsetDirection);
     setVerticalOffsetDistance(defaults.horizontalOffsetDistance);
@@ -105,19 +105,16 @@ export default function Clickulator(props: RouteComponentProps) {
     setAdjustmentIncrement(settings.clickulator.adjustmentIncrement);
   }
 
-  // TODO: convert click handlers to form action attributes
   const buttons = (
     <div className="button-container">
       <button
         className="button button--danger button--yuge button--flex-1"
-        onClick={onResetClick}
         type="reset"
       >
         <FormattedMessage id="buttons.reset" />
       </button>
       <button
         className="button button--primary button--yuge button--flex-3"
-        onClick={onCalculateClick}
         type="button"
       >
         <FormattedMessage id="buttons.submit" />
@@ -128,7 +125,12 @@ export default function Clickulator(props: RouteComponentProps) {
   return (
     <ClickulatorContext.Provider value={contextValue}>
       <ResultsModal />
-      <form id="Clickulator" className="form">
+      <form
+        id="Clickulator"
+        className="form"
+        onReset={onReset}
+        onSubmit={onSubmit}
+      >
         <FeatureWithBottomButtonLayout
           mainAreaContent={
             <>
@@ -144,7 +146,8 @@ export default function Clickulator(props: RouteComponentProps) {
     </ClickulatorContext.Provider>
   );
 
-  function onCalculateClick(event: SyntheticEvent): void {
+  function onSubmit(event: SyntheticEvent): void {
+    event.preventDefault();
     const validator = Validator.getInstance();
 
     validator.validate({
