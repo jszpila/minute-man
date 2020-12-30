@@ -35,7 +35,7 @@ export default function AdjustmentSelect(props: IProps) {
       id={props.name}
       name={props.name}
       onChange={onChange}
-      aria-labelledBy={`${props.name}Label`}
+      aria-labelledby={`${props.name}Label`}
     >
       {options.map((option, index) => {
         return (

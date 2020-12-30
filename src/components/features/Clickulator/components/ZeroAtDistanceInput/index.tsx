@@ -31,7 +31,7 @@ export default function ZeroAtDistanceInput(props: IProps) {
       step={ZeroAtDistanceConfig.step}
       type="number"
       defaultValue={props.value}
-      aria-labelledBy={`${props.name}Label`}
+      aria-labelledby={`${props.name}Label`}
     />
   );
 }

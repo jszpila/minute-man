@@ -105,47 +105,6 @@ export default function Clickulator(props: RouteComponentProps) {
     setAdjustmentIncrement(settings.clickulator.adjustmentIncrement);
   }
 
-  const buttons = (
-    <div className="button-container">
-      <button
-        className="button button--danger button--yuge button--flex-1"
-        type="reset"
-      >
-        <FormattedMessage id="buttons.reset" />
-      </button>
-      <button
-        className="button button--primary button--yuge button--flex-3"
-        type="button"
-      >
-        <FormattedMessage id="buttons.submit" />
-      </button>
-    </div>
-  );
-
-  return (
-    <ClickulatorContext.Provider value={contextValue}>
-      <ResultsModal />
-      <form
-        id="Clickulator"
-        className="form"
-        onReset={onReset}
-        onSubmit={onSubmit}
-      >
-        <FeatureWithBottomButtonLayout
-          mainAreaContent={
-            <>
-              <h2 className="txt__heading-2">
-                <FormattedMessage id="clickulator.title" />
-              </h2>
-              <FieldSet />
-            </>
-          }
-          buttonAreaContent={buttons}
-        />
-      </form>
-    </ClickulatorContext.Provider>
-  );
-
   function onSubmit(event: SyntheticEvent): void {
     event.preventDefault();
     const validator = Validator.getInstance();
@@ -175,4 +134,45 @@ export default function Clickulator(props: RouteComponentProps) {
     setIsValid(validator.isValid);
     setShouldShowResultsModal(!shouldShowResultsModal);
   }
+
+  const buttons = (
+    <div className="button-container">
+      <button
+        className="button button--danger button--yuge button--flex-1"
+        type="reset"
+      >
+        <FormattedMessage id="buttons.reset" />
+      </button>
+      <button
+        className="button button--primary button--yuge button--flex-3"
+        type="submit"
+      >
+        <FormattedMessage id="buttons.submit" />
+      </button>
+    </div>
+  );
+
+  return (
+    <ClickulatorContext.Provider value={contextValue}>
+      <ResultsModal />
+      <form
+        id="Clickulator"
+        className="form"
+        onReset={onReset}
+        onSubmit={onSubmit}
+      >
+        <FeatureWithBottomButtonLayout
+          mainAreaContent={
+            <>
+              <h2 className="txt__heading-2">
+                <FormattedMessage id="clickulator.title" />
+              </h2>
+              <FieldSet />
+            </>
+          }
+          buttonAreaContent={buttons}
+        />
+      </form>
+    </ClickulatorContext.Provider>
+  );
 }

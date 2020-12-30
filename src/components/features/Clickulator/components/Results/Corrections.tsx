@@ -3,45 +3,52 @@
  * Display calibration instructions
  */
 
-import React, { useContext } from 'react';
-import { FormattedMessage } from 'react-intl';
+import React, { useContext } from "react";
+import { FormattedMessage } from "react-intl";
 
-import { getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../../util/L10n';
-import { ICorrectionResult } from '../../Calculator';
-import { ClickulatorContext } from '../../context';
+import {
+  getLocalizedDistanceUnit,
+  getLocalizedOffsetUnit,
+} from "../../../../../util/L10n";
+import { ICorrectionResult } from "../../Calculator";
+import { ClickulatorContext } from "../../context";
 
 interface ICorrectionsListItemProps {
-  correction: ICorrectionResult | undefined,
-  offset: number | undefined,
+  correction: ICorrectionResult | undefined;
+  offset: number | undefined;
 }
 
 // TODO: maybe use a HOC
-function CorrectionsListItem(props: ICorrectionsListItemProps ) {
+function CorrectionsListItem(props: ICorrectionsListItemProps) {
   const context = useContext(ClickulatorContext);
   let output = <></>; // Do not output anything if there is no correction or offset
 
   if (props.correction) {
-    output = 
-      <li>
+    output = (
+      <li className="feedback__item">
         <FormattedMessage
           id="clickulator.correction"
-          values={ props.correction } />
+          values={props.correction}
+        />
       </li>
+    );
   } else if (!props.correction && props.offset) {
-    output =
-      <li>
+    output = (
+      <li className="feedback__item">
         <FormattedMessage
-          id="clickulator.errors.withinOneMoa" 
+          id="clickulator.errors.withinOneMoa"
           values={{
             offset: props.offset,
             offsetUnit: getLocalizedOffsetUnit(),
             distance: context.zeroAtDistance,
             distanceUnit: getLocalizedDistanceUnit(),
-          }} />
+          }}
+        />
       </li>
+    );
   }
 
-  return output;  
+  return output;
 }
 
 export default function Corrections() {
@@ -55,11 +62,13 @@ export default function Corrections() {
       </h3>
       <ul className="feedback">
         <CorrectionsListItem
-          correction={ context.corrections.horizontal }
-          offset={ context.horizontalOffsetDistance } />
+          correction={context.corrections.horizontal}
+          offset={context.horizontalOffsetDistance}
+        />
         <CorrectionsListItem
-          correction={ context.corrections.vertical }
-          offset={ context.verticalOffsetDistance } />
+          correction={context.corrections.vertical}
+          offset={context.verticalOffsetDistance}
+        />
       </ul>
     </>
   );
