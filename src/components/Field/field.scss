@@ -34,12 +34,6 @@ $gutters: (2 * $layout-content-padding-num) + "px";
   }
 }
 
-.field__label__hint {
-  padding-left: 0.25rem;
-  text-transform: lowercase;
-  text-overflow: ellipsis;
-}
-
 .field__input__container {
   display: flex;
   flex: 1;

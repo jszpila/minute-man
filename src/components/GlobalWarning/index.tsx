@@ -1,15 +1,15 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import Callout from "../Callout";
 
 import "./globalwarning.scss";
 
 export default function InfoModal() {
   return (
-    <div id="GlobalWarning" role="status" className="b-callout">
-      <i className="material-icons b-callout__icon">mobile_friendly</i>
-      <p className="b-callout__blurb">
+    <div id="GlobalWarning" role="status">
+      <Callout iconId="mobile_friendly">
         <FormattedMessage id="app.warnings.orientation" />
-      </p>
+      </Callout>
     </div>
   );
 }

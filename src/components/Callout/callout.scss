@@ -1,6 +1,4 @@
-// Resuable structures that are not components... yet
-
-.b-callout {
+.callout {
   margin-bottom: 2rem;
   box-sizing: border-box;
   position: relative;
@@ -10,14 +8,14 @@
   }
 }
 
-.b-callout__icon {
+.callout__icon {
   display: inline-block;
   line-height: 1.5rem;
   position: absolute;
   top: 0;
 }
 
-.b-callout__blurb {
+.callout__blurb {
   display: inline-block;
   line-height: 1.5rem;
   margin: 0 0 0 2rem;
