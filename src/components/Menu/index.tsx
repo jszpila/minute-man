@@ -1,10 +1,9 @@
 import { Link } from "@reach/router";
 import React, { SyntheticEvent, useContext } from "react";
 import ReactDOM from "react-dom";
-
+import clsx from "clsx";
 import { AppContext } from "../../context/AppContext";
 import INavigationItem from "../../interfaces/NavigationItem";
-import buildConditionalClasses from "../../util/BuildConditionalClasses";
 import { getLocalizedStringByKey } from "../../util/L10n";
 
 import "./menu.scss";
@@ -24,18 +23,16 @@ interface IMenuItemProps {
   type?: TMenuItem;
 }
 
-// TODO: make less ugly
-// adapted from https://reach.tech/router/example/active-links
 function NavLink(props: any) {
   return (
     <Link
       {...props}
       getProps={({ isCurrent }) => {
         return {
-          className: `app-menu__list__item__link ${buildConditionalClasses(
-            isCurrent,
-            "app-menu__list__item__link--active"
-          )}`,
+          className: clsx(
+            "app-menu__list__item__link",
+            isCurrent && "app-menu__list__item__link--active"
+          ),
         };
       }}
     />
@@ -111,17 +108,17 @@ export default function Menu(props: IMenuProps) {
   return ReactDOM.createPortal(
     <>
       <div
-        className={`app-menu__cover ${buildConditionalClasses(
-          context.shouldShowMenu,
-          "app-menu__cover--active"
-        )}`}
+        className={clsx(
+          "app-menu__cover",
+          context.shouldShowMenu && "app-menu__cover--active"
+        )}
         onClick={onMenuCoverClick}
       ></div>
       <nav
-        className={`app-menu ${buildConditionalClasses(
-          !context.shouldShowMenu,
-          "app-menu--closed"
-        )}`}
+        className={clsx(
+          "app-menu",
+          !context.shouldShowMenu && "app-menu--closed"
+        )}
       >
         <ul className="app-menu__list">
           {props.navItems.map((item, index) => {

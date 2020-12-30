@@ -3,8 +3,8 @@
  * Presentational component for inputs
  */
 
+import clsx from "clsx";
 import React, { SyntheticEvent, useState } from "react";
-import buildConditionalClasses from "../../util/BuildConditionalClasses";
 
 import "./tabs.scss";
 
@@ -31,10 +31,10 @@ export default function Tabs(props: IProps) {
         {props.tabNames.map((name: string, index: number) => {
           return (
             <button
-              className={`tabs__nav__button ${buildConditionalClasses(
-                isActiveTab(index),
-                "tabs__nav__button--active"
-              )}`}
+              className={clsx(
+                "tabs__nav__button",
+                isActiveTab(index) && "tabs__nav__button--active"
+              )}
               key={index}
               onClick={(event: SyntheticEvent) => {
                 event.stopPropagation();
@@ -51,10 +51,10 @@ export default function Tabs(props: IProps) {
         {props.tabContents.map((node: React.ReactNode, index: number) => {
           return (
             <section
-              className={`tabs__content-pane ${buildConditionalClasses(
-                isActiveTab(index),
-                "tabs__content-pane--active"
-              )}`}
+              className={clsx(
+                "tabs__content-pane",
+                isActiveTab(index) && "tabs__content-pane--active"
+              )}
               key={index}
             >
               {node}
