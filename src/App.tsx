@@ -18,15 +18,14 @@ import { IntlProvider } from "react-intl";
 import AppBar from "./components/AppBar";
 import Clickulator, {
   ClickulatorNavConfig,
-} from "./components/features/Clickulator/Clickulator";
+} from "./components/features/Clickulator";
 import MilDotCalc, {
   MilDotCalcNavConfig,
-} from "./components/features/MilDotCalc/MilDotCalc";
+} from "./components/features/MilDotCalc";
 import Settings, {
   SettingsNavConfig,
 } from "./components/features/Settings/Settings";
 import SettingsStore from "./components/features/Settings/SettingsStore";
-// import Timertron, { TimertronNavConfig } from './components/features/Timertron/Timertron';
 import InfoModal from "./components/InfoModal";
 import AppLayout from "./components/layouts/AppLayout";
 import Menu from "./components/Menu";
@@ -75,7 +74,6 @@ export default function App() {
   const navItems = [
     ClickulatorNavConfig,
     MilDotCalcNavConfig,
-    // TimertronNavConfig,
     SettingsNavConfig,
   ];
 
@@ -104,7 +102,6 @@ export default function App() {
                 body={
                   <Router id="router">
                     <Clickulator path={ClickulatorNavConfig.route} />
-                    {/* <Timertron path={ TimertronNavConfig.route } /> */}
                     <Settings path={SettingsNavConfig.route} />
                     <MilDotCalc path={MilDotCalcNavConfig.route} />
                   </Router>
