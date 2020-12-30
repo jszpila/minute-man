@@ -33,7 +33,7 @@ export default function PointOfImpactInput(props: IProps) {
     <>
       <div className="field__cell">
         <RestrictedNumericInput
-          adtlClassNames="field__input--cell_width_fix"
+          className="field__input--cell_width_fix"
           labelledBy={distanceLabel}
           name={props.name}
           value={props.distanceValue}
