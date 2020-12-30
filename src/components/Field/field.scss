@@ -88,6 +88,10 @@ $gutters: (2 * $layout-content-padding-num) + "px";
   }
 }
 
+.field__numeric {
+  background: none !important; // NOTE: to prevent browser/password managers from injecting icons
+}
+
 .field__input--cell_width_fix,
 .field__select--cell_width_fix {
   width: calc(100% - 0.5rem);
