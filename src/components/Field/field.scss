@@ -88,8 +88,14 @@ $gutters: (2 * $layout-content-padding-num) + "px";
   }
 }
 
+// NOTE: to prevent browser/password managers from injecting icons
 .field__numeric {
-  background: none !important; // NOTE: to prevent browser/password managers from injecting icons
+  background: none !important;
+}
+
+// NOTE: to prevent browser/password managers from injecting icons
+img[id^="__lpform_"] {
+  display: none !important;
 }
 
 .field__input--cell_width_fix,
