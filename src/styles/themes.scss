@@ -23,7 +23,7 @@
   --warning-text-color: #{$theme-warning-color};
   --inactive-color: #{$theme-inactive-color};
   --select-arrow: url(#{ generate-arrow($theme-inactive-color) });
-  --select-arrow-focus: url(#{ generate-arrow($theme-primary-active) });
+  --select-arrow-focus: url(#{ generate-arrow($theme-primary-hover) });
   --divider-color: #{$theme-inactive-color};
   --menu-bg-color: #{$theme-menu-bg-color};
   --menu-cover-bg-color: #{$theme-cover-bg-color};
@@ -46,7 +46,9 @@
   --warning-text-color: #{lighten($theme-warning-color, 20%)};
   --inactive-color: #{$theme-inactive-color};
   --select-arrow: url(#{ generate-arrow($theme-inactive-color) });
-  --select-arrow-focus: url(#{ generate-arrow($theme-primary-active)});
+  // NOTE: prettier borks paramter formatting for nested functions
+  /* prettier-ignore */
+  --select-arrow-focus: url(#{ generate-arrow(lighten($theme-primary-hover, 25%))});
   --divider-color: #{$theme-inactive-color};
   --menu-bg-color: #{$theme-menu-bg-color};
   --menu-cover-bg-color: #{$theme-cover-bg-color};
