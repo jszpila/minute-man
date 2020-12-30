@@ -1,25 +1,25 @@
-@import '../../../styles/vars.scss';
+@import "../../../styles/vars.scss";
 
 .feature-with-bottom-button-layout {
-	box-sizing: border-box;
-	display: grid;
-	grid-template-columns: 100%;
-	grid-template-rows: auto $layout-button-area-height;
-	grid-gap: 0;
-	grid-template-areas: "content" "button-container";
-	width: 100%;
-	height: 100%;
-	padding: $layout-content-padding;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto $layout-button-area-height;
+  grid-gap: 0;
+  grid-template-areas: "content" "button-container";
+  width: 100%;
+  height: 100%;
+  padding: $layout-content-padding;
 }
 
 .feature-with-bottom-button-layout__content {
-	grid-area: content;
+  grid-area: content;
 }
 
 .feature-with-bottom-button-layout__button-container {
-	grid-area: button-container;
+  grid-area: button-container;
 }
 
 .feature-with-bottom-button-layout__button-container__body {
-	height: 100%;
+  height: 100%;
 }

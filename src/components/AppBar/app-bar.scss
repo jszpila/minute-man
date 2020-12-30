@@ -1,69 +1,68 @@
 // NOTE: using px specifically to prevent resizing due to user settings
 
 .app-bar {
-	background-color: var(--primary-color);
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	box-sizing: border-box;
-	padding: 0 16px;
+  background-color: var(--primary-color);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 16px;
 }
 
 .app-bar__logo {
-	width: 37px;
-	height: 37px;
-	padding-right: 4px;
-	text-align: center;
+  width: 37px;
+  height: 37px;
+  padding-right: 4px;
+  text-align: center;
 }
 
 .app-bar__logo__svg {
-	fill: var(--primary-text-color);
+  fill: var(--primary-text-color);
 }
 
 .app-bar__body {
-	flex: 2;
-	padding: 0 4px;
+  flex: 2;
+  padding: 0 4px;
 }
 
 .app-bar__title {
-	color: var(--primary-text-color);
+  color: var(--primary-text-color);
   padding: 0;
   margin: 0;
-	text-transform: uppercase;
-	font-size: 25px;
+  text-transform: uppercase;
+  font-size: 25px;
 }
 
 .app-bar__buttons {
-	flex: 1;
-	padding-left: 4px;
-	display: inline-flex;
-	justify-content: flex-end;
+  flex: 1;
+  padding-left: 4px;
+  display: inline-flex;
+  justify-content: flex-end;
 }
 
 .app-bar__button {
-	appearance: none;
-	background-color: transparent;
-	border: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
 }
 
 .app-bar__button > .material-icons {
-	color: var(--primary-text-color);
-	background-color: transparent;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	display: inline-flex;
-	align-items: center;
-	font-size: 24px;
+  color: var(--primary-text-color);
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 24px;
 }
-
-.app-bar__button:focus {
-  outline: none;
-}
-
-.app-bar__button:not(:last-child) {
-	margin-right: 12px;
-}
- 

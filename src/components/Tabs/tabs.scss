@@ -24,10 +24,10 @@
   user-select: none;
   box-sizing: border-box;
   letter-spacing: 0.02857rem;
-}
 
-.tabs__nav__button:focus {
-  outline: transparent;
+  &:focus {
+    outline: transparent;
+  }
 }
 
 .tabs__nav__button--active {
