@@ -1,11 +1,11 @@
+import { getLocalizedDistanceUnit, getLocalizedOffsetUnit, getLocalizedStringByKey } from '../../../../util/L10n';
+import SettingsStore from '../../Settings/SettingsStore';
 /**
  * Validator
  * Handles clickulator validation logic
  */
 
 import { OffsetConfig, ZeroAtDistanceConfig } from '../data/InputConfig';
-import { getLocalizedStringByKey, getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../util/L10n';
-import SettingsStore from '../../Settings/SettingsStore';
 
 enum LocaleKeys {
   AtLeastOneOffset = 'clickulator.errors.offset.atLeastOne',

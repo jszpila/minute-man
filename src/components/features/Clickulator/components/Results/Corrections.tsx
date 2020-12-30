@@ -6,9 +6,9 @@
 import React, { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../../util/L10n';
 import { ICorrectionResult } from '../../Calculator';
 import { ClickulatorContext } from '../../context';
-import { getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../../util/L10n';
 
 interface ICorrectionsListItemProps {
   correction: ICorrectionResult | undefined,

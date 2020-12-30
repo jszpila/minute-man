@@ -11,6 +11,6 @@ const MilDotCalcDefaultValues = {
   isValid: false,
   errors: [],
   result: undefined,
-}
+};
 
 export default MilDotCalcDefaultValues;

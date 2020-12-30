@@ -1,17 +1,17 @@
 /**
  * ZeroAtDistanceInput
- * Specifies the distance for which the optic should be calibrated  
+ * Specifies the distance for which the optic should be calibrated
  */
 
-import React from 'react';
+import React from "react";
 
-import { ZeroAtDistanceConfig } from '../../data/InputConfig';
+import { ZeroAtDistanceConfig } from "../../data/InputConfig";
 
 interface IProps {
-  name: string,
-  updaterFn: ((value: number) => void),
-  value: number,
-};
+  name: string;
+  updaterFn: (value: number) => void;
+  value: number;
+}
 
 export default function ZeroAtDistanceInput(props: IProps) {
   function onChange(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -23,13 +23,14 @@ export default function ZeroAtDistanceInput(props: IProps) {
   return (
     <input
       className="field__input"
-      id={ props.name }
-      min={ ZeroAtDistanceConfig.min }
-      max={ ZeroAtDistanceConfig.max }
-      name={ props.name }
-      onChange={ onChange }
-      step={ ZeroAtDistanceConfig.step }
+      id={props.name}
+      min={ZeroAtDistanceConfig.min}
+      max={ZeroAtDistanceConfig.max}
+      name={props.name}
+      onChange={onChange}
+      step={ZeroAtDistanceConfig.step}
       type="number"
-      defaultValue={ props.value }/>
+      defaultValue={props.value}
+    />
   );
 }

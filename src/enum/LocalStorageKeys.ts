@@ -4,14 +4,14 @@
  */
 
 enum LocalStorageKeys {
-  AdjustmentIncrement = 'adjustmentIncrement',
-  DefaultTimerMode = 'defaultTimerMode',
-  FontSize = 'fontSize',
-  IsMicAccessGranted = 'isMicAccessGranted',
-  Locale = 'locale',
-  Theme = 'theme',
-  ZeroAtDistance = 'zeroAtDistance',
-  Units = 'units',
+  AdjustmentIncrement = "adjustmentIncrement",
+  DefaultTimerMode = "defaultTimerMode",
+  FontSize = "fontSize",
+  IsMicAccessGranted = "isMicAccessGranted",
+  Locale = "locale",
+  Theme = "theme",
+  ZeroAtDistance = "zeroAtDistance",
+  Units = "units",
 }
 
 export default LocalStorageKeys;

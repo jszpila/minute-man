@@ -3,7 +3,7 @@
  * Utility for accessing user-specified or default value of a setting
  */
 
-import AppDefaultValues  from "../../../data/AppDefaults";
+import AppDefaultValues from "../../../data/AppDefaults";
 import LocalStorageKeys from "../../../enum/LocalStorageKeys";
 import ClickulatorDefaultValues from "../Clickulator/data/Defaults";
 
@@ -21,7 +21,9 @@ class AppSettingsStore {
 
   public get theme(): string {
     const localStorageValue = localStorage.getItem(LocalStorageKeys.Theme);
-    return localStorageValue != null ? localStorageValue : AppDefaultValues.theme;
+    return localStorageValue != null
+      ? localStorageValue
+      : AppDefaultValues.theme;
   }
 
   public set theme(value: string) {
@@ -30,7 +32,9 @@ class AppSettingsStore {
 
   public get locale(): string {
     const localStorageValue = localStorage.getItem(LocalStorageKeys.Locale);
-    return localStorageValue != null ? localStorageValue : AppDefaultValues.locale;
+    return localStorageValue != null
+      ? localStorageValue
+      : AppDefaultValues.locale;
   }
 
   public set locale(value: string) {
@@ -39,7 +43,9 @@ class AppSettingsStore {
 
   public get fontSize(): string {
     const localStorageValue = localStorage.getItem(LocalStorageKeys.FontSize);
-    return localStorageValue != null ? localStorageValue : AppDefaultValues.fontSize;
+    return localStorageValue != null
+      ? localStorageValue
+      : AppDefaultValues.fontSize;
   }
 
   public set fontSize(value: string) {
@@ -48,7 +54,9 @@ class AppSettingsStore {
 
   public get units(): string {
     const localStorageValue = localStorage.getItem(LocalStorageKeys.Units);
-    return localStorageValue != null ? localStorageValue : AppDefaultValues.units;
+    return localStorageValue != null
+      ? localStorageValue
+      : AppDefaultValues.units;
   }
 
   public set units(value: string) {
@@ -68,8 +76,12 @@ class ClickulatorSettingsStore {
   }
 
   public get zeroAtDistance(): number {
-    const localStorageValue = localStorage.getItem(LocalStorageKeys.ZeroAtDistance);
-    return localStorageValue != null ? parseInt(localStorageValue) : defaults.zeroAtDistance;
+    const localStorageValue = localStorage.getItem(
+      LocalStorageKeys.ZeroAtDistance
+    );
+    return localStorageValue != null
+      ? parseInt(localStorageValue)
+      : defaults.zeroAtDistance;
   }
 
   public set zeroAtDistance(value: number) {
@@ -77,12 +89,19 @@ class ClickulatorSettingsStore {
   }
 
   public get adjustmentIncrement(): number {
-    const localStorageValue = localStorage.getItem(LocalStorageKeys.AdjustmentIncrement);
-    return localStorageValue != null ? Number(localStorageValue) : defaults.adjustmentIncrement;
+    const localStorageValue = localStorage.getItem(
+      LocalStorageKeys.AdjustmentIncrement
+    );
+    return localStorageValue != null
+      ? Number(localStorageValue)
+      : defaults.adjustmentIncrement;
   }
 
   public set adjustmentIncrement(value: number) {
-    localStorage.setItem(LocalStorageKeys.AdjustmentIncrement, value.toString())
+    localStorage.setItem(
+      LocalStorageKeys.AdjustmentIncrement,
+      value.toString()
+    );
   }
 }
 

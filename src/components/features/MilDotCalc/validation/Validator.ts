@@ -3,19 +3,28 @@
  * Handles MilDotCalc validation logic
  */
 
-import { IInputConfig, MilSizeConfig, DistanceConfig, PhysicalSizeConfig } from '../data/InputConfig';
-import { getLocalizedStringByKey, getLocalizedDistanceUnit, getLocalizedOffsetUnit } from '../../../../util/L10n';
-import SettingsStore from '../../Settings/SettingsStore';
+import {
+  IInputConfig,
+  MilSizeConfig,
+  DistanceConfig,
+  PhysicalSizeConfig,
+} from "../data/InputConfig";
+import {
+  getLocalizedStringByKey,
+  getLocalizedDistanceUnit,
+  getLocalizedOffsetUnit,
+} from "../../../../util/L10n";
+import SettingsStore from "../../Settings/SettingsStore";
 
 interface IValidatorData {
-  milSize: number | undefined,
-  physicalSize: number | undefined,
-  distance: number | undefined,
+  milSize: number | undefined;
+  physicalSize: number | undefined;
+  distance: number | undefined;
 }
 
 export interface IValidationError {
-  localeStringKey: string,
-  values?: any | undefined,
+  localeStringKey: string;
+  values?: any | undefined;
 }
 
 export default class MilDotCalcValidator {
@@ -39,25 +48,45 @@ export default class MilDotCalcValidator {
   public validate(data: IValidatorData): void {
     this.errors = [];
     this.validatePresence(data);
-    this.validateProperty(data.milSize, 'milSize', MilSizeConfig, getLocalizedStringByKey('units.mil'));
-    this.validateProperty(data.physicalSize, 'physicalSize', PhysicalSizeConfig, getLocalizedOffsetUnit());
-    this.validateProperty(data.distance, 'distance', DistanceConfig, getLocalizedDistanceUnit());
+    this.validateProperty(
+      data.milSize,
+      "milSize",
+      MilSizeConfig,
+      getLocalizedStringByKey("units.mil")
+    );
+    this.validateProperty(
+      data.physicalSize,
+      "physicalSize",
+      PhysicalSizeConfig,
+      getLocalizedOffsetUnit()
+    );
+    this.validateProperty(
+      data.distance,
+      "distance",
+      DistanceConfig,
+      getLocalizedDistanceUnit()
+    );
   }
 
   private validatePresence(data: IValidatorData): void {
     const { milSize, physicalSize, distance } = data;
-    let providedFields = 0
+    let providedFields = 0;
 
     providedFields += distance === undefined ? 0 : 1;
     providedFields += milSize === undefined ? 0 : 1;
     providedFields += physicalSize === undefined ? 0 : 1;
 
     if (providedFields < 2) {
-      this.errors.push({localeStringKey: 'mildotcalc.errors.atLeastTwoOf'})
+      this.errors.push({ localeStringKey: "mildotcalc.errors.atLeastTwoOf" });
     }
   }
 
-  private validateProperty(value: number | undefined, name: string, config: IInputConfig, unit: string): void {
+  private validateProperty(
+    value: number | undefined,
+    name: string,
+    config: IInputConfig,
+    unit: string
+  ): void {
     if (value !== undefined) {
       if (value > config.max) {
         this.errors.push({
@@ -65,8 +94,8 @@ export default class MilDotCalcValidator {
           values: {
             max: config.max,
             unit: unit,
-          }
-        })
+          },
+        });
       }
 
       if (value < config.min) {
@@ -75,8 +104,8 @@ export default class MilDotCalcValidator {
           values: {
             max: config.min,
             unit: unit,
-          }
-        })
+          },
+        });
       }
     }
   }

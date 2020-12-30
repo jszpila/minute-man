@@ -14,6 +14,6 @@ const AppDefaultValues = {
   shouldShowMenu: false,
   theme: Themes.Default,
   units: Units.Imperial,
-}
+};
 
 export default AppDefaultValues;

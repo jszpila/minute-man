@@ -1,5 +1,5 @@
 export default interface INavigationItem {
-  route: string,
-  icon: string,
-  displayNameKey: string,
+  route: string;
+  icon: string;
+  displayNameKey: string;
 }

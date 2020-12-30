@@ -4,10 +4,10 @@
  */
 
 import React, { useContext } from 'react';
-
-import { MilDotCalcContenxt } from '../../context';
-import Modal from '../../../../Modal';
 import { FormattedMessage } from 'react-intl';
+
+import Modal from '../../../../Modal';
+import { MilDotCalcContenxt } from '../../context';
 import { IValidationError } from '../../validation/Validator';
 
 import '../../../Clickulator/components/Results/results.scss';
