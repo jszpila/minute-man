@@ -20,7 +20,7 @@ import {
   applyLocaleLang,
   getLocalizedStringByKey,
 } from "../../../../util/L10n";
-import Field from "../../../Field/Field";
+import Field from "../../../Field";
 import SettingsStore from "../SettingsStore";
 
 // TODO: flip back when necessary I don't feeel like making feature flags right now

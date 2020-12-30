@@ -9,7 +9,7 @@ import { RouteComponentProps } from "@reach/router";
 import React, { useContext } from "react";
 
 import randomizeInputName from "../../../../util/RandomizeInputName";
-import Field from "../../../Field/Field";
+import Field from "../../../Field";
 import AdjustmentSelect from "../../Clickulator/components/AdjustmentSelect";
 import ZeroAtDistanceInput from "../../Clickulator/components/ZeroAtDistanceInput";
 import { ClickulatorContext } from "../../Clickulator/context";

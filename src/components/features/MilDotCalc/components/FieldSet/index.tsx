@@ -11,46 +11,18 @@ import {
   getLocalizedOffsetUnit,
 } from "../../../../../util/L10n";
 import randomizeInputName from "../../../../../util/RandomizeInputName";
-import Field, { LabelElementType } from "../../../../Field/Field";
+import Callout from "../../../../Callout";
+import Field, { LabelElementType } from "../../../../Field";
+import FieldLabelWithHint from "../../../../Field/FieldLabelWithHint";
 import RestrictedNumericInput from "../../../../RestrictedNumericInput";
 import { MilDotCalcContenxt } from "../../context";
 import MilDotCalcDefaultValues from "../../data/Defaults";
 
 export default function FieldSet() {
-  const distanceUnit = getLocalizedDistanceUnit();
-  const offsetUnit = getLocalizedOffsetUnit();
   const milSizeLabelId = "mildotcalc.milSize";
   const physicalSizeLabelId = "mildotcalc.physicalSize";
   const distanceLabelId = "mildotcalc.distance";
   const defaults = MilDotCalcDefaultValues;
-
-  // TODO: make IconLabel component
-  const milSizeLabel = (
-    <>
-      <FormattedMessage id={milSizeLabelId} />
-      <i className="field__label__hint txt--smaller txt--muted">
-        (<FormattedMessage id="units.mil" />)
-      </i>
-    </>
-  );
-
-  const targePhysicalSizeLabel = (
-    <>
-      <FormattedMessage id={physicalSizeLabelId} />
-      <i className="field__label__hint txt--smaller txt--muted">
-        ({offsetUnit})
-      </i>
-    </>
-  );
-
-  const distanceLabel = (
-    <>
-      <FormattedMessage id={distanceLabelId} />
-      <i className="field__label__hint txt--smaller txt--muted">
-        ({distanceUnit})
-      </i>
-    </>
-  );
 
   // TODO: bake randomizeInputNames into Field?
   const inputNames = {
@@ -63,16 +35,17 @@ export default function FieldSet() {
     <MilDotCalcContenxt.Consumer>
       {(value) => (
         <fieldset className="form__fieldset">
-          {/* TODO: Callout component */}
-          <div className="b-callout">
-            <i className="material-icons b-callout__icon">info</i>
-            <p className="b-callout__blurb">
-              <FormattedMessage id="mildotcalc.blurb" />
-            </p>
-          </div>
+          <Callout>
+            <FormattedMessage id="mildotcalc.blurb" />
+          </Callout>
           <Field
             inputName={inputNames.milSize}
-            labelText={milSizeLabel}
+            labelText={
+              <FieldLabelWithHint
+                messageId={milSizeLabelId}
+                hintText={<FormattedMessage id="units.mil" />}
+              />
+            }
             labelElementType={LabelElementType.Span}
           >
             <RestrictedNumericInput
@@ -84,7 +57,12 @@ export default function FieldSet() {
           </Field>
           <Field
             inputName={inputNames.physicalSize}
-            labelText={targePhysicalSizeLabel}
+            labelText={
+              <FieldLabelWithHint
+                messageId={physicalSizeLabelId}
+                hintText={getLocalizedOffsetUnit()}
+              />
+            }
             labelElementType={LabelElementType.Span}
           >
             <RestrictedNumericInput
@@ -96,7 +74,12 @@ export default function FieldSet() {
           </Field>
           <Field
             inputName={inputNames.distance}
-            labelText={distanceLabel}
+            labelText={
+              <FieldLabelWithHint
+                messageId={distanceLabelId}
+                hintText={getLocalizedDistanceUnit()}
+              />
+            }
             labelElementType={LabelElementType.Span}
           >
             <RestrictedNumericInput

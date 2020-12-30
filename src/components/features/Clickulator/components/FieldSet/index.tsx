@@ -11,7 +11,8 @@ import {
   getLocalizedOffsetUnit,
 } from "../../../../../util/L10n";
 import randomizeInputName from "../../../../../util/RandomizeInputName";
-import Field, { LabelElementType } from "../../../../Field/Field";
+import Field, { LabelElementType } from "../../../../Field";
+import FieldLabelWithHint from "../../../../Field/FieldLabelWithHint";
 import SettingsStore from "../../../Settings/SettingsStore";
 import { ClickulatorContext } from "../../context";
 import {
@@ -25,38 +26,6 @@ import ZeroAtDistanceInput from "../ZeroAtDistanceInput";
 export default function FieldSet() {
   const settings = SettingsStore.getInstance().clickulator;
   const offsetUnit = getLocalizedOffsetUnit();
-  const distanceUnit = getLocalizedDistanceUnit();
-
-  const vertLabel = (
-    <>
-      <FormattedMessage id="clickulator.horizontalOffsetLabel" />
-      <i className="field__label__hint txt--smaller txt--muted">
-        ({offsetUnit})
-      </i>
-    </>
-  );
-
-  const horizLabel = (
-    <>
-      <FormattedMessage id="clickulator.verticalOffsetLabel" />
-      <i className="field__label__hint txt--smaller txt--muted">
-        ({offsetUnit})
-      </i>
-    </>
-  );
-
-  const zeroLabel = (
-    <>
-      <FormattedMessage id="clickulator.zeroAtDistanceLabel" />
-      <i className="field__label__hint txt--smaller txt--muted">
-        ({distanceUnit})
-      </i>
-    </>
-  );
-
-  const adjustmentLabel = (
-    <FormattedMessage id="clickulator.adjustmentIncrementLabel" />
-  );
 
   // NOTE: use randomized input names to prevent auto-fill behavior
   const inputNames = {
@@ -74,7 +43,12 @@ export default function FieldSet() {
             <legend className="form__fieldset__legend">Point of Impact</legend>
             <Field
               inputName={inputNames.hOffsetDist}
-              labelText={horizLabel}
+              labelText={
+                <FieldLabelWithHint
+                  messageId="clickulator.verticalOffsetLabel"
+                  hintText={offsetUnit}
+                />
+              }
               labelElementType={LabelElementType.Span}
             >
               <PointOfImpactInput
@@ -89,7 +63,12 @@ export default function FieldSet() {
             </Field>
             <Field
               inputName={inputNames.vOffsetDist}
-              labelText={vertLabel}
+              labelText={
+                <FieldLabelWithHint
+                  messageId="clickulator.horizontalOffsetLabel"
+                  hintText={offsetUnit}
+                />
+              }
               labelElementType={LabelElementType.Span}
             >
               <PointOfImpactInput
@@ -105,14 +84,27 @@ export default function FieldSet() {
           </fieldset>
           <fieldset className="form__fieldset">
             <legend className="form__fieldset__legend">General</legend>
-            <Field inputName={inputNames.zeroDist} labelText={zeroLabel}>
+            <Field
+              inputName={inputNames.zeroDist}
+              labelText={
+                <FieldLabelWithHint
+                  messageId="clickulator.zeroAtDistanceLabel"
+                  hintText={getLocalizedDistanceUnit()}
+                />
+              }
+            >
               <ZeroAtDistanceInput
                 name={inputNames.zeroDist}
                 updaterFn={value.setZeroAtDistance}
                 value={settings.zeroAtDistance}
               />
             </Field>
-            <Field inputName={inputNames.opticInc} labelText={adjustmentLabel}>
+            <Field
+              inputName={inputNames.opticInc}
+              labelText={
+                <FormattedMessage id="clickulator.adjustmentIncrementLabel" />
+              }
+            >
               <AdjustmentSelect
                 name={inputNames.opticInc}
                 updaterFn={value.setAdjustmentIncrement}
