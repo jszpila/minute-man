@@ -22,9 +22,7 @@ import Clickulator, {
 import MilDotCalc, {
   MilDotCalcNavConfig,
 } from "./components/features/MilDotCalc";
-import Settings, {
-  SettingsNavConfig,
-} from "./components/features/Settings/Settings";
+import Settings, { SettingsNavConfig } from "./components/features/Settings";
 import SettingsStore from "./components/features/Settings/SettingsStore";
 import InfoModal from "./components/InfoModal";
 import AppLayout from "./components/layouts/AppLayout";

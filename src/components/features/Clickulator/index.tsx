@@ -135,23 +135,6 @@ export default function Clickulator(props: RouteComponentProps) {
     setShouldShowResultsModal(!shouldShowResultsModal);
   }
 
-  const buttons = (
-    <div className="button-container">
-      <button
-        className="button button--danger button--yuge button--flex-1"
-        type="reset"
-      >
-        <FormattedMessage id="buttons.reset" />
-      </button>
-      <button
-        className="button button--primary button--yuge button--flex-3"
-        type="submit"
-      >
-        <FormattedMessage id="buttons.submit" />
-      </button>
-    </div>
-  );
-
   return (
     <ClickulatorContext.Provider value={contextValue}>
       <ResultsModal />
@@ -170,7 +153,22 @@ export default function Clickulator(props: RouteComponentProps) {
               <FieldSet />
             </>
           }
-          buttonAreaContent={buttons}
+          buttonAreaContent={
+            <div className="button-container">
+              <button
+                className="button button--danger button--yuge button--flex-1"
+                type="reset"
+              >
+                <FormattedMessage id="buttons.reset" />
+              </button>
+              <button
+                className="button button--primary button--yuge button--flex-3"
+                type="submit"
+              >
+                <FormattedMessage id="buttons.submit" />
+              </button>
+            </div>
+          }
         />
       </form>
     </ClickulatorContext.Provider>
