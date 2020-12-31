@@ -37,8 +37,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [React](https://reactjs.org/)  
 [Create React App](https://github.com/facebook/create-react-app)  
 [TypeScript](https://www.typescriptlang.org/)
-<!-- [Jest](https://jestjs.io/)  
-[Husky](https://github.com/typicode/husky)   -->
+[Husky](https://github.com/typicode/husky)
+[Prettier](https://prettier.io/)
+<!-- [Jest](https://jestjs.io/) -->
 
 ## Credits
 
