@@ -1,0 +1,24 @@
+/* TEAM */
+  That Guy: Jan Szpila
+  Web: jan.szpi.la
+  Location: NW Indiana, USA
+
+/* THANKS */
+  Mentoring: Kevin @ Nerdery
+
+  Rubber Duck Extraordinaire: Mark @ Nerdery
+
+  Personal Project Time Allowance: Nerdery 
+  Web: https://www.nerdery.com/
+
+  Concept: Infinity Solutions
+  Web: https://infinitysolutionsusa.com/
+
+  QA Tester/Idea Guy: Max
+
+/* SITE */
+  Last update: 2022/06/08
+  Language: English
+  Doctype: HTML5
+  IDE: VSCode
+  Tech: React w/ Create React App, TypeScript, SASS, Jest, Husky, Github

@@ -47,7 +47,6 @@ export default function InfoModal() {
         </>
       )}
 
-      <p>Special thanks to Mark and Kevin.</p>
       <p>
         Like this app? You can{" "}
         <a
