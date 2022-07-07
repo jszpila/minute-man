@@ -48,15 +48,15 @@ export default function InfoModal() {
       )}
 
       <p>
-        Like this app? You can{" "}
+        <FormattedMessage id="coffeeLink.1" />
         <a
-          href="https://www.buymeacoffee.com/jszpila"
+          href="https://szpi.la/l/mmcoffee"
           rel="noopener noreferrer"
           target="_blank"
         >
-          buy me a coffee
+          <FormattedMessage id="coffeeLink.2" />
         </a>
-        .
+        <FormattedMessage id="coffeeLink.3" />
       </p>
     </>
   );
