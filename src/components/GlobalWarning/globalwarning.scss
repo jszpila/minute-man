@@ -9,12 +9,17 @@
   & > .callout__icon {
     top: 1rem;
   }
+
+  & > .callout {
+    margin-bottom: 0;
+  }
 }
 
 // Show only on mobile screens in landscape orientation
 @media screen and (hover: none) and (orientation: landscape) {
   #GlobalWarning {
     margin: $layout-content-padding;
+    margin-bottom: 0;
     display: block;
   }
 }
