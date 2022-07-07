@@ -28,7 +28,7 @@ function CorrectionsListItem(props: ICorrectionsListItemProps) {
       <li className="feedback__item">
         <FormattedMessage
           id="clickulator.correction"
-          values={props.correction}
+          values={{...props.correction}}
         />
       </li>
     );
