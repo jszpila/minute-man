@@ -50,6 +50,12 @@ export default function App() {
   const [shouldShowMenu, setShouldShowMenu] = useState<boolean>(
     AppDefaultValues.shouldShowMenu
   );
+  const [
+    shouldShowNavBurger,
+    setShouldShowNavBurger,
+  ] = useState<boolean>(
+    AppDefaultValues.shouldShowNavBurger
+  );
   const [theme, setTheme] = useState<string>(settings.app.theme);
   const [fontSize, setFontSize] = useState<string>(settings.app.fontSize);
   const [units, setUnits] = useState<string>(settings.app.units);
@@ -65,6 +71,8 @@ export default function App() {
     setShouldShowInstallButton,
     shouldShowMenu,
     setShouldShowMenu,
+    shouldShowNavBurger,
+    setShouldShowNavBurger,
     theme,
     setTheme,
     units,

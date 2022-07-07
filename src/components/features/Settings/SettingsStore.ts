@@ -62,6 +62,17 @@ class AppSettingsStore {
   public set units(value: string) {
     localStorage.setItem(LocalStorageKeys.Units, value);
   }
+
+  public get navBurger(): boolean {
+    const localStorageValue = localStorage.getItem(LocalStorageKeys.ShowNavBurger);
+    return localStorageValue != null
+      ? (localStorageValue === "true")
+      : AppDefaultValues.shouldShowNavBurger;
+  }
+
+  public set navBurger(value: boolean) {
+    localStorage.setItem(LocalStorageKeys.ShowNavBurger, value.toString());
+  }
 }
 
 class ClickulatorSettingsStore {

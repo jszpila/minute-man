@@ -18,6 +18,8 @@ export interface IAppContext {
   setShouldShowInstallButton: Dispatch<SetStateAction<boolean>>;
   shouldShowMenu: boolean;
   setShouldShowMenu: Dispatch<SetStateAction<boolean>>;
+  shouldShowNavBurger: boolean;
+  setShouldShowNavBurger: Dispatch<SetStateAction<boolean>>;
   theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
   units: string;
@@ -36,6 +38,8 @@ const initialContext: IAppContext = {
   shouldShowMenu: AppDefaultValues.shouldShowMenu,
   setShouldShowMenu: (): void => {},
   theme: AppDefaultValues.theme,
+  shouldShowNavBurger: AppDefaultValues.shouldShowNavBurger,
+  setShouldShowNavBurger: (): void => {},
   setTheme: (): void => {},
   units: AppDefaultValues.units,
   setUnits: (): void => {},

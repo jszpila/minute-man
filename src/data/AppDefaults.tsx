@@ -12,6 +12,7 @@ const AppDefaultValues = {
   shouldShowInfoModal: false,
   shouldShowInstallButton: false,
   shouldShowMenu: false,
+  shouldShowNavBurger: false,
   theme: Themes.Default,
   units: Units.Imperial,
 };

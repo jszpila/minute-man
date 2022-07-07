@@ -4,6 +4,8 @@ import { AppContext } from "../../context/AppContext";
 
 export default function MenuButton() {
   const context = useContext(AppContext);
+  const shouldShowNavBurger = context.shouldShowNavBurger;
+  const iconName = shouldShowNavBurger ? "lunch_dining" : "menu";
 
   function onClick(event: SyntheticEvent): void {
     event.preventDefault();
@@ -12,7 +14,7 @@ export default function MenuButton() {
 
   return (
     <button className="app-bar__button" type="button" onClick={onClick}>
-      <i className="material-icons">menu</i>
+      <i className="material-icons">{iconName}</i>
     </button>
   );
 }

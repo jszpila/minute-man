@@ -30,6 +30,7 @@
   "settings.app.units": "Units",
   "settings.app.units.imperial": "'Merican",
   "settings.app.units.metric": "Metric",
+  "settings.app.navBurger": "NavBurger",
   "settings.clickulator.title": "Zero Tool Default Settings",
   "info.title": "Info",
   "info.closeButton": "Got it",
@@ -78,5 +79,8 @@
   "app.warnings.orientation": "MinuteMan is best suited for smart phones in portrait orientation",
   "buttons.reset": "Reset",
   "buttons.submit": "Send It",
-  "buttons.ok": "OK Boomer"
+  "buttons.ok": "OK Boomer",
+  "coffeeLink.1": "Like this app? You can ",
+  "coffeeLink.2": "buy me a coffee",
+  "coffeeLink.3": "."
 }

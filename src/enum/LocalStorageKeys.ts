@@ -12,6 +12,7 @@ enum LocalStorageKeys {
   Theme = "theme",
   ZeroAtDistance = "zeroAtDistance",
   Units = "units",
+  ShowNavBurger = "showNavBurger",
 }
 
 export default LocalStorageKeys;

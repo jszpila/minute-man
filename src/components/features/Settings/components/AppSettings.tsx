@@ -23,19 +23,24 @@ import {
 import Field from "../../../Field";
 import SettingsStore from "../SettingsStore";
 
-// TODO: flip back when necessary I don't feeel like making feature flags right now
+// TODO: flip back when necessary I don't feel like making feature flags right now
 const shouldEnableLocaleSelect = false;
 
 export default function AppSettings(props: RouteComponentProps) {
   const context = useContext(AppContext);
-
   const root = document.documentElement;
-  const checkboxIcon =
-    context.theme === Themes.Dark ? "check_box" : "check_box_outline_blank";
   const settings = SettingsStore.getInstance();
+
+  function getCheckboxIcon(value: boolean): string {
+    return value ? "check_box" : "check_box_outline_blank";
+  }
 
   function isDarkThemeChecked(): boolean {
     return context.theme === Themes.Dark;
+  }
+
+  function isNavBurgerChecked(): boolean {
+    return context.shouldShowNavBurger === true;
   }
 
   function onThemeChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -79,6 +84,13 @@ export default function AppSettings(props: RouteComponentProps) {
     settings.app.units = units;
   }
 
+  function onNavBurgerChange(event: ChangeEvent<HTMLInputElement>): void {
+    const isChecked = event.target.checked;
+
+    context.setShouldShowNavBurger(isChecked);
+    settings.app.navBurger = isChecked;
+  }
+
   return (
     <fieldset className="form__fieldset">
       <legend className="form__fieldset__legend">
@@ -90,12 +102,33 @@ export default function AppSettings(props: RouteComponentProps) {
       >
         <>
           <label>
-            <i className="material-icons"> {checkboxIcon} </i>
+            <i className="material-icons">
+              {getCheckboxIcon(isDarkThemeChecked())}
+            </i>
             <input
               className="field__checkbox"
               defaultChecked={isDarkThemeChecked()}
               name="theme"
               onChange={onThemeChange}
+              type="checkbox"
+            />
+          </label>
+        </>
+      </Field>
+      <Field
+        inputName="navBurger"
+        labelText={<FormattedMessage id="settings.app.navBurger" />}
+      >
+        <>
+          <label>
+            <i className="material-icons">
+              {getCheckboxIcon(isNavBurgerChecked())}
+            </i>
+            <input
+              className="field__checkbox"
+              defaultChecked={isNavBurgerChecked()}
+              name="navBurger"
+              onChange={onNavBurgerChange}
               type="checkbox"
             />
           </label>
