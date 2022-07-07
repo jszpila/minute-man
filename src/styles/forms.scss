@@ -23,7 +23,7 @@
 .button {
   font-family: "Roboto", sans-serif; // TODO: figure out why this isn't being inherited
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1rem;
   margin: 0;
   border: 0;
@@ -32,47 +32,58 @@
   user-select: none;
   outline: none;
   min-height: 2.5rem;
-  padding: 1rem;
-  letter-spacing: 0.1rem;
-}
+  padding: 0 1rem;
 
-.button--primary {
-  background-color: var(--primary-color);
-  color: var(--primary-text-color);
+  &--primary {
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
 
-  &:active {
-    background-color: var(--primary-color-active);
+    &:active {
+      background-color: var(--primary-color-active);
+    }
+
+    &:focus {
+      outline: 1px var(--primary-color-hover);
+    }
+
+    &:hover {
+      background-color: var(--primary-color-hover);
+    }
   }
 
-  &:focus {
-    outline: 1px var(--primary-color-hover);
+  &--danger {
+    background-color: var(--danger-color);
+    color: var(--danger-text-color);
+
+    &:hover {
+      background-color: var(--danger-color-hover);
+    }
+
+    &:active {
+      background-color: var(--danger-color-active);
+    }
+
+    &:focus {
+      outline: 1px var(--danger-color-active);
+    }
   }
 
-  &:hover {
-    background-color: var(--primary-color-hover);
-  }
-}
-
-.button--danger {
-  background-color: var(--danger-color);
-  color: var(--danger-text-color);
-
-  &:hover {
-    background-color: var(--danger-color-hover);
+  &--yuge {
+    width: 100%;
+    font-size: 1.25rem;
   }
 
-  &:active {
-    background-color: var(--danger-color-active);
+  &--flex-1 {
+    flex: 1;
   }
 
-  &:focus {
-    outline: 1px var(--danger-color-active);
+  &--flex-2 {
+    flex: 2;
   }
-}
 
-.button--yuge {
-  width: 100%;
-  font-size: 1.25rem;
+  &--flex-3 {
+    flex: 3;
+  }
 }
 
 .info {
@@ -116,16 +127,4 @@
       margin-right: 0;
     }
   }
-}
-
-.button--flex-1 {
-  flex: 1;
-}
-
-.button--flex-2 {
-  flex: 2;
-}
-
-.button--flex-3 {
-  flex: 3;
 }
