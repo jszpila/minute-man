@@ -31,17 +31,14 @@ export default function AppSettings(props: RouteComponentProps) {
   const root = document.documentElement;
   const settings = SettingsStore.getInstance();
 
-  function getCheckboxIcon(value: boolean): string {
-    return value ? "check_box" : "check_box_outline_blank";
-  }
+  const getCheckboxIcon = (value: boolean): string =>
+    value ? "check_box" : "check_box_outline_blank";
 
-  function isDarkThemeChecked(): boolean {
-    return context.theme === Themes.Dark;
-  }
+  const isDarkThemeChecked = (): boolean =>
+    context.theme === Themes.Dark;
 
-  function isNavBurgerChecked(): boolean {
-    return context.shouldShowNavBurger === true;
-  }
+  const isNavBurgerChecked = (): boolean =>
+    context.shouldShowNavBurger === true;
 
   function onThemeChange(event: ChangeEvent<HTMLInputElement>): void {
     const isChecked = event.target.checked;

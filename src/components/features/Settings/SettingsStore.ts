@@ -65,6 +65,7 @@ class AppSettingsStore {
 
   public get navBurger(): boolean {
     const localStorageValue = localStorage.getItem(LocalStorageKeys.ShowNavBurger);
+
     return localStorageValue != null
       ? (localStorageValue === "true")
       : AppDefaultValues.shouldShowNavBurger;

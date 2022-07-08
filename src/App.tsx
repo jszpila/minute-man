@@ -87,14 +87,22 @@ export default function App() {
 
   useEffect(() => {
     const localeClass = LocaleStyles.get(settings.app.locale) || "";
+
     document.documentElement.classList.add(
       settings.app.theme,
       settings.app.fontSize,
       localeClass
     );
+
     setTheme(settings.app.theme);
+    setShouldShowNavBurger(settings.app.navBurger);
     applyLocaleLang();
-  }, [settings.app.theme, settings.app.locale, settings.app.fontSize]);
+  }, [
+    settings.app.theme, 
+    settings.app.locale,
+    settings.app.fontSize, 
+    settings.app.navBurger,
+  ]);
 
   return (
     <IntlProvider
