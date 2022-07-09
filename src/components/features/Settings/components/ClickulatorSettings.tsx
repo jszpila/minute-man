@@ -1,7 +1,8 @@
 /**
  *
  * Settings
- * App level settings
+ * 
+ * Clickulator/Zero Tool feature settings
  *
  */
 
@@ -46,29 +47,31 @@ export default function ClickulatorSettings(props: RouteComponentProps) {
   }
 
   return (
-    <fieldset className="form__fieldset">
-      <legend className="form__fieldset__legend">
+    <details className="form__details">
+      <summary className="form__fieldset__legend">
         <FormattedMessage id="settings.clickulator.title" />
-      </legend>
-      <Field inputName={inputNames.zeroDist} labelText={zeroLabel}>
-        <ZeroAtDistanceInput
-          name={inputNames.zeroDist}
-          updaterFn={onZeroAtDistanceChange}
-          value={settings.clickulator.zeroAtDistance}
-        />
-      </Field>
-      <Field
-        inputName={inputNames.opticInc}
-        labelText={
-          <FormattedMessage id="clickulator.adjustmentIncrementLabel" />
-        }
-      >
-        <AdjustmentSelect
-          name={inputNames.opticInc}
-          updaterFn={onAdjustmentIncrementChange}
-          value={settings.clickulator.adjustmentIncrement}
-        />
-      </Field>
-    </fieldset>
+      </summary>
+      <fieldset className="form__fieldset">
+        <Field inputName={inputNames.zeroDist} labelText={zeroLabel}>
+          <ZeroAtDistanceInput
+            name={inputNames.zeroDist}
+            updaterFn={onZeroAtDistanceChange}
+            value={settings.clickulator.zeroAtDistance}
+          />
+        </Field>
+        <Field
+          inputName={inputNames.opticInc}
+          labelText={
+            <FormattedMessage id="clickulator.adjustmentIncrementLabel" />
+          }
+        >
+          <AdjustmentSelect
+            name={inputNames.opticInc}
+            updaterFn={onAdjustmentIncrementChange}
+            value={settings.clickulator.adjustmentIncrement}
+          />
+        </Field>
+      </fieldset>
+    </details>
   );
 }

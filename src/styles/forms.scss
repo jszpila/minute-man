@@ -128,3 +128,39 @@
     }
   }
 }
+
+.form__details {
+  margin-bottom: 1rem;
+  position: relative;
+
+  summary {
+    cursor: pointer;
+  }
+
+  &:after {
+    background-image: var(--select-arrow);
+    background-repeat: no-repeat, repeat;
+    background-position: 50%;
+    background-size: 0.65rem auto, 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    content: " ";
+    transform: rotate(90deg);
+  }
+
+  &[open] {
+    .form__fieldset__legend {
+      color: var(--primary-color-hover);
+      border-color: var(--primary-color-hover);
+    }
+
+    &:after {
+      background-image: var(--select-arrow-focus);
+      transform: rotate(0deg);
+    }
+  }
+}

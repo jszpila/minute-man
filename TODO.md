@@ -6,12 +6,14 @@
 - [ ] Husky/Prettier pre-push
 - [ ] Replace reach router with react router
 - [ ] Implement Jest tests & snapshots
+  - [ ] Update workflows to run tests
 - [x] Fix media query for landscape warning message
 - [ ] Replace getLocalizedStringByKey w/ translate built-in methods
   - [ ] Localize unlocalized text
+- [ ] Migrate to `navigator.userAgentData`
 - [ ] Use [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) to load resources (fonts, sounds)
 - [ ] Use [HTML5 dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) for modal
-- [ ] Use [HTML5 details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) for settings sections
+- [x] Use [HTML5 details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) for settings sections
 - [ ] Generate last update date for `humans.txt`
 
 ## Features

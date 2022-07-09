@@ -31,6 +31,7 @@ export default function AppSettings(props: RouteComponentProps) {
   const root = document.documentElement;
   const settings = SettingsStore.getInstance();
 
+  // TODO: make checkbox component
   const getCheckboxIcon = (value: boolean): string =>
     value ? "check_box" : "check_box_outline_blank";
 
@@ -89,113 +90,115 @@ export default function AppSettings(props: RouteComponentProps) {
   }
 
   return (
-    <fieldset className="form__fieldset">
-      <legend className="form__fieldset__legend">
+    <details className="form__details">
+      <summary className="form__fieldset__legend">
         <FormattedMessage id="settings.app.title" />
-      </legend>
-      <Field
-        inputName="theme"
-        labelText={<FormattedMessage id="settings.app.darkMode" />}
-      >
-        <>
-          <label>
-            <i className="material-icons">
-              {getCheckboxIcon(isDarkThemeChecked())}
-            </i>
-            <input
-              className="field__checkbox"
-              defaultChecked={isDarkThemeChecked()}
-              name="theme"
-              onChange={onThemeChange}
-              type="checkbox"
-            />
-          </label>
-        </>
-      </Field>
-      <Field
-        inputName="navBurger"
-        labelText={<FormattedMessage id="settings.app.navBurger" />}
-      >
-        <>
-          <label>
-            <i className="material-icons">
-              {getCheckboxIcon(isNavBurgerChecked())}
-            </i>
-            <input
-              className="field__checkbox"
-              defaultChecked={isNavBurgerChecked()}
-              name="navBurger"
-              onChange={onNavBurgerChange}
-              type="checkbox"
-            />
-          </label>
-        </>
-      </Field>
-      {shouldEnableLocaleSelect && (
+      </summary>
+      <fieldset className="form__fieldset">
         <Field
-          inputName="language"
-          labelText={<FormattedMessage id="settings.app.language" />}
+          inputName="theme"
+          labelText={<FormattedMessage id="settings.app.darkMode" />}
+        >
+          <>
+            <label>
+              <i className="material-icons">
+                {getCheckboxIcon(isDarkThemeChecked())}
+              </i>
+              <input
+                className="field__checkbox"
+                defaultChecked={isDarkThemeChecked()}
+                name="theme"
+                onChange={onThemeChange}
+                type="checkbox"
+              />
+            </label>
+          </>
+        </Field>
+        <Field
+          inputName="navBurger"
+          labelText={<FormattedMessage id="settings.app.navBurger" />}
+        >
+          <>
+            <label>
+              <i className="material-icons">
+                {getCheckboxIcon(isNavBurgerChecked())}
+              </i>
+              <input
+                className="field__checkbox"
+                defaultChecked={isNavBurgerChecked()}
+                name="navBurger"
+                onChange={onNavBurgerChange}
+                type="checkbox"
+              />
+            </label>
+          </>
+        </Field>
+        {shouldEnableLocaleSelect && (
+          <Field
+            inputName="language"
+            labelText={<FormattedMessage id="settings.app.language" />}
+          >
+            <select
+              className="field__select"
+              defaultValue={settings.app.locale}
+              id="locale"
+              name="locale"
+              onChange={onLocaleChange}
+            >
+              <option value={Locales.EN}>English</option>
+              <option value={Locales.ES}>Española</option>
+              <option value={Locales.PL}>Polski</option>
+            </select>
+          </Field>
+        )}
+        <Field
+          inputName="fontSize"
+          labelText={<FormattedMessage id="settings.app.fontSize" />}
         >
           <select
             className="field__select"
-            defaultValue={settings.app.locale}
-            id="locale"
-            name="locale"
-            onChange={onLocaleChange}
+            defaultValue={settings.app.fontSize}
+            id="fontSize"
+            name="fontSize"
+            onChange={onFontSizeChange}
           >
-            <option value={Locales.EN}>English</option>
-            <option value={Locales.ES}>Española</option>
-            <option value={Locales.PL}>Polski</option>
+            <option value={FontSizeStyles.ExtraSmall}>
+              {getLocalizedStringByKey("fontSizes.extraSmall")}
+            </option>
+            <option value={FontSizeStyles.Small}>
+              {getLocalizedStringByKey("fontSizes.small")}
+            </option>
+            <option value={FontSizeStyles.Medium}>
+              {getLocalizedStringByKey("fontSizes.medium")}
+            </option>
+            <option value={FontSizeStyles.Large}>
+              {getLocalizedStringByKey("fontSizes.large")}
+            </option>
+            <option value={FontSizeStyles.ExtraLarge}>
+              {getLocalizedStringByKey("fontSizes.extraLarge")}
+            </option>
           </select>
         </Field>
-      )}
-      <Field
-        inputName="fontSize"
-        labelText={<FormattedMessage id="settings.app.fontSize" />}
-      >
-        <select
-          className="field__select"
-          defaultValue={settings.app.fontSize}
-          id="fontSize"
-          name="fontSize"
-          onChange={onFontSizeChange}
+        <Field
+          inputName="fontSize"
+          labelText={<FormattedMessage id="settings.app.units" />}
         >
-          <option value={FontSizeStyles.ExtraSmall}>
-            {getLocalizedStringByKey("fontSizes.extraSmall")}
-          </option>
-          <option value={FontSizeStyles.Small}>
-            {getLocalizedStringByKey("fontSizes.small")}
-          </option>
-          <option value={FontSizeStyles.Medium}>
-            {getLocalizedStringByKey("fontSizes.medium")}
-          </option>
-          <option value={FontSizeStyles.Large}>
-            {getLocalizedStringByKey("fontSizes.large")}
-          </option>
-          <option value={FontSizeStyles.ExtraLarge}>
-            {getLocalizedStringByKey("fontSizes.extraLarge")}
-          </option>
-        </select>
-      </Field>
-      <Field
-        inputName="fontSize"
-        labelText={<FormattedMessage id="settings.app.units" />}
-      >
-        <select
-          className="field__select"
-          defaultValue={settings.app.units}
-          id="units"
-          name="units"
-          onChange={onUnitsChange}
-        >
-          <option value={Units.Imperial}>
-            {getLocalizedStringByKey("settings.app.units.imperial")}
-          </option>
-          <option value={Units.Metric}>
-            {getLocalizedStringByKey("settings.app.units.metric")}
-          </option>
-        </select>
-      </Field>
-    </fieldset>
+          <select
+            className="field__select"
+            defaultValue={settings.app.units}
+            id="units"
+            name="units"
+            onChange={onUnitsChange}
+          >
+            <option value={Units.Imperial}>
+              {getLocalizedStringByKey("settings.app.units.imperial")}
+            </option>
+            <option value={Units.Metric}>
+              {getLocalizedStringByKey("settings.app.units.metric")}
+            </option>
+          </select>
+        </Field>
+      </fieldset>
+    </details>
   );
 }
