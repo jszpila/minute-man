@@ -1,4 +1,3 @@
-import { Router } from "@reach/router";
 /**
  *
  *     ▄▄▄▄███▄▄▄▄    ▄█  ███▄▄▄▄   ███    █▄      ███        ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████ ███▄▄▄▄
@@ -33,6 +32,7 @@ import { AppContext, IAppContext } from "./context/AppContext";
 import AppDefaultValues from "./data/AppDefaults";
 import LocaleStyles from "./data/locale/LocaleStyles";
 import { applyLocaleLang, localizations } from "./util/L10n";
+import { Route, Routes } from "react-router-dom";
 
 import "./App.scss";
 
@@ -106,9 +106,9 @@ export default function App() {
 
   return (
     <IntlProvider
+      defaultLocale="en"
       locale={settings.app.locale}
-      messages={localizations.get(settings.app.locale)}
-    >
+      messages={localizations.get(settings.app.locale)}>
       <AppContext.Provider value={contextValue}>
         <AppContext.Consumer>
           {(value) => (
@@ -116,11 +116,11 @@ export default function App() {
               <AppLayout
                 header={<AppBar />}
                 body={
-                  <Router id="router">
-                    <Clickulator path={ClickulatorNavConfig.route} />
-                    <Settings path={SettingsNavConfig.route} />
-                    <MilDotCalc path={MilDotCalcNavConfig.route} />
-                  </Router>
+                  <Routes>
+                    <Route path={ClickulatorNavConfig.route} element={<Clickulator />} />
+                    <Route path={SettingsNavConfig.route} element={<Settings />} />
+                    <Route path={MilDotCalcNavConfig.route} element={<MilDotCalc />} />
+                  </Routes>
                 }
               />
               <InfoModal />

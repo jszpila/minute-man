@@ -20,8 +20,13 @@ export default function Field(props: IProps) {
   const labelId = `${name}Label`;
 
   const namedChildren = React.Children.map(props.children, (child) => {
+    const cloneProps = {
+      name: name,
+      "aria-labelledby": labelId,
+    };
+
     if (React.isValidElement(child)) {
-      return React.cloneElement(child, { name, "aria-labelledby": labelId });
+      return React.cloneElement(child, cloneProps);
     }
 
     return child;
@@ -41,7 +46,9 @@ export default function Field(props: IProps) {
   return (
     <div className="field">
       {labelEl}
-      <div className="field__input__container">{namedChildren}</div>
+      <div className="field__input__container">
+        {namedChildren}
+      </div>
     </div>
   );
 }

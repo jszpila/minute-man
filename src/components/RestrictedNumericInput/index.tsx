@@ -40,7 +40,7 @@ export default function RestrictedNumericInput(
     <input
       autoComplete="none"
       aria-labelledby={labelledBy}
-      className={`field__input field__numeric ${props.className}`}
+      className={`field__input field__numeric`}
       defaultValue={props.value}
       id={props.name}
       inputMode="numeric"

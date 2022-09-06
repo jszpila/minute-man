@@ -2,18 +2,15 @@
 
 ## Bugs/Maintenance
 
-- [ ] Fix mildot math
-- [ ] Husky/Prettier pre-push
-- [ ] Replace reach router with react router
+- [ ] Fix mildot math ([reference](https://skillatarms.com/mil-dot-formula-calculator-ranging-and-measuring-made-easy/))
+- [ ] Husky/Prettier pre-push ([reference](https://typicode.github.io/husky/#/?id=automatic-recommended))
 - [ ] Implement Jest tests & snapshots
-  - [ ] Update workflows to run tests
-- [x] Fix media query for landscape warning message
+  - [ ] Update hooks & to run tests
 - [ ] Replace getLocalizedStringByKey w/ translate built-in methods
   - [ ] Localize unlocalized text
 - [ ] Migrate to `navigator.userAgentData`
 - [ ] Use [web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) to load resources (fonts, sounds)
 - [ ] Use [HTML5 dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) for modal
-- [x] Use [HTML5 details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) for settings sections
 - [ ] Generate last update date for `humans.txt`
 
 ## Features
@@ -28,7 +25,7 @@
 
 - [ ] "Share" modal & menu item w/ QR code, link to szpi.la/apps
 - [ ] Looks like you're using this on a phone..." pop-up when visiting via mobile web (ok, nope, never ask me again options (saved))
-- [x] Actual navburger (controlled via setting)
+- [x] Actual navburger (controlled via setting) *1.3.2*
 - [ ] Implement point of aim vs point of impact modal & trigger w/ illustration
 - [ ] Dismissable infoblocks w/ saved state
 - [ ] Multiple themes

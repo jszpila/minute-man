@@ -1,6 +1,5 @@
 // MilDot Calc
 
-import { RouteComponentProps } from "@reach/router";
 import React, { SyntheticEvent, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -21,7 +20,7 @@ export const MilDotCalcNavConfig: INavigationItem = {
 
 const defaults = MilDotCalcDefaultSettings;
 
-export default function MilDotCalc(props: RouteComponentProps) {
+export default function MilDotCalc() {
   const [milSize, setMilSize] = useState<number | undefined>(defaults.milSize);
   const [physicalSize, setPhysicalSize] = useState<number | undefined>(
     defaults.physicalSize

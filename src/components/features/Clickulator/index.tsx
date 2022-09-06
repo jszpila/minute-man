@@ -11,7 +11,6 @@
  *
  */
 
-import { RouteComponentProps } from "@reach/router";
 import React, { SyntheticEvent, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -33,7 +32,7 @@ export const ClickulatorNavConfig: INavigationItem = {
 
 const defaults = ClickulatorDefaultValues;
 
-export default function Clickulator(props: RouteComponentProps) {
+export default function Clickulator() {
   // Local state
   const [shouldShowResultsModal, setShouldShowResultsModal] = useState<boolean>(
     defaults.shouldShowResultsModal

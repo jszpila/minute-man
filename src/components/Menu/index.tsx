@@ -1,57 +1,25 @@
-import { Link } from "@reach/router";
 import React, { SyntheticEvent, useContext } from "react";
 import ReactDOM from "react-dom";
 import clsx from "clsx";
 import { AppContext } from "../../context/AppContext";
 import INavigationItem from "../../interfaces/NavigationItem";
 import { getLocalizedStringByKey } from "../../util/L10n";
+import { NavLink } from "react-router-dom";
 
 import "./menu.scss";
-
-type TMenuItem = "button" | "link";
-
-enum MenuItemType {
-  Button = "button",
-  Link = "link",
-}
-
-interface IMenuItemProps {
+interface IMenuLinkItemProps {
   iconName: string;
   localizedTitleKey: string;
-  onClick?: (event: SyntheticEvent) => void;
-  route?: string;
-  type?: TMenuItem;
+  route: string;
+  onClick?: (event: SyntheticEvent) => void | undefined;
+}
+interface IMenuButtonItemProps {
+  iconName: string;
+  localizedTitleKey: string;
+  onClick: (event: SyntheticEvent) => void;
 }
 
-function NavLink(props: any) {
-  return (
-    <Link
-      {...props}
-      getProps={({ isCurrent }) => {
-        return {
-          className: clsx(
-            "app-menu__list__item__link",
-            isCurrent && "app-menu__list__item__link--active"
-          ),
-        };
-      }}
-    />
-  );
-}
-
-function MenuItem(props: IMenuItemProps) {
-  const type = props.type || MenuItemType.Link;
-  const child =
-    type === MenuItemType.Link ? (
-      <MenuLink {...props} />
-    ) : (
-      <MenuButton {...props} />
-    );
-
-  return <li className="app-menu__list__item">{child}</li>;
-}
-
-function MenuButton(props: IMenuItemProps) {
+function MenuButton(props: IMenuButtonItemProps) {
   return (
     <button
       className="app-menu__list__item__button"
@@ -68,13 +36,20 @@ function MenuButton(props: IMenuItemProps) {
   );
 }
 
-function MenuLink(props: IMenuItemProps) {
+function MenuLink(props: IMenuLinkItemProps) {
+  const clsName = "app-menu__list__item__link";
+  const activeClsName = "app-menu__list__item__link--active";
   const adtlProps = {
     onClick: props.onClick || undefined,
   };
 
+
   return (
-    <NavLink {...adtlProps} to={props.route}>
+    <NavLink
+      {...adtlProps}
+      to={props.route}
+      className={({ isActive }) => isActive ? `${clsName} ${activeClsName}` : clsName}
+    >
       <i className="material-icons app-menu__list__item__icon">
         {props.iconName}
       </i>
@@ -84,7 +59,6 @@ function MenuLink(props: IMenuItemProps) {
     </NavLink>
   );
 }
-
 interface IMenuProps {
   navItems: Array<INavigationItem>;
 }
@@ -123,28 +97,28 @@ export default function Menu(props: IMenuProps) {
         <ul className="app-menu__list">
           {props.navItems.map((item, index) => {
             return (
-              <MenuItem
-                key={index}
-                iconName={item.icon}
-                onClick={closeMenu}
-                route={item.route}
-                localizedTitleKey={item.displayNameKey}
-              />
+              <li className="app-menu__list__item" key={index}>
+                <MenuLink 
+                  iconName={item.icon}
+                  onClick={closeMenu}
+                  route={item.route}
+                  localizedTitleKey={item.displayNameKey}
+                />
+              </li>
             );
           })}
         </ul>
         <hr className="app-menu__list-divider" />
         <ul className="app-menu__list">
-          <MenuItem
+          <MenuButton
             iconName="info"
             onClick={onInfoClick}
             localizedTitleKey="info.title"
-            type={MenuItemType.Button}
           />
           <li>
             <a
               className="app-menu__list__item__link"
-              href="https://www.buymeacoffee.com/jszpila"
+              href="https://szpi.la/l/mmcoffee"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -156,7 +130,13 @@ export default function Menu(props: IMenuProps) {
           </li>
         </ul>
         <div className="app-menu__version txt--smaller txt--muted">
-          v{env.REACT_APP_VERSION}
+          <a
+            href="https://github.com/jszpila/minute-man/blob/master/README.md"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            v{env.REACT_APP_VERSION}
+          </a>
         </div>
       </nav>
     </>,

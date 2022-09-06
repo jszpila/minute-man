@@ -6,7 +6,6 @@
  *
  */
 
-import { RouteComponentProps } from "@reach/router";
 import React, { useContext } from "react";
 
 import randomizeInputName from "../../../../util/RandomizeInputName";
@@ -18,7 +17,7 @@ import SettingsStore from "../SettingsStore";
 import { FormattedMessage } from "react-intl";
 import { getLocalizedDistanceUnit } from "../../../../util/L10n";
 
-export default function ClickulatorSettings(props: RouteComponentProps) {
+export default function ClickulatorSettings() {
   const context = useContext(ClickulatorContext);
   const settings = SettingsStore.getInstance();
 

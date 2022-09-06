@@ -5,7 +5,6 @@
  *
  */
 
-import { RouteComponentProps } from "@reach/router";
 import React from "react";
 
 import INavigationItem from "../../../interfaces/NavigationItem";
@@ -21,7 +20,7 @@ export const SettingsNavConfig: INavigationItem = {
   displayNameKey: "settings.title",
 };
 
-export default function Settings(props: RouteComponentProps) {
+export default function Settings() {
   return (
     <DefaultLayout>
       <form id="Settings" className="form">

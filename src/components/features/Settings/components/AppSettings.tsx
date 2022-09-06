@@ -6,7 +6,6 @@
  *
  */
 
-import { RouteComponentProps } from "@reach/router";
 import React, { ChangeEvent, useContext } from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -26,7 +25,7 @@ import SettingsStore from "../SettingsStore";
 // TODO: flip back when necessary I don't feel like making feature flags right now
 const shouldEnableLocaleSelect = false;
 
-export default function AppSettings(props: RouteComponentProps) {
+export default function AppSettings() {
   const context = useContext(AppContext);
   const root = document.documentElement;
   const settings = SettingsStore.getInstance();
