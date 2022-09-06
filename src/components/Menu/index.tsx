@@ -110,12 +110,14 @@ export default function Menu(props: IMenuProps) {
         </ul>
         <hr className="app-menu__list-divider" />
         <ul className="app-menu__list">
-          <MenuButton
-            iconName="info"
-            onClick={onInfoClick}
-            localizedTitleKey="info.title"
-          />
-          <li>
+           <li className="app-menu__list__item">
+            <MenuButton
+              iconName="info"
+              onClick={onInfoClick}
+              localizedTitleKey="info.title"
+            />
+          </li>
+          <li className="app-menu__list__item">
             <a
               className="app-menu__list__item__link"
               href="https://szpi.la/l/mmcoffee"
