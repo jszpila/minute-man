@@ -78,3 +78,10 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+// TODO: 
+// - version check / update notification? https://create-react-app.dev/docs/making-a-progressive-web-app/#offline-first-considerations
+// - use REACT_APP_VERSION for cache control? 
+// const assets = [
+//   "/public/qr-mm.png",
+//   "/public/beep.mp3",
+// ];

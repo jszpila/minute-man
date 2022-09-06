@@ -7,6 +7,11 @@
 @import "./styles/locale/es.scss";
 @import "./styles/locale/pl.scss";
 @import "./styles/font-sizes.scss";
+@import "material-icons/iconfont/material-icons.css";
+@import "@fontsource/roboto";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+@import "@fontsource/roboto/900.css";
 
 html {
   overscroll-behavior-y: contain;
