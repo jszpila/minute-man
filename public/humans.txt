@@ -8,13 +8,16 @@
 
   Rubber Duck Extraordinaire: Mark @ Nerdery
 
+  QA Tester/Idea Guy: Max
+
   Personal Project Time Allowance: Nerdery 
   Web: https://www.nerdery.com/
 
   Concept: Infinity Solutions
   Web: https://infinitysolutionsusa.com/
 
-  QA Tester/Idea Guy: Max
+  Math: Shooter's Calculator
+  Web: http://www.shooterscalculator.com
 
 /* SITE */
   Last update: 2022/06/08

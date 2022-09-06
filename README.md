@@ -2,13 +2,13 @@
 
 A progressive web app for your phone that will be ready at a moment's notice to help you with common range stuff.
 
-Like this app? You can [buy me a coffee](https://www.buymeacoffee.com/jszpila)!
+Like this app? You can [buy me a coffee](https://szpi.la/l/mmcoffee)!
 
 ## Features
 
 ### Zero Tool
 
-Helps you zero that pesky optic.
+Helps you zero that pesky sight.
 
 ### MilDot Calc
 
@@ -20,7 +20,7 @@ Add it to your home screen - like an app! First, visit [minman.app](https://minm
 
 ### Android
 
-- Tap the "install" button button in the nav-bar. Bada-bing, bada-boom.
+- Tap the "install" button in the nav bar. Bada-bing, bada-boom.
 
 ### iOS
 
@@ -37,13 +37,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [React](https://reactjs.org/)  
 [Create React App](https://github.com/facebook/create-react-app)  
 [TypeScript](https://www.typescriptlang.org/)
-
-<!-- [Jest](https://jestjs.io/)
-[Husky](https://github.com/typicode/husky)   -->
-
-## Credits
-
-Many features are re-implementations of tools found at [shooterscalculator.com](http://www.shooterscalculator.com). Go over there and give 'em a look!
+[Jest](https://jestjs.io/)
+[Husky](https://github.com/typicode/husky)  
 
 <!--
   Resource Docs
